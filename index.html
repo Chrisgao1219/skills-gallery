@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chrisgao—推荐Skill</title>
+<style>
+  :root{--bg:#f0f2f5;--card-bg:#fff;--text:#1a1a2e;--text-secondary:#52525b;--text-muted:#949a9d;--accent:#2563eb;--border:#e5e7eb;--border-light:#f3f4f6;--glass:rgba(255,255,255,.85);--shadow:0 1px 3px rgba(0,0,0,.05),0 1px 2px rgba(0,0,0,.04);--shadow-md:0 4px 12px rgba(0,0,0,.06);--radius:12px;--radius-lg:16px}
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+  .header{background:linear-gradient(145deg,#0b1121 0%,#152040 35%,#1a3a6b 70%,#1d4ed8 100%);color:#fff;padding:56px 24px 48px;text-align:center;position:relative;overflow:hidden}
+  .header-bg{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 900px 600px at 20% -10%,rgba(59,130,246,.25),transparent),radial-gradient(ellipse 600px 800px at 85% 60%,rgba(99,102,241,.18),transparent),radial-gradient(ellipse 500px 400px at 50% 120%,rgba(6,182,212,.12),transparent)}
+  .header-dots{position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(rgba(255,255,255,.06) 1px,transparent 1px);background-size:32px 32px}
+  .header-content{position:relative;z-index:1;max-width:720px;margin:0 auto}
+  .badge{display:inline-block;padding:4px 14px;border-radius:20px;background:rgba(255,255,255,.12);font-size:12px;font-weight:500;letter-spacing:1px;text-transform:uppercase;margin-bottom:16px;backdrop-filter:blur(4px);border:1px solid rgba(255,255,255,.1)}
+  .logo{font-size:46px;font-weight:800;letter-spacing:-1px;margin-bottom:6px}
+  .slogan{font-size:16px;opacity:.72;font-weight:400}
+  .stats{display:flex;gap:40px;justify-content:center;margin-top:28px;flex-wrap:wrap}
+  .stat{text-align:center}
+  .stat-num{font-size:40px;font-weight:700;font-variant-numeric:tabular-nums}
+  .stat-label{font-size:12px;opacity:.6;margin-top:2px;text-transform:uppercase;letter-spacing:.5px}
+  .container{max-width:1400px;margin:0 auto;padding:28px 24px 40px}
+  .toolbar{display:flex;gap:12px;margin-bottom:28px;flex-wrap:wrap;align-items:center;position:sticky;top:16px;z-index:50;background:var(--glass);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding:14px 18px;border-radius:var(--radius-lg);border:1px solid var(--border);box-shadow:var(--shadow-md)}
+  .search-box{flex:1;min-width:240px;position:relative}
+  .search-box svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--text-muted);pointer-events:none}
+  .search-box input{width:100%;padding:10px 36px 10px 42px;border:1.5px solid var(--border);border-radius:10px;font-size:14px;background:var(--card-bg);outline:none;transition:border-color .2s,box-shadow .2s}
+  .search-box input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(37,99,235,.1)}
+  .search-clear{position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:var(--text-muted);font-size:18px;line-height:1;padding:4px;display:none;border-radius:50%;transition:color .15s,background .15s}
+  .search-clear:hover{color:var(--text);background:var(--border-light)}
+  .search-clear.visible{display:block}
+  .result-hint{font-size:13px;color:var(--text-muted);white-space:nowrap}
+  .filter-wrap{display:flex;gap:5px;flex-wrap:wrap;max-height:120px;overflow-y:auto}
+  .filter-wrap::-webkit-scrollbar{display:none}
+  .filter-tab{padding:7px 15px;border-radius:22px;border:1.5px solid transparent;background:transparent;font-size:13px;cursor:pointer;transition:all .2s;white-space:nowrap;user-select:none;color:var(--text-secondary);font-weight:500}
+  .filter-tab:hover{background:#eff6ff;color:var(--accent)}
+  .filter-tab.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .section{margin-bottom:36px}
+  .section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+  .section-icon{font-size:22px;line-height:1}
+  .section-title{font-size:19px;font-weight:700}
+  .section-count{font-size:12px;font-weight:600;color:var(--text-muted);background:var(--border-light);padding:3px 11px;border-radius:20px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:14px}
+  .card{background:var(--card-bg);border-radius:var(--radius);padding:18px 20px;box-shadow:var(--shadow);border:1px solid var(--border);border-left:3px solid var(--border);transition:box-shadow .2s,transform .18s,border-color .2s;cursor:pointer;position:relative;overflow:hidden;animation:fadeUp .4s ease backwards}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+  .card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px);border-left-color:var(--accent)}
+  .card:active{transform:scale(.995)}
+  .card.copied::after{content:'已复制 \2713';position:absolute;top:10px;right:12px;background:#059669;color:#fff;font-size:11px;padding:3px 10px;border-radius:12px;pointer-events:none;animation:popIn .3s ease}
+  @keyframes popIn{from{opacity:0;transform:scale(.8)}to{opacity:1;transform:scale(1)}}
+  .card-name{font-family:"SF Mono","Fira Code","Cascadia Code","JetBrains Mono",Consolas,monospace;font-size:13px;font-weight:600;color:var(--accent);margin-bottom:6px;word-break:break-all;display:flex;align-items:center;gap:6px}
+  .card-copy-icon{opacity:0;font-size:12px;transition:opacity .15s}
+  .card:hover .card-copy-icon{opacity:.5}
+  .card-desc{font-size:14px;color:var(--text-secondary);line-height:1.55;margin-bottom:10px}
+  .card-tag{display:inline-block;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;letter-spacing:.2px}
+  .tag-custom{background:#fce4ec;color:#ad1457}
+  .tag-brand{background:#f3e8ff;color:#6b21a8}
+  .tag-dsite{background:#dbeafe;color:#1e3a5f}
+  .tag-social{background:#fce7f3;color:#9d174d}
+  .tag-voc{background:#d1fae5;color:#065f46}
+  .tag-seo{background:#ffedd5;color:#9a3412}
+  .tag-ops{background:#e0e7ff;color:#3730a3}
+  .tag-util{background:#f3f4f6;color:#374151}
+  .tag-amazon{background:#fef9c3;color:#854d0e}
+  .tag-ads{background:#fff0f0;color:#b91c1c}
+  .tag-mktg{background:#ecfdf5;color:#065f46}
+  .tag-auto{background:#fefce8;color:#854d0e}
+  .tag-tiktok{background:#111;color:#fff}
+  .tag-shop{background:#d1fae5;color:#065f46}
+  .tag-etsy{background:#fff1f2;color:#be123c}
+  .tag-bay{background:#fff7ed;color:#c2410c}
+  .tag-ecom{background:#f0f9ff;color:#0369a1}
+  .empty{text-align:center;padding:80px 20px;color:var(--text-muted)}
+  .empty-icon{font-size:48px;margin-bottom:12px}
+  .empty-text{font-size:15px}
+  .share-bar{display:flex;gap:10px;justify-content:center;margin-top:48px;flex-wrap:wrap}
+  .btn{display:inline-flex;align-items:center;gap:6px;padding:10px 22px;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;border:1.5px solid var(--border);background:var(--card-bg);color:var(--text-secondary);transition:all .2s}
+  .btn:hover{border-color:var(--accent);color:var(--accent);box-shadow:var(--shadow)}
+  .btn-primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .btn-primary:hover{background:#1d4ed8;color:#fff}
+  .source-badge{font-size:10px;opacity:.5;margin-left:4px}
+  .toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%);background:#1f2937;color:#fff;padding:10px 24px;border-radius:10px;font-size:14px;pointer-events:none;z-index:999;opacity:0;transition:opacity .3s;box-shadow:0 8px 24px rgba(0,0,0,.12)}
+  .toast.show{opacity:1}
+  .btt{position:fixed;bottom:28px;right:28px;width:44px;height:44px;border-radius:50%;background:var(--card-bg);border:1.5px solid var(--border);box-shadow:var(--shadow-md);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:20px;color:var(--text-secondary);transition:all .2s;opacity:0;pointer-events:none;z-index:100}
+  .btt.visible{opacity:1;pointer-events:auto}
+  .btt:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
+  .footer{text-align:center;padding:20px 24px 36px;color:var(--text-muted);font-size:13px}
+  @media(max-width:768px){.grid{grid-template-columns:1fr}.header{padding:44px 20px 36px}.logo{font-size:32px}.stats{gap:28px}.stat-num{font-size:30px}.toolbar{flex-direction:column;align-items:stretch;top:8px;padding:12px 14px}.filter-wrap{overflow-x:auto;flex-wrap:nowrap;padding-bottom:4px}.btt{bottom:20px;right:16px}}
+</style>
+</head>
+<body>
+<header class="header"><div class="header-bg"></div><div class="header-dots"></div><div class="header-content"><div class="badge">AI Skills Collection</div><h1 class="logo">Chrisgao—推荐Skill</h1><p class="slogan">出海电商全链路 AI 能力矩阵 — 精选测试，即装即用</p><div class="stats"><div class="stat"><div class="stat-num" id="totalCount">278</div><div class="stat-label">Skills</div></div><div class="stat"><div class="stat-num">18</div><div class="stat-label">大类</div></div></div></div></header>
+<main class="container">
+<div class="toolbar">
+  <div class="search-box">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    <input type="text" id="search" placeholder="搜索 Skill 名称或用途…" autocomplete="off">
+    <button class="search-clear" id="searchClear" title="清除">&times;</button>
+  </div>
+  <span class="result-hint" id="resultHint"></span>
+  <div class="filter-wrap" id="filters">
+    <button class="filter-tab active" data-cat="all">全部</button>
+    <button class="filter-tab" data-cat="custom">⭐ 自创</button>
+    <button class="filter-tab" data-cat="dsite">🌐 独立站DTC</button>
+    <button class="filter-tab" data-cat="social">📱 社媒增长</button>
+    <button class="filter-tab" data-cat="voc">🔍 VOC洞察</button>
+    <button class="filter-tab" data-cat="seo">📊 SEO竞品</button>
+    <button class="filter-tab" data-cat="brand">🏷️ 品牌策略</button>
+    <button class="filter-tab" data-cat="shop">🛒 Shopify运营</button>
+    <button class="filter-tab" data-cat="ecom">📦 电商通用</button>
+    <button class="filter-tab" data-cat="ads">📢 广告投放</button>
+    <button class="filter-tab" data-cat="mktg">📋 营销套件</button>
+    <button class="filter-tab" data-cat="auto">⚡ 营销自动化</button>
+    <button class="filter-tab" data-cat="ops">⚙️ 运营</button>
+    <button class="filter-tab" data-cat="util">🛠️ 通用工具</button>
+    <button class="filter-tab" data-cat="tiktok">🎵 TikTok Shop</button>
+    <button class="filter-tab" data-cat="amazon">📦 Amazon运营</button>
+    <button class="filter-tab" data-cat="etsy">🧶 Etsy</button>
+    <button class="filter-tab" data-cat="bay">🏪 eBay/Walmart</button>
+  </div>
+</div>
+<div id="sections"></div>
+<div class="share-bar">
+  <span style="font-size:13px;color:var(--text-muted)">分享给同事：</span>
+  <button class="btn btn-primary" id="btnCopyUrl">📋 复制链接</button>
+</div>
+</main>
+<div class="toast" id="toast"></div>
+<button class="btt" id="btt" title="回到顶部">↑</button>
+<footer class="footer">Chrisgao &copy; 2026 — 基于 Claude Code + Agent Skills 构建 <span class="source-badge">| 来源: Claude-ads(5750⭐) ai-marketing-claude(1830⭐) agentkits-marketing(530⭐) ecommerce-skills(217⭐)</span></footer>
+
+<script>
+const S = [
+  {id:"custom",icon:"⭐",title:"自创",tag:"tag-custom",skills:[["电动滑板KOL外联清单","已测试成功：电动滑板品类KOL外联清单与触达方案"],["红人自动寻找建联","已测试成功：自动化寻找海外红人/KOL并建立联系的全流程"],["Ai产品宣传图","已测试成功：AI驱动的电商产品宣传图生成"],]},
+  {id:"dsite",icon:"🌐",title:"独立站 DTC",tag:"tag-dsite",skills:[["dsite-conversion-ux","转化率CRO全链路（诊断→优化→测试迭代）"],["dsite-sem-ads","付费流量全链路（平台选择→投放优化→效果迭代）"],["dsite-seo-diagnostic","基于Semrush数据反推流量下滑原因，输出诊断与重启方案"],["dsite-seo-playbook","SEO三支柱模型（技术/内容/外链）完整策略输出"],]},
+  {id:"social",icon:"📱",title:"社交媒体 & 增长",tag:"tag-social",skills:[["content-production","博客/指南等内容从零到发布的全流程生产"],["google-whatsapp-prospecting","Google搜索海外采购商WhatsApp并批量验证触达"],["influencer-marketing","全平台KOL/KOC分层筛选、合作与ROI优化"],["linkedin-prospecting","LinkedIn B2B决策者开发（反查资料→获取邮箱→4步触达）"],["social-content-calendar","全年52周社媒内容营销日历设计"],["tiktok-growth","TikTok Shop+短视频+达人+广告+直播全链路增长"],["youtube-channel-ops","YouTube频道定位、SEO、增长与变现全链路"],]},
+  {id:"voc",icon:"🔍",title:"VOC 用户洞察",tag:"tag-voc",skills:[["backlink-kol-extractor","从Semrush外链数据提取KOL/红人/媒体合作线索"],["contact-extractor","根据YouTube/Podcast等列丰富最多3个候选邮箱"],["linktree-expander","将Linktree用户名扩展为完整创作者画像表格"],["media-press-discovery","从媒体域名出发建立记者级PR外联数据库"],["offline-retail-us","中国DTC品牌美国线下渠道拓展全案（快闪/地推/O2O）"],["reddit-voc","挖掘购买前用户真实声音（痛点/红线/黑话/替代方案）"],["trustpilot-voc-deep","全量评论抓取+情感分析+LDA主题建模+AI深度归纳"],["trustpilot-voc-quick","5分钟快速获取Trustpilot评分概况与近期评论摘要"],]},
+  {id:"seo",icon:"📊",title:"SEO & 竞品",tag:"tag-seo",skills:[["seo-ecommerce","Google Shopping可见性+Amazon情报+Schema验证+关键词缺口"],["ecommerce-competitor-analysis","Amazon+Shopify+社交+广告跨平台全维竞品情报"],["shopify-marketing","Shopify全栈营销（SEO/邮件/广告/社交/转化/留存）"],["serp-content-teardown","Semrush+竞品HTML反推搜索获胜内容结构，确定性流水线"],]},
+  {id:"brand",icon:"🏷️",title:"品牌策略",tag:"tag-brand",skills:[["brand-ab-compare","两组品牌战略报告从8个维度对比评分"],["brand-annual-plan","年度执行计划与52周行事历生成"],["brand-budget-ops","预算编制方案与执行监控体系"],["brand-chart-visualize","读取战略报告数据调用AntV生成专业图表"],["brand-deep-validation","对推荐赛道进行5D框架深度验证（第三轮）"],["brand-gtm-launch","新品全流程GTM上市规划（立项→上市→复盘）"],["brand-imc-framework","整合营销传播框架设计（双路径+年度执行日历）"],["brand-knowledge-base","将所有品牌Skill输出整合为Obsidian交叉链接知识库"],["brand-market-scan","市场全景客观扫描，只输出事实数据不做建议（第一轮）"],["brand-strategy-plan","品牌战略决策与可执行计划制定（第四轮）"],["brand-track-hypothesis","生成3-5个赛道假设并系统化评估排名（第二轮）"],]},
+  {id:"shop",icon:"🛒",title:"Shopify 运营",tag:"tag-shop",source:"ecommerce-skills 217⭐",skills:[["shopify-ab-testing","Shopify A/B测试，优化产品和结账页面"],["shopify-analytics-guide","Shopify分析和报告，关键指标/数据驱动决策"],["shopify-app-recommendations","Shopify应用栈顾问，按业务阶段推荐必要应用"],["shopify-blog-strategy","Shopify博客内容营销，SEO内容/购买指南"],["shopify-cart-abandonment","Shopify购物车弃单恢复，邮件/短信/再营销"],["shopify-checkout-customization","Shopify结账优化，结账扩展/自定义字段/信任元素"],["shopify-conversion-optimization","Shopify转化率数据驱动优化，产品页面/结账流程"],["shopify-dropshipping","Shopify一件代发设置与扩展，供应商集成/自动化"],["shopify-email-flows","Shopify邮件自动化，欢迎系列/弃单挽回/售后跟进"],["shopify-facebook-instagram-shop","Shopify社交销售，Facebook Shop/Instagram购物"],["shopify-google-channel","Shopify Google整合，购物Feed/Performance Max/Merchant Center"],["shopify-international","Shopify国际销售，多币种/翻译/关税设置"],["shopify-inventory-management","Shopify多地点库存管理，调拨/低库存预警/需求预测"],["shopify-landing-page-builder","Shopify高转化着陆页构建，活动页面/A/B测试"],["shopify-loyalty-program","Shopify客户忠诚度奖励计划，积分系统/VIP等级"],["shopify-migration","迁移至Shopify，从WooCommerce/Magento等平台数据转移"],["shopify-page-speed","AI驱动Shopify页面速度优化，性能瓶颈诊断与改进"],["shopify-product-photography-guide","Shopify DIY产品摄影，布景/灯光/后期编辑"],["shopify-seo","全面Shopify SEO优化，技术SEO/页面优化"],["shopify-speed-optimization","Shopify速度审计，懒加载/图片压缩/应用臃肿移除"],["shopify-store-setup","Shopify店铺搭建从零开始，账户创建到首次销售"],["shopify-subscription-setup","Shopify订阅计划设置，循环计费/减少流失"],["shopify-tax-compliance","Shopify税务设置与合规，销售税/增值税/关税征收"],["shopify-theme-optimization","Shopify主题速度和UX优化，Core Web Vitals/Liquid代码"],["shopify-upsell-cross-sell","Shopify追加销售和交叉销售，产品推荐/购物车追加"],["shopify-wholesale-channel","Shopify B2B批发渠道，批发定价/最低订单量"],]},
+  {id:"ecom",icon:"📦",title:"电商通用运营",tag:"tag-ecom",source:"ecommerce-skills 217⭐",skills:[["affiliate-marketing-strategy","建立扩展电商联盟营销计划，佣金结构/联盟招募/效果追踪"],["brand-monitoring","跨社交媒体追踪品牌提及并分析情感趋势"],["brand-protection-amazon","亚马逊品牌保护：防范劫持者/假货/未经授权卖家"],["brand-protection-ebay","eBay品牌保护：防范未经授权卖家和假货"],["brand-protection-shopify","Shopify/DTC品牌保护：防范假冒商店和未经授权经销商"],["brand-protection-tiktok","TikTok Shop品牌保护：防范未经授权卖家和假货"],["brand-protection-walmart","Walmart品牌保护：防范未经授权卖家和假货"],["competitive-pricing-strategy","制定数据驱动的定价策略，竞争分析/心理定价/利润优化"],["competitor-price-analysis","分析跨电商平台竞品定价策略，识别定价差距"],["competitor-price-tracker","建立竞品价格追踪与监控工作流，价格变动警报"],["conversion-rate-optimization","系统审计转化漏斗，识别流失点并实施修复"],["cross-border-ecommerce","跨境电商扩展顾问，目标市场评估/履约模式对比/税务合规"],["customer-feedback-analysis","AI驱动客户反馈和评论情感分析，提取痛点改进优先级"],["dropshipping-product-research","为一件代发业务寻找利润产品，供应商可靠性/营销可行性"],["dynamic-pricing-ecommerce","实施动态定价策略，需求定价/竞品响应调价/算法模型"],["ecommerce-ab-testing","电商A/B测试，统计严谨性最大化转化和收入"],["ecommerce-branding","建立强化电商品牌标识，定位/文案/视觉指南"],["ecommerce-business-plan","创建全面电商商业计划，市场分析/财务预测/运营规划"],["ecommerce-checkout-optimization","优化结账流程减少弃单，摩擦分析/支付方式优化"],["ecommerce-content-marketing","电商内容营销策略，内容日历/平台特定策略"],["ecommerce-customer-retention","提升客户留存复购率，邮件流程/忠诚度计划/订阅模式"],["ecommerce-email-marketing-builder","构建完整电商邮件营销系统，自动流程/文案/ESP设置"],["ecommerce-feed-management","AI驱动产品Feed管理与监控，同步错误/属性完整性"],["ecommerce-growth-strategy","电商增长策略顾问，单位经济诊断/90天增长路线图"],["ecommerce-keyword-research","跨平台电商关键词研究，高转化关键词/搜索量信号"],["ecommerce-landing-page","审计优化电商着陆页转化率，CTA/信任信号/页面结构"],["ecommerce-marketing-strategy-builder","构建全渠道电商营销策略，广告/SEO/邮件/内容全覆盖"],["ecommerce-personalization","设计电商个性化策略，产品推荐/动态内容/客户细分"],["ecommerce-ppc-strategy-planner","跨平台PPC广告策略规划，ROAS目标/广告简报"],["ecommerce-returns-management","优化退货流程降低退货率，政策设计/逆向物流/根因分析"],["ecommerce-shipping-rates","比较优化跨承运商运费，最大化利润的运输策略"],["ecommerce-social-media-marketing","电商社媒营销策略，内容日历/社交商务整合"],["ecommerce-subscription-model","设计和推出订阅制电商模式，定价层级/减少流失"],["ecommerce-video-marketing","电商视频营销策略，产品视频/UGC/直播内容"],["google-shopping-optimization","优化Google Shopping广告和产品Feed，最大化ROAS"],["influencer-outreach","寻找联系管理KOL合作伙伴，外联模板/谈判策略"],["inventory-tracking-software","AI驱动库存追踪监控，低库存预警/补货点计算"],["market-gap-analysis","识别电商服务不足的市场空白和未满足的客户需求"],["minimum-advertised-price","MAP最低广告价格政策制定与执行，跨渠道违规监控"],["multichannel-ecommerce","跨多市场渠道管理电商运营，库存同步/订单路由"],["omnichannel-ecommerce","全渠道电商策略，统一品牌体验/库存同步"],["online-reputation-management","在线声誉管理，监控框架/负面评价应对策略"],["price-optimization-tool","数据驱动产品定价优化，弹性分析/利润建模"],["product-description-generator","为任何电商平台生成优化产品描述/标题/要点"],["product-differentiation-amazon","通过竞品评论和市场定位制定亚马逊产品差异化策略"],["product-differentiation-ebay","通过eBay卖家反馈分析制定产品差异化策略"],["product-differentiation-shopify","通过竞品店铺和评论分析制定Shopify/DTC差异化策略"],["product-differentiation-tiktok","通过病毒产品趋势制定TikTok Shop产品差异化策略"],["product-launch-strategy","规划执行电商产品发布，发布前中后完整流程"],["product-page-seo","优化电商产品页搜索引擎可见性，结构化数据/页面速度"],["product-review-analysis","跨电商平台分析产品评论，提取客户反馈可行洞察"],["product-title-optimization","优化产品标题提升搜索可见性和点击率，适配各平台"],["profit-margin-calculator-amazon","亚马逊FBA利润计算器，成本分解/盈亏平衡点分析"],["profit-margin-calculator-shopify","Shopify/DTC利润计算器，含广告支出和CAC分析"],["profit-margin-calculator-tiktok","TikTok Shop利润计算器，联盟佣金/平台费用分析"],["profit-margin-calculator-walmart","Walmart利润计算器，WFS履约/推荐费分析"],["restock-alert","AI驱动补货提醒，最优补货点/安全库存计算"],["sales-tracking-tool","跨平台追踪分析电商销售表现，KPI仪表盘/趋势分析"],["share-of-shelf","数字货架份额分析，衡量品牌品类可见性并追踪趋势"],["shoppable-video","创建优化可购物视频内容，TikTok Shop/Instagram Reels策略"],["supply-chain-optimization-amazon","亚马逊卖家供应链瓶颈诊断与成本优化"],["supply-chain-optimization-shopify","Shopify/DTC供应链瓶颈分析，现金流/库存效率诊断"],["supply-chain-optimization-tiktok","TikTok Shop供应链瓶颈分析，佣金/退货率诊断"],["supply-chain-optimization-walmart","Walmart供应链瓶颈分析，WFS成本/推荐费诊断"],["warehouse-optimization","仓储与库存优化，库存健康度/安全库存计算"],["woocommerce-seo","优化WooCommerce商店搜索引擎排名，技术SEO/结构化数据"],]},
+  {id:"ads",icon:"📢",title:"广告投放",tag:"tag-ads",source:"claude-ads 5750⭐",skills:[["ads","多渠道付费广告审计优化，覆盖Google/Meta/YouTube/LinkedIn/TikTok/Microsoft/Apple/Amazon，250+检查项"],["ads-amazon","亚马逊广告深度分析，Sponsored Products/Brands/Display及DSP"],["ads-apple","Apple Search Ads深度分析，面向移动应用广告主"],["ads-attribution","跨平台归因健康审计，GA4归因模型/Consent Mode V2/MMP集成"],["ads-audit","全平台付费广告审计，并行子代理生成各平台健康评分"],["ads-budget","全广告平台预算分配与出价策略审查，70/20/10规则"],["ads-competitor","跨平台竞品广告情报分析，Google/Meta/LinkedIn/TikTok全覆盖"],["ads-create","广告活动概念与文案简报生成器，基于品牌档案生成结构化方案"],["ads-creative","跨平台创意质量审计，检测创意疲劳/平台合规性/多样性评分"],["ads-dna","品牌DNA提取器，扫描网站提取视觉识别/语调/配色/字体/图片风格"],["ads-generate","AI广告创意图片生成，根据简报与品牌档案生成各平台尺寸图片"],["ads-google","Google Ads深度分析，搜索/PMax/AI Max/展示/YouTube/Demand Gen，80项检查"],["ads-landing","付费广告落地页质量评估，信息匹配/页面速度/移动体验/信任信号"],["ads-linkedin","LinkedIn广告B2B深度分析，27项检查技术/受众/创意/线索/出价"],["ads-math","PPC财务计算器，CPA/ROAS/CPL/盈亏平衡/预算预测/LTV:CAC"],["ads-meta","Meta广告深度分析，Facebook/Instagram/Threads，50项检查"],["ads-microsoft","Microsoft/Bing广告深度分析，搜索/PMax/受众网络/Copilot集成，24项检查"],["ads-photoshoot","广告创意产品摄影增强，5种专业摄影风格生成（影棚/悬浮/场景等）"],["ads-plan","战略性付费广告规划，行业特定模板与分阶段实施路线图"],["ads-server-side-tracking","服务端追踪管道审计，sGTM/Meta CAPI/事件去重/像素调试/PII哈希"],["ads-test","付费广告A/B测试设计，含统计显著性/样本量/测试时长估算"],["ads-tiktok","TikTok广告深度分析，28项检查创意/追踪/出价/TikTok Shop"],["ads-youtube","YouTube广告专项分析，可跳过插播/bumper/Shorts/Demand Gen/CTV格式"],]},
+  {id:"mktg",icon:"📋",title:"AI营销套件",tag:"tag-mktg",source:"ai-marketing-claude 1830⭐",skills:[["market","AI营销套件主编排器，全面营销分析与内容生成"],["market-ads","跨平台广告创意与文案生成，受众定位/预算建议/创意规格"],["market-audit","全方位营销审计引擎，并行子智能体生成评分报告"],["market-brand","品牌声线与语调分析，生成品牌指南文档"],["market-competitors","竞争对手情报分析，识别定位差距并挖掘可借鉴策略"],["market-copy","网站文案评分与优化生成，基于成熟文案框架提供改进建议"],["market-emails","邮件营销序列生成，主题行/正文/定时/细分策略"],["market-funnel","销售漏斗分析与优化，识别流失点并给出收入影响估算"],["market-landing","落地页转化率优化分析，分区块优先级修复建议"],["market-launch","产品发布周计划生成器，含模板/清单/全渠道策略"],["market-proposal","营销服务客户提案生成，含定价锚定方案和ROI预测模型"],["market-report","Markdown格式综合营销报告生成，评分/发现/行动计划"],["market-report-pdf","PDF格式专业营销报告，含评分仪表盘和可视化图表"],["market-seo","全方位SEO审计，页面优化/内容质量/关键词/技术SEO"],["market-social","30天社媒内容日历生成，含平台专属帖子和话题标签策略"],]},
+  {id:"auto",icon:"⚡",title:"营销自动化",tag:"tag-auto",source:"agentkits-marketing 530⭐",skills:[["ab-test-setup","规划设计A/B测试实验，提升营销转化"],["analytics-attribution","性能衡量、归因建模和营销ROI分析"],["brand-building","品牌战略、标识、定位和品牌声音开发"],["competitor-alternatives","创建竞品对比页面为SEO和销售赋能"],["content-strategy","内容规划、创作和分发策略"],["copy-editing","编辑审查改进现有营销文案"],["copywriting","为任何页面编写或优化营销文案"],["email-marketing","邮件活动策略、自动化和优化"],["email-sequence","创建优化邮件序列、滴灌活动和自动化流程"],["form-cro","优化潜在客户/联系/演示申请表单以提升转化"],["free-tool-strategy","规划构建免费工具用于获客和SEO增长"],["launch-strategy","产品发布、功能公告和上市策略规划"],["marketing-ideas","SaaS软件产品的营销创意与增长策略"],["marketing-psychology","将心理学原理和行为科学应用于营销"],["onboarding-cro","优化注册后引导流程与用户激活体验"],["page-cro","优化营销页面的转化率（首页/落地页/定价页）"],["paid-advertising","跨平台付费媒体策略和广告优化"],["paywall-upgrade-cro","优化应用内付费墙和升级弹窗促进付费转化"],["popup-cro","创建优化弹窗、模态框和横幅以提升转化"],["pricing-strategy","定价决策、产品打包与变现策略"],["problem-solving","运用系统性方法应对营销挑战"],["programmatic-seo","使用模板和大数据创建SEO驱动页面"],["referral-program","创建优化推荐/联盟计划与口碑策略"],["schema-markup","添加修复网站结构化数据标记"],["seo-mastery","搜索引擎优化策略与有机增长战术"],["signup-flow-cro","优化注册/账户创建/试用激活流程降低流失"],["social-media","社交媒体策略、内容创作和平台算法优化"],]},
+  {id:"ops",icon:"⚙️",title:"运营 & 其他",tag:"tag-ops",skills:[["executing-marketing-campaigns","营销活动规划创建与优化（内容/社交/邮件/分析）"],["report-pdf-export","Markdown报告导出PDF（横版A4、中文、深蓝配色）"],["user-lifecycle-ops","DTC用户生命周期运营（EDM/私域/社群/自动化）"],["security-precommit-check","Git提交前敏感信息扫描（API Key/私钥/凭证）"],]},
+  {id:"util",icon:"🛠️",title:"通用工具",tag:"tag-util",skills:[["frontend-design","生产级前端界面/组件/页面/仪表盘创建"],["webapp-testing","基于Playwright的本地Web应用功能验证与调试"],["agent-browser","浏览器自动化（导航/填表/截图/数据提取）"],["find-skills","搜索发现与安装Agent Skills"],["gpt-image-2-style-library","GPT-Image2视觉风格库与提示词模板"],["apify-ultimate-scraper","通用爬虫，支持Instagram/Facebook/TikTok/YouTube等15+平台"],["document-skills","专业文档处理，支持docx/pdf/pptx/xlsx格式"],["web-search","Tavily+Exa网络搜索与内容提取"],["firecrawl-deep-research","深度研究报告生成（多角度分析+完整来源）"],["ecom-details-image","25种场景模板AI电商产品图生成"],]},
+  {id:"tiktok",icon:"🎵",title:"TikTok Shop",tag:"tag-tiktok",source:"ecommerce-skills 217⭐",skills:[["tiktok-creator-marketplace","TikTok创作者市场策略，创作者寻找/活动管理"],["tiktok-influencer-marketing","TikTok KOL营销活动规划执行与ROI追踪"],["tiktok-live-selling","TikTok直播带货，直播策划/实时销售技巧"],["tiktok-shop-ads","TikTok Shop广告投放，产品购物广告/直播购物广告"],["tiktok-shop-affiliate-program","TikTok Shop联盟合作，佣金结构/创作者管理"],["tiktok-shop-analytics","TikTok Shop分析，店铺表现/创作者ROI追踪"],["tiktok-shop-branding","TikTok品牌建设，品牌身份/社区互动"],["tiktok-shop-compliance","TikTok Shop政策与合规，受限产品/内容指南"],["tiktok-shop-content-strategy","TikTok Shop内容创作策略，热门格式/产品展示"],["tiktok-shop-conversion","TikTok Shop转化优化，产品详情页/紧迫感策略"],["tiktok-shop-creator-management","TikTok Shop创作者关系管理，招募/佣金优化"],["tiktok-shop-cross-border","TikTok Shop跨境销售，市场选择/物流方案"],["tiktok-shop-customer-service","TikTok Shop客户服务，响应时间/纠纷解决"],["tiktok-shop-fulfillment","TikTok Shop履约设置，FBT/自发货选项"],["tiktok-shop-inventory","TikTok Shop库存管理，需求预测/爆款库存规划"],["tiktok-shop-listing-optimization","TikTok Shop产品上架优化，标题/描述/图片"],["tiktok-shop-pricing","TikTok定价策略，竞争定价/折扣心理"],["tiktok-shop-product-research","TikTok Shop产品研究，病毒潜力评分/品类分析"],["tiktok-shop-promotions","TikTok Shop促销活动，闪购/优惠券/包邮"],["tiktok-shop-returns","TikTok Shop退货政策和流程优化，降低退货率"],["tiktok-shop-reviews","TikTok Shop评价策略，UGC社交证明"],["tiktok-shop-seller-guide","TikTok Shop卖家完整指南，内容策略/联盟计划"],["tiktok-shop-shipping","TikTok Shop运输设置，承运商选择/运输模板"],["tiktok-shop-trending-products","TikTok热门产品发现，病毒产品/品类趋势分析"],]},
+  {id:"amazon",icon:"📦",title:"Amazon 运营",tag:"tag-amazon",skills:[["amazon-ad-architecture","广告Campaign架构设计与搭建"],["amazon-ad-diagnosis","已有产品广告全链路诊断与优化方案"],["amazon-aplus-image-prompt","A+页面模块排布与图片设计提示词"],["amazon-compliance-review","Listing文案包多维度并行合规审查"],["amazon-ip-risk-assessment","产品外观/知识产权侵权风险排查与报告生成"],["amazon-keyword-research","关键词调研与结构化词库搭建"],["amazon-listing-copywriter","基于调研数据生成高转化Listing文案"],["amazon-main-image-prompt","主副图AI生成/拍摄提示词设计"],["amazon-market-research","美国站市场调研，基于1688链接生成结构化市场报告"],["amazon-pre-launch-review","上架前所有环节最终复查，确保就绪"],["amazon-product-selection","从榜单数据中筛选Top 30潜力产品并结构化分析"],["amazon-product-shortlist","选品可行性多维度深度筛选，输出可执行落地清单"],["amazon-supplier-decision","评估选择1688/Alibaba供应商并输出决策文档"],["amazon-weekly-ad-review","每周广告数据复盘与优化行动清单"],]},
+  {id:"etsy",icon:"🧶",title:"Etsy",tag:"tag-etsy",source:"ecommerce-skills 217⭐",skills:[["etsy-advertising","Etsy广告策略，预算分配/竞价管理/站外广告分析"],["etsy-competitor-analysis","Etsy竞品研究，定价对比/畅销品分析/差异化策略"],["etsy-custom-orders","Etsy定制订单管理，沟通模板/定价/退货政策"],["etsy-digital-products","Etsy数字产品创建销售，模板/可打印品/交付设置"],["etsy-keyword-research","Etsy搜索优化，长尾关键词/标签研究/季节性趋势"],["etsy-listing-photography","Etsy产品摄影，构图/光线/背景/后期编辑"],["etsy-multi-shop","Etsy多店铺管理策略，品类分离/品牌差异化"],["etsy-offsite-ads","Etsy站外广告分析，退出时机/ROI追踪/费用影响"],["etsy-pricing-strategy","Etsy定价策略，成本计算/竞争对手定价/感知价值"],["etsy-print-on-demand","Etsy按需打印集成，Printful/Printify/样品/利润优化"],["etsy-product-description","Etsy产品描述撰写，关键词整合/利益导向文案"],["etsy-review-strategy","Etsy评价生成策略，感谢卡/跟进消息/照片评价激励"],["etsy-seasonal-strategy","Etsy季节性销售日历，假日准备/热门品类分析"],["etsy-seller-guide","Etsy卖家完整指南，店铺设置/SEO/定价策略"],["etsy-seo","Etsy SEO分析优化，标题/标签/描述评分提升搜索可见性"],["etsy-seo-tags","Etsy标签优化，13标签策略/属性优化/搜索排名因素"],["etsy-shipping-strategy","Etsy运输策略，免费配送/国际运输/追踪设置"],["etsy-shop-analytics","Etsy店铺分析，流量来源/转化率/热门列表表现"],["etsy-shop-branding","Etsy店铺品牌建设，横幅设计/品牌故事/统一摄影风格"],["etsy-shop-setup","Etsy店铺启动指南，政策/品牌/首批列表设置"],["etsy-social-media-marketing","Etsy社媒营销，Pinterest/Instagram/TikTok引流"],["etsy-star-seller","Etsy星级卖家达成指南，响应时间/运输追踪/五星评价"],]},
+  {id:"bay",icon:"🏪",title:"eBay & Walmart",tag:"tag-bay",source:"ecommerce-skills 217⭐",skills:[["ebay-advertising","eBay广告投放，推广列表/竞价策略/预算分配"],["ebay-product-research","eBay盈利产品研究，售罄率/均价/竞争密度分析"],["ebay-seller-guide","eBay卖家完整指南，上架优化/SEO/卖家评级提升"],["ebay-seller-tools","eBay卖家必备工具，上架/调价/分析/库存管理"],["ebay-seo","优化eBay列表适配Cassini搜索算法，提升搜索可见性"],["walmart-advertising-strategy","Walmart Connect广告，赞助产品/竞价策略"],["walmart-listing-optimization","Walmart产品列表优化，搜索可见性/转化率"],["walmart-price-tracker","Walmart价格追踪与竞争定价分析，调价策略生成"],["walmart-seller-guide","Walmart Marketplace卖家指南，上架/WFS履约"],["walmart-seller-tools","Walmart卖家必备工具，产品研究/广告管理"],]}
+];
+
+function render(catFilter,searchText){
+  const c=document.getElementById("sections"),s=searchText.toLowerCase().trim();
+  let h="",t=0,d=0;
+  S.forEach(cat=>{
+    if(catFilter!=="all"&&cat.id!==catFilter)return;
+    const f=cat.skills.filter(([n,d])=>n.toLowerCase().includes(s)||d.includes(searchText));
+    if(!f.length)return;t+=f.length;
+    const src=cat.source?` <small style="opacity:.5;font-weight:400;font-size:11px">${cat.source}</small>`:"";
+    h+=`<section class="section"><div class="section-header"><span class="section-icon">${cat.icon}</span><h2 class="section-title">${cat.title}</h2>${src}<span class="section-count">${f.length}</span></div><div class="grid">`;
+    f.forEach(([n,dc])=>{h+=`<div class="card" style="animation-delay:${d}s" onclick="copySkill(this,'${n.replace(/'/g,"\\'")}')" title="点击复制"><div class="card-name">${n}<span class="card-copy-icon">📋</span></div><div class="card-desc">${dc}</div><span class="card-tag ${cat.tag}">${cat.title}</span></div>`;d+=.015});
+    h+=`</div></section>`;
+  });
+  c.innerHTML=t?h:`<div class="empty"><div class="empty-icon">🔎</div><div class="empty-text">没有匹配的Skill，试试其他关键词</div></div>`;
+  document.getElementById("resultHint").textContent=t?`共 ${t} 个`:"";
+  document.getElementById("totalCount").textContent=t||278;
+}
+function copySkill(el,name){
+  navigator.clipboard.writeText(name).then(()=>{el.classList.add("copied");showToast(`已复制：${name}`);setTimeout(()=>el.classList.remove("copied"),1500)}).catch(()=>showToast("复制失败"));
+}
+let tt;
+function showToast(m){const e=document.getElementById("toast");e.textContent=m;e.classList.add("show");clearTimeout(tt);tt=setTimeout(()=>e.classList.remove("show"),2000)}
+const si=document.getElementById("search"),sc=document.getElementById("searchClear"),ft=document.querySelectorAll(".filter-tab");let cc="all";
+si.addEventListener("input",()=>{const v=si.value;sc.classList.toggle("visible",v.length>0);render(cc,v)});
+sc.addEventListener("click",()=>{si.value="";sc.classList.remove("visible");render(cc,"");si.focus()});
+ft.forEach(t=>{t.addEventListener("click",()=>{ft.forEach(x=>x.classList.remove("active"));t.classList.add("active");cc=t.dataset.cat;render(cc,si.value)})});
+const btt=document.getElementById("btt");window.addEventListener("scroll",()=>btt.classList.toggle("visible",scrollY>500));btt.addEventListener("click",()=>window.scrollTo({top:0,behavior:"smooth"}));
+document.getElementById("btnCopyUrl").addEventListener("click",()=>{navigator.clipboard.writeText(location.href).then(()=>showToast("链接已复制，可粘贴分享给同事"))});
+document.addEventListener("keydown",e=>{if((e.ctrlKey||e.metaKey)&&e.key==="k"){e.preventDefault();si.focus()}if(e.key==="Escape"){si.value="";sc.classList.remove("visible");render(cc,"")}});
+render("all","");
+</script>
+</body>
+</html>
