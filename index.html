@@ -68,13 +68,6 @@
   .tag-shop{background:#d1fae5;color:#065f46}
   .tag-etsy{background:#fff1f2;color:#be123c}
   .tag-bay{background:#fff7ed;color:#c2410c}
-  .tag-email{background:#fce4ec;color:#880e4f}
-  .tag-aff{background:#e8f5e9;color:#1b5e20}
-  .tag-geo{background:#e0f2f1;color:#004d40}
-  .tag-comply{background:#fff3e0;color:#e65100}
-  .tag-pr{background:#ede7f6;color:#311b92}
-  .tag-l10n{background:#e1f5fe;color:#014361}
-  .tag-data{background:#f9fbe7;color:#827717}
   .tag-ecom{background:#f0f9ff;color:#0369a1}
   .empty{text-align:center;padding:80px 20px;color:var(--text-muted)}
   .empty-icon{font-size:48px;margin-bottom:12px}
@@ -92,18 +85,12 @@
   .btt:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
   .footer{text-align:center;padding:20px 24px 36px;color:var(--text-muted);font-size:13px}
   @media(max-width:768px){.grid{grid-template-columns:1fr}.header{padding:44px 20px 36px}.logo{font-size:32px}.stats{gap:28px}.stat-num{font-size:30px}.toolbar{flex-direction:column;align-items:stretch;top:8px;padding:12px 14px}.filter-wrap{overflow-x:auto;flex-wrap:nowrap;padding-bottom:4px}.btt{bottom:20px;right:16px}}
-  .card.featured{border-left-color:#f59e0b;background:linear-gradient(135deg,#fffef5 0%,#fff 100%)}
-  .card.featured .card-name{color:#b45309}
-  .featured-badge{display:inline-block;padding:2px 8px;border-radius:10px;background:#fef3c7;color:#92400e;font-size:11px;font-weight:600;margin-left:6px}
-  .card.tier1{border-left-color:#f59e0b;background:linear-gradient(135deg,#fffef5 0%,#fff 100%)}
-  .card.tier2{border-left-color:#10b981}
-  .tier-badge{display:inline-block;padding:1px 7px;border-radius:8px;font-size:10px;font-weight:700;margin-left:4px;vertical-align:middle}
-  .tier-badge-gold{background:#fef3c7;color:#92400e}
-  .tier-badge-green{background:#d1fae5;color:#065f46}
+  .tag-comply{background:#fff3e0;color:#e65100}
+  .tag-pr{background:#ede7f6;color:#311b92}
 </style>
 </head>
 <body>
-<header class="header"><div class="header-bg"></div><div class="header-dots"></div><div class="header-content"><div class="badge">AI Skills Collection</div><h1 class="logo">Chrisgao—推荐Skill</h1><p class="slogan">出海电商全链路 AI 能力矩阵 — 精选测试，即装即用</p><div class="stats"><div class="stat"><div class="stat-num" id="totalCount">355</div><div class="stat-label">Skills</div></div><div class="stat"><div class="stat-num">26</div><div class="stat-label">大类</div></div></div></div></header>
+<header class="header"><div class="header-bg"></div><div class="header-dots"></div><div class="header-content"><div class="badge">AI Skills Collection</div><h1 class="logo">Chrisgao—推荐Skill</h1><p class="slogan">出海电商全链路 AI 能力矩阵 — 精选测试，即装即用</p><div class="stats"><div class="stat"><div class="stat-num" id="totalCount">355</div><div class="stat-label">Skills</div></div><div class="stat"><div class="stat-num">18</div><div class="stat-label">大类</div></div></div></div></header>
 <main class="container">
 <div class="toolbar">
   <div class="search-box">
@@ -114,23 +101,18 @@
   <span class="result-hint" id="resultHint"></span>
   <div class="filter-wrap" id="filters">
     <button class="filter-tab active" data-cat="all">全部</button>
-    <button class="filter-tab" data-cat="custom">⭐ 自创</button>
     <button class="filter-tab" data-cat="dsite">🌐 独立站DTC</button>
     <button class="filter-tab" data-cat="social">📱 社媒增长</button>
-    <button class="filter-tab" data-cat="voc">🔍 VOC洞察</button>
     <button class="filter-tab" data-cat="seo">📊 SEO竞品</button>
     <button class="filter-tab" data-cat="brand">🏷️ 品牌策略</button>
-    <button class="filter-tab" data-cat="shop">🛒 Shopify运营</button>
-    <button class="filter-tab" data-cat="ecom">📦 电商通用</button>
     <button class="filter-tab" data-cat="ads">📢 广告投放</button>
     <button class="filter-tab" data-cat="mktg">📋 营销套件</button>
     <button class="filter-tab" data-cat="auto">⚡ 营销自动化</button>
     <button class="filter-tab" data-cat="ops">⚙️ 运营工具</button>
     <button class="filter-tab" data-cat="comply">🛡️ 合规</button>
     <button class="filter-tab" data-cat="pr">📰 公关外联</button>
-    <button class="filter-tab" data-cat="geo">🌐 地域SEO</button>
     <button class="filter-tab" data-cat="util">🔧 通用工具</button>
-  </div></div>
+  </div>
 <div id="sections"></div>
 <div class="share-bar">
   <span style="font-size:13px;color:var(--text-muted)">分享给同事：</span>
@@ -139,7 +121,7 @@
 </main>
 <div class="toast" id="toast"></div>
 <button class="btt" id="btt" title="回到顶部">↑</button>
-<footer class="footer">Chrisgao &copy; 2026 — 基于 Claude Code + Agent Skills 构建 <span class="source-badge">| 来源: Claude-ads(5750⭐) ai-marketing-claude(1830⭐) agentkits-marketing(530⭐) ecommerce-skills(217⭐) email-marketing-bible(212⭐) Affitor-affiliate-skills(423⭐) Cleo-Labs(45skills) newsjack(v0.1.9) GEO-Optimizer last30days(23K⭐)</span></footer>
+<footer class="footer">Chrisgao &copy; 2026 — 基于 Claude Code + Agent Skills 构建 <span class="source-badge">| 来源: Claude-ads(5750⭐) ai-marketing-claude(1830⭐) agentkits-marketing(530⭐) ecommerce-skills(217⭐)</span></footer>
 
 <script>
 const S = [
