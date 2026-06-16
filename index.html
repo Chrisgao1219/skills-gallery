@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Chrisgao—推荐Skill</title>
+<title>Chrisgao — AI Skills Gallery</title>
 <style>
   :root{--bg:#f0f2f5;--card-bg:#fff;--text:#1a1a2e;--text-secondary:#52525b;--text-muted:#949a9d;--accent:#2563eb;--border:#e5e7eb;--border-light:#f3f4f6;--glass:rgba(255,255,255,.85);--shadow:0 1px 3px rgba(0,0,0,.05),0 1px 2px rgba(0,0,0,.04);--shadow-md:0 4px 12px rgba(0,0,0,.06);--radius:12px;--radius-lg:16px}
   *{margin:0;padding:0;box-sizing:border-box}
@@ -45,27 +45,21 @@
   @keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
   .card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px);border-left-color:var(--accent)}
   .card:active{transform:scale(.995)}
-  .card.copied::after{content:'已复制 \2713';position:absolute;top:10px;right:12px;background:#059669;color:#fff;font-size:11px;padding:3px 10px;border-radius:12px;pointer-events:none;animation:popIn .3s ease}
+  .card.copied::after{content:'Copied!';position:absolute;top:10px;right:12px;background:#059669;color:#fff;font-size:11px;padding:3px 10px;border-radius:12px;pointer-events:none;animation:popIn .3s ease}
   @keyframes popIn{from{opacity:0;transform:scale(.8)}to{opacity:1;transform:scale(1)}}
   .card-name{font-family:"SF Mono","Fira Code","Cascadia Code","JetBrains Mono",Consolas,monospace;font-size:13px;font-weight:600;color:var(--accent);margin-bottom:6px;word-break:break-all;display:flex;align-items:center;gap:6px}
-  .card-copy-icon{opacity:0;font-size:12px;transition:opacity .15s}
+  .card-copy-icon{opacity:0;font-size:12px;transition:opacity .15s;cursor:pointer}
   .card:hover .card-copy-icon{opacity:.5}
   .card-desc{font-size:14px;color:var(--text-secondary);line-height:1.55;margin-bottom:10px}
   .card-tag{display:inline-block;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;letter-spacing:.2px}
-  .tag-custom{background:#fce4ec;color:#ad1457}
-  .tag-brand{background:#f3e8ff;color:#6b21a8}
-  .tag-dsite{background:#dbeafe;color:#1e3a5f}
-  .tag-social{background:#fce7f3;color:#9d174d}
-  .tag-voc{background:#d1fae5;color:#065f46}
-  .tag-seo{background:#ffedd5;color:#9a3412}
-  .tag-ops{background:#e0e7ff;color:#3730a3}
-  .tag-util{background:#f3f4f6;color:#374151}
-  .tag-amazon{background:#fef9c3;color:#854d0e}
   .tag-ads{background:#fff0f0;color:#b91c1c}
   .tag-mktg{background:#ecfdf5;color:#065f46}
+  .tag-dsite{background:#dbeafe;color:#1e3a5f}
   .tag-auto{background:#fefce8;color:#854d0e}
-  .tag-shop{background:#d1fae5;color:#065f46}
+  .tag-seo{background:#ffedd5;color:#9a3412}
+  .tag-brand{background:#f3e8ff;color:#6b21a8}
   .tag-ecom{background:#f0f9ff;color:#0369a1}
+  .tag-util{background:#f3f4f6;color:#374151}
   .empty{text-align:center;padding:80px 20px;color:var(--text-muted)}
   .empty-icon{font-size:48px;margin-bottom:12px}
   .empty-text{font-size:15px}
@@ -82,740 +76,348 @@
   .btt:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
   .footer{text-align:center;padding:20px 24px 36px;color:var(--text-muted);font-size:13px}
   @media(max-width:768px){.grid{grid-template-columns:1fr}.header{padding:44px 20px 36px}.logo{font-size:32px}.stats{gap:28px}.stat-num{font-size:30px}.toolbar{flex-direction:column;align-items:stretch;top:8px;padding:12px 14px}.filter-wrap{overflow-x:auto;flex-wrap:nowrap;padding-bottom:4px}.btt{bottom:20px;right:16px}}
-
-  .card-gh{position:absolute;top:8px;right:8px;opacity:0;transition:opacity .15s;color:var(--text-muted);text-decoration:none;font-size:15px;padding:2px 4px;border-radius:6px;z-index:2}
-  .card-gh:hover{background:var(--border-light);color:var(--accent)}
-  .card:hover .card-gh{opacity:.6}
-  .tag-comply{background:#f3f4f6;color:#374151}
-  .tag-pr{background:#f3f4f6;color:#374151}
 </style>
 </head>
 <body>
-<header class="header"><div class="header-bg"></div><div class="header-dots"></div><div class="header-content"><div class="badge">AI Skills Collection</div><h1 class="logo">Chrisgao—推荐Skill</h1><p class="slogan">出海电商全链路 AI 能力矩阵 — 精选测试，即装即用</p><div class="stats"><div class="stat"><div class="stat-num" id="totalCount">622</div><div class="stat-label">Skills</div></div><div class="stat"><div class="stat-num">16</div><div class="stat-label">大类</div></div></div></div></header>
+<header class="header"><div class="header-bg"></div><div class="header-dots"></div><div class="header-content"><div class="badge">AI Skills Collection</div><h1 class="logo">Chrisgao — AI Skills</h1><p class="slogan">跨境电商全链路 AI 能力矩阵 — 精选即装即用</p><div class="stats"><div class="stat"><div class="stat-num" id="totalCount">218</div><div class="stat-label">Skills</div></div><div class="stat"><div class="stat-num">8</div><div class="stat-label">Categories</div></div></div></div></header>
 <main class="container">
 <div class="toolbar">
   <div class="search-box">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-    <input type="text" id="search" placeholder="搜索 Skill 名称或用途…" autocomplete="off">
-    <button class="search-clear" id="searchClear" title="清除">&times;</button>
+    <input type="text" id="search" placeholder="Search skills..." autocomplete="off">
+    <button class="search-clear" id="searchClear" title="Clear">&times;</button>
   </div>
   <span class="result-hint" id="resultHint"></span>
   <div class="filter-wrap" id="filters">
-    <button class="filter-tab active" data-cat="all">全部</button>
-    <button class="filter-tab" data-cat="custom">⭐ 自创</button>
-    <button class="filter-tab" data-cat="dsite">🌐 独立站DTC</button>
-    <button class="filter-tab" data-cat="social">📱 社媒增长</button>
-    <button class="filter-tab" data-cat="voc">🔍 VOC用户洞察</button>
-    <button class="filter-tab" data-cat="seo">📊 SEO竞品</button>
-    <button class="filter-tab" data-cat="brand">🏷️ 品牌策略</button>
-    <button class="filter-tab" data-cat="shop">🛒 Shopify运营</button>
-    <button class="filter-tab" data-cat="ecom">📦 电商通用</button>
-    <button class="filter-tab" data-cat="amazon">📦 Amazon运营</button>
+    <button class="filter-tab active" data-cat="all">All</button>
     <button class="filter-tab" data-cat="ads">📢 广告投放</button>
     <button class="filter-tab" data-cat="mktg">📋 营销套件</button>
-    <button class="filter-tab" data-cat="auto">⚡ 营销自动化</button>
-    <button class="filter-tab" data-cat="ops">⚙️ 运营工具</button>
-    <button class="filter-tab" data-cat="comply">🛡️ 合规</button>
-    <button class="filter-tab" data-cat="pr">📰 公关外联</button>
-    <button class="filter-tab" data-cat="util">🔧 通用工具</button>
+    <button class="filter-tab" data-cat="aibiz">🌐 全球营销</button>
+    <button class="filter-tab" data-cat="aimktg">🤖 AI营销工具</button>
+    <button class="filter-tab" data-cat="seo">📊 SEO & GEO</button>
+    <button class="filter-tab" data-cat="founder">💡 创始人工具</button>
+    <button class="filter-tab" data-cat="ecom">📦 电商 & 运营</button>
+    <button class="filter-tab" data-cat="util">🔧 文档 & 工具</button>
   </div>
+</div>
 <div id="sections"></div>
 <div class="share-bar">
-  <span style="font-size:13px;color:var(--text-muted)">分享给同事：</span>
-  <button class="btn btn-primary" id="btnCopyUrl">📋 复制链接</button>
+  <span style="font-size:13px;color:var(--text-muted)">Share with your team:</span>
+  <button class="btn btn-primary" id="btnCopyUrl">Copy Link</button>
 </div>
 </main>
 <div class="toast" id="toast"></div>
-<button class="btt" id="btt" title="回到顶部">↑</button>
-<footer class="footer">Chrisgao &copy; 2026 — 基于 Claude Code + Agent Skills 构建 <span class="source-badge">| 来源: Claude-ads(5750⭐) ai-marketing-claude(1830⭐) agentkits-marketing(530⭐) ecommerce-skills(217⭐)</span></footer>
+<button class="btt" id="btt" title="Back to top">↑</button>
+<footer class="footer">Chrisgao &copy; 2026 — Built with Claude Code + Agent Skills</footer>
 
 <script>
 const S = [
-  {id:"custom",icon:"⭐",title:"自创",tag:"tag-custom",source:"(3个)",skills:[
-    ["Ai产品宣传图","已测试成功：AI驱动的电商产品宣传图生成","https://github.com/search?q=Ai%E4%BA%A7%E5%93%81%E5%AE%A3%E4%BC%A0%E5%9B%BE&type=repositories"],
-    ["电动滑板KOL外联清单","已测试成功：电动滑板品类KOL外联清单与触达方案","https://github.com/search?q=%E7%94%B5%E5%8A%A8%E6%BB%91%E6%9D%BFKOL%E5%A4%96%E8%81%94%E6%B8%85%E5%8D%95&type=repositories"],
-    ["红人自动寻找建联","已测试成功：自动化寻找海外红人/KOL并建立联系的全流程","https://github.com/search?q=%E7%BA%A2%E4%BA%BA%E8%87%AA%E5%8A%A8%E5%AF%BB%E6%89%BE%E5%BB%BA%E8%81%94&type=repositories"]
+  {id:"ads",icon:"📢",title:"广告投放",tag:"tag-ads",source:"(26)",skills:[
+    ["ads-apple","Apple Ads (formerly Apple Search Ads) deep analysis for mobile app advertisers. Evaluates campaign structure, bid health, Custom Product Pages (CPPs), AdAttributionKit (view-throug","https://github.com/search?q=ads-apple&type=repositories"],
+    ["ads-attribution","Cross-platform attribution health audit covering AdAttributionKit (iOS view-through 24h post-impression, WWDC 2025 configurable windows), GA4 attribution models (data-driven vs las","https://github.com/search?q=ads-attribution&type=repositories"],
+    ["ads-audit","Full multi-platform paid advertising audit with parallel subagent delegation. Analyzes Google Ads, Meta Ads, LinkedIn Ads, TikTok Ads, Microsoft Ads, and Apple Ads accounts via 6 p","https://github.com/search?q=ads-audit&type=repositories"],
+    ["ads-budget","Budget allocation and bidding strategy review across all ad platforms. Evaluates spend distribution, bidding strategy appropriateness, scaling readiness, and identifies campaigns t","https://github.com/search?q=ads-budget&type=repositories"],
+    ["ads-competitor","Competitor ad intelligence analysis across Google, Meta, LinkedIn, TikTok, Microsoft, and Apple Ads. Analyzes competitor ad copy, creative strategy, keyword targeting, estimated sp","https://github.com/search?q=ads-competitor&type=repositories"],
+    ["ads-create","Campaign concept and copy brief generator for paid advertising. Reads brand-profile.json and optional audit results to produce structured campaign concepts, messaging pillars, and ","https://github.com/search?q=ads-create&type=repositories"],
+    ["ads-creative","Cross-platform creative quality audit covering ad copy, video, image, and format diversity across all platforms. Detects creative fatigue, evaluates platform-native compliance, sco","https://github.com/search?q=ads-creative&type=repositories"],
+    ["ads-dna","Brand DNA extractor for paid advertising. Scans a website URL to extract visual identity, tone of voice, color palette, typography, and imagery style. Outputs brand-profile.json to","https://github.com/search?q=ads-dna&type=repositories"],
+    ["ads-generate","AI image generation for paid ad creatives. Reads campaign-brief.md and brand-profile.json to produce platform-sized ad images using banana-claude. Requires banana-claude (v1.4.1+) ","https://github.com/search?q=ads-generate&type=repositories"],
+    ["ads-google","Google Ads deep analysis covering Search, Performance Max, AI Max, Display, YouTube, and Demand Gen campaigns. Evaluates 80 checks across conversion tracking, wasted spend, account","https://github.com/search?q=ads-google&type=repositories"],
+    ["ads-landing","Landing page quality assessment for paid advertising campaigns. Evaluates message match, page speed, mobile experience, trust signals, form optimization, and conversion rate potent","https://github.com/search?q=ads-landing&type=repositories"],
+    ["ads-linkedin","LinkedIn Ads deep analysis for B2B advertising. Evaluates 27 checks across technical setup, audience targeting, creative quality, lead gen forms, and bidding strategy. Includes Tho","https://github.com/search?q=ads-linkedin&type=repositories"],
+    ["ads-math","PPC financial calculator and modeling tool. CPA, ROAS, CPL calculations, break-even analysis, impression share opportunity sizing, budget forecasting, LTV:CAC ratio analysis, and M","https://github.com/search?q=ads-math&type=repositories"],
+    ["ads-meta","Meta Ads deep analysis covering Facebook, Instagram, and Threads advertising in the Andromeda + GEM + Lattice era. Evaluates 50 checks across Pixel/CAPI health, creative diversity ","https://github.com/search?q=ads-meta&type=repositories"],
+    ["ads-microsoft","Microsoft/Bing Ads deep analysis covering search, Performance Max, Audience Network, and Copilot integration. Evaluates 24 checks with focus on Google Ads import validation, unique","https://github.com/search?q=ads-microsoft&type=repositories"],
+    ["ads-photoshoot","Product photography enhancement for ad creatives using banana-claude image generation. Takes a product image and generates 5 professional photography styles for ad use: Studio, Flo","https://github.com/search?q=ads-photoshoot&type=repositories"],
+    ["ads-plan","Strategic paid advertising planning with industry-specific templates. Covers platform selection, campaign architecture, budget planning, creative strategy, and phased implementatio","https://github.com/search?q=ads-plan&type=repositories"],
+    ["ads-server-side-tracking","Server-side tracking pipeline audit covering server-side Google Tag Manager (sGTM), Meta CAPI Gateway, Conversions API health, event deduplication via event_id, server-side hit rat","https://github.com/search?q=ads-server-side-tracking&type=repositories"],
+    ["ads-test","A/B test design and experiment planning for paid advertising. Structured hypothesis framework, statistical significance calculator, test duration estimator, sample size calculator,","https://github.com/search?q=ads-test&type=repositories"],
+    ["ads-tiktok","TikTok Ads deep analysis covering creative quality, tracking, bidding, campaign structure, and TikTok Shop under the TikTok USDS Joint Venture (post Jan 2026 divestiture). Evaluate","https://github.com/search?q=ads-tiktok&type=repositories"],
+    ["ads-youtube","YouTube Ads specific analysis covering campaign types, creative quality, audience targeting, and measurement. Evaluates video ad performance across skippable in-stream, non-skippab","https://github.com/search?q=ads-youtube&type=repositories"],
+    ["chatgpt-image-ad","Generate one or more standalone Meta ad image creatives via Arcads' POST /v2/images/generate with model: \"gpt-image-2\". Hands the image paths off to your Meta-ad-builder skill — th","https://github.com/search?q=arcads-chatgpt-image-ad&type=repositories"],
+    ["arcads-external-api","- Base URL: https://external-api.arcads.ai (or ARCADS_BASE_URL).","https://github.com/search?q=arcads-external-api&type=repositories"],
+    ["generate-youtube-thumbnail","Generate YouTube Thumbnail","https://github.com/search?q=arcads-generate-youtube-thumbnail&type=repositories"],
+    ["image-ad-clone","Use when the user wants to reverse-engineer an existing image ad into a reusable prompt template. Validates via Arcads — picks gpt-image-2 or Nano Banana at Phase 1. Triggers on \"c","https://github.com/search?q=arcads-image-ad-clone&type=repositories"],
+    ["nano-banana-image-ad","nano-banana-image-ad (Arcads)","https://github.com/search?q=arcads-nano-banana-image-ad&type=repositories"]
   ]},
-  {id:"dsite",icon:"🌐",title:"独立站DTC",tag:"tag-dsite",source:"(5个)",skills:[
-    ["ShippingLogistics","Expert guidance on UK, US, and Canadian shipping, customs, duties, and tariffs with specialized automotive industry know","https://github.com/search?q=shipping-logistics&type=repositories"],
-    ["dsite-conversion-ux","转化率CRO全链路（诊断→优化→测试迭代）","https://github.com/search?q=dsite-conversion-ux&type=repositories"],
-    ["dsite-sem-ads","付费流量全链路（平台选择→投放优化→效果迭代）","https://github.com/search?q=dsite-sem-ads&type=repositories"],
-    ["dsite-seo-diagnostic","基于Semrush数据反推流量下滑原因，输出诊断与重启方案","https://github.com/search?q=dsite-seo-diagnostic&type=repositories"],
-    ["dsite-seo-playbook","SEO三支柱模型（技术/内容/外链）完整策略输出","https://github.com/search?q=dsite-seo-playbook&type=repositories"]
+  {id:"mktg",icon:"📋",title:"营销套件",tag:"tag-mktg",source:"(71)",skills:[
+    ["ab-test-setup","When the user wants to plan, design, or implement an A/B test or experiment. Also use when the user mentions \"A/B test,\" \"split test,\" \"experiment,\" \"test this change,\" \"variant co","https://github.com/search?q=amktg-ab-test-setup&type=repositories"],
+    ["analytics-attribution","Performance measurement, attribution modeling, and marketing ROI analysis. Use when setting up tracking, analyzing campaign performance, building attribution models, or creating ma","https://github.com/search?q=amktg-analytics-attribution&type=repositories"],
+    ["brand-building","Brand strategy, identity, positioning, and voice development. Use when developing brand guidelines, creating positioning statements, defining brand voice, or building brand archite","https://github.com/search?q=amktg-brand-building&type=repositories"],
+    ["competitor-alternatives","When the user wants to create competitor comparison or alternative pages for SEO and sales enablement. Also use when the user mentions 'alternative page,' 'vs page,' 'competitor co","https://github.com/search?q=amktg-competitor-alternatives&type=repositories"],
+    ["content-strategy","Content planning, creation, and distribution strategy. Use when planning content calendars, developing content pillars, creating editorial strategies, or optimizing content for dif","https://github.com/search?q=amktg-content-strategy&type=repositories"],
+    ["copy-editing","When the user wants to edit, review, or improve existing marketing copy. Also use when the user mentions 'edit this copy,' 'review my copy,' 'copy feedback,' 'proofread,' 'polish t","https://github.com/search?q=amktg-copy-editing&type=repositories"],
+    ["copywriting","When the user wants to write, rewrite, or improve marketing copy for any page — including homepage, landing pages, pricing pages, feature pages, about pages, or product pages. Also","https://github.com/search?q=amktg-copywriting&type=repositories"],
+    ["email-marketing","Email campaign strategy, automation, and optimization. Use when creating email sequences, improving deliverability, designing automation workflows, or optimizing email performance.","https://github.com/search?q=amktg-email-marketing&type=repositories"],
+    ["email-sequence","When the user wants to create or optimize an email sequence, drip campaign, automated email flow, or lifecycle email program. Also use when the user mentions \"email sequence,\" \"dri","https://github.com/search?q=amktg-email-sequence&type=repositories"],
+    ["form-cro","When the user wants to optimize any form that is NOT signup/registration — including lead capture forms, contact forms, demo request forms, application forms, survey forms, or chec","https://github.com/search?q=amktg-form-cro&type=repositories"],
+    ["free-tool-strategy","When the user wants to plan, evaluate, or build a free tool for marketing purposes — lead generation, SEO value, or brand awareness. Also use when the user mentions \"engineering as","https://github.com/search?q=amktg-free-tool-strategy&type=repositories"],
+    ["launch-strategy","When the user wants to plan a product launch, feature announcement, or release strategy. Also use when the user mentions 'launch,' 'Product Hunt,' 'feature release,' 'announcement,","https://github.com/search?q=amktg-launch-strategy&type=repositories"],
+    ["marketing-ideas","When the user needs marketing ideas, inspiration, or strategies for their SaaS or software product. Also use when the user asks for 'marketing ideas,' 'growth ideas,' 'how to marke","https://github.com/search?q=amktg-marketing-ideas&type=repositories"],
+    ["marketing-psychology","When the user wants to apply psychological principles, mental models, or behavioral science to marketing. Also use when the user mentions 'psychology,' 'mental models,' 'cognitive ","https://github.com/search?q=amktg-marketing-psychology&type=repositories"],
+    ["onboarding-cro","When the user wants to optimize post-signup onboarding, user activation, first-run experience, or time-to-value. Also use when the user mentions \"onboarding flow,\" \"activation rate","https://github.com/search?q=amktg-onboarding-cro&type=repositories"],
+    ["page-cro","When the user wants to optimize, improve, or increase conversions on any marketing page — including homepage, landing pages, pricing pages, feature pages, or blog posts. Also use w","https://github.com/search?q=amktg-page-cro&type=repositories"],
+    ["paid-advertising","Paid media strategy and optimization across platforms. Use when planning paid campaigns, optimizing ad performance, managing budgets, or setting up tracking for paid channels.","https://github.com/search?q=amktg-paid-advertising&type=repositories"],
+    ["paywall-upgrade-cro","When the user wants to create or optimize in-app paywalls, upgrade screens, upsell modals, or feature gates. Also use when the user mentions \"paywall,\" \"upgrade screen,\" \"upgrade m","https://github.com/search?q=amktg-paywall-upgrade-cro&type=repositories"],
+    ["popup-cro","When the user wants to create or optimize popups, modals, overlays, slide-ins, or banners for conversion purposes. Also use when the user mentions \"exit intent,\" \"popup conversions","https://github.com/search?q=amktg-popup-cro&type=repositories"],
+    ["pricing-strategy","When the user wants help with pricing decisions, packaging, or monetization strategy. Also use when the user mentions 'pricing,' 'pricing tiers,' 'freemium,' 'free trial,' 'packagi","https://github.com/search?q=amktg-pricing-strategy&type=repositories"],
+    ["problem-solving","Apply systematic problem-solving techniques for marketing challenges including campaign complexity (simplification cascades), creative blocks (collision-zone thinking), recurring c","https://github.com/search?q=amktg-problem-solving&type=repositories"],
+    ["programmatic-seo","When the user wants to create SEO-driven pages at scale using templates and data. Also use when the user mentions \"programmatic SEO,\" \"template pages,\" \"pages at scale,\" \"directory","https://github.com/search?q=amktg-programmatic-seo&type=repositories"],
+    ["referral-program","When the user wants to create, optimize, or analyze a referral program, affiliate program, or word-of-mouth strategy. Also use when the user mentions 'referral,' 'affiliate,' 'amba","https://github.com/search?q=amktg-referral-program&type=repositories"],
+    ["schema-markup","When the user wants to add, fix, or optimize schema markup and structured data on their site. Also use when the user mentions \"schema markup,\" \"structured data,\" \"JSON-LD,\" \"rich s","https://github.com/search?q=amktg-schema-markup&type=repositories"],
+    ["seo-mastery","Search engine optimization strategies and tactics for organic growth. Use when optimizing content for search, conducting keyword research, performing SEO audits, or building link s","https://github.com/search?q=amktg-seo-mastery&type=repositories"],
+    ["signup-flow-cro","When the user wants to optimize signup, registration, account creation, or trial activation flows. Also use when the user mentions \"signup conversions,\" \"registration friction,\" \"s","https://github.com/search?q=amktg-signup-flow-cro&type=repositories"],
+    ["social-media","Social media strategy, content creation, and platform optimization. Use when creating social content, developing engagement strategies, optimizing for platform algorithms, or build","https://github.com/search?q=amktg-social-media&type=repositories"],
+    ["ab-testing","When the user wants to plan, design, or implement an A/B test or experiment, or build a growth experimentation program. Also use when the user mentions \"A/B test,\" \"split test,\" \"e","https://github.com/search?q=mktg-ab-testing&type=repositories"],
+    ["ad-creative","When the user wants to generate, iterate, or scale ad creative — headlines, descriptions, primary text, or full ad variations — for any paid advertising platform. Also use when the","https://github.com/search?q=mktg-ad-creative&type=repositories"],
+    ["ads","When the user wants help with paid advertising campaigns on Google Ads, Meta (Facebook/Instagram), LinkedIn, Twitter/X, or other ad platforms. Also use when the user mentions 'PPC,","https://github.com/search?q=mktg-ads&type=repositories"],
+    ["ai-seo","When the user wants to optimize content for AI search engines, get cited by LLMs, or appear in AI-generated answers. Also use when the user mentions 'AI SEO,' 'AEO,' 'GEO,' 'LLMO,'","https://github.com/search?q=mktg-ai-seo&type=repositories"],
+    ["analytics","When the user wants to set up, improve, or audit analytics tracking and measurement. Also use when the user mentions \"set up tracking,\" \"GA4,\" \"Google Analytics,\" \"conversion track","https://github.com/search?q=mktg-analytics&type=repositories"],
+    ["aso","When the user wants to audit or optimize an App Store or Google Play listing. Also use when the user mentions 'ASO audit,' 'app store optimization,' 'optimize my app listing,' 'imp","https://github.com/search?q=mktg-aso&type=repositories"],
+    ["churn-prevention","When the user wants to reduce churn, build cancellation flows, set up save offers, recover failed payments, or implement retention strategies. Also use when the user mentions 'chur","https://github.com/search?q=mktg-churn-prevention&type=repositories"],
+    ["co-marketing","When the user wants to find co-marketing partners, plan joint campaigns, or brainstorm partnership opportunities. Use when the user says 'co-marketing,' 'partner marketing,' 'joint","https://github.com/search?q=mktg-co-marketing&type=repositories"],
+    ["cold-email","Write B2B cold emails and follow-up sequences that get replies. Use when the user wants to write cold outreach emails, prospecting emails, cold email campaigns, sales development e","https://github.com/search?q=mktg-cold-email&type=repositories"],
+    ["community-marketing","Build and leverage online communities to drive product growth and brand loyalty. Use when the user wants to create a community strategy, grow a Discord or Slack community, manage a","https://github.com/search?q=mktg-community-marketing&type=repositories"],
+    ["competitor-profiling","When the user wants to research, profile, or analyze competitors from their URLs. Also use when the user mentions 'competitor profile,' 'competitor research,' 'competitor analysis,","https://github.com/search?q=mktg-competitor-profiling&type=repositories"],
+    ["competitors","When the user wants to create competitor comparison or alternative pages for SEO and sales enablement. Also use when the user mentions 'alternative page,' 'vs page,' 'competitor co","https://github.com/search?q=mktg-competitors&type=repositories"],
+    ["content-strategy","When the user wants to plan a content strategy, decide what content to create, or figure out what topics to cover. Also use when the user mentions \"content strategy,\" \"what should ","https://github.com/search?q=mktg-content-strategy&type=repositories"],
+    ["copy-editing","When the user wants to edit, review, or improve existing marketing copy, or refresh outdated content. Also use when the user mentions 'edit this copy,' 'review my copy,' 'copy feed","https://github.com/search?q=mktg-copy-editing&type=repositories"],
+    ["copywriting","When the user wants to write, rewrite, or improve marketing copy for any page — including homepage, landing pages, pricing pages, feature pages, about pages, or product pages. Also","https://github.com/search?q=mktg-copywriting&type=repositories"],
+    ["cro","When the user wants to optimize, improve, or increase conversions on any marketing page or form — including homepage, landing pages, pricing pages, feature pages, lead capture form","https://github.com/search?q=mktg-cro&type=repositories"],
+    ["customer-research","When the user wants to conduct, analyze, or synthesize customer research. Use when the user mentions \"customer research,\" \"ICP research,\" \"talk to customers,\" \"analyze transcripts,","https://github.com/search?q=mktg-customer-research&type=repositories"],
+    ["directory-submissions","When the user wants to submit their product to startup, SaaS, AI, agent, MCP, no-code, or review directories for backlinks, domain rating, and discovery. Also use when the user men","https://github.com/search?q=mktg-directory-submissions&type=repositories"],
+    ["emails","When the user wants to create or optimize an email sequence, drip campaign, automated email flow, or lifecycle email program. Also use when the user mentions \"email sequence,\" \"dri","https://github.com/search?q=mktg-emails&type=repositories"],
+    ["free-tools","When the user wants to plan, evaluate, or build a free tool for marketing purposes — lead generation, SEO value, or brand awareness. Also use when the user mentions \"engineering as","https://github.com/search?q=mktg-free-tools&type=repositories"],
+    ["image","When the user wants to create, generate, edit, or optimize images for marketing — blog heroes, social graphics, product mockups, profile banners, listing visuals, or brand assets. ","https://github.com/search?q=mktg-image&type=repositories"],
+    ["launch","When the user wants to plan a product launch, feature announcement, or release strategy. Also use when the user mentions 'launch,' 'Product Hunt,' 'feature release,' 'announcement,","https://github.com/search?q=mktg-launch&type=repositories"],
+    ["lead-magnets","When the user wants to create, plan, or optimize a lead magnet for email capture or lead generation. Also use when the user mentions \"lead magnet,\" \"gated content,\" \"content upgrad","https://github.com/search?q=mktg-lead-magnets&type=repositories"],
+    ["marketing-ideas","When the user needs marketing ideas, inspiration, or strategies for their SaaS or software product. Also use when the user asks for 'marketing ideas,' 'growth ideas,' 'how to marke","https://github.com/search?q=mktg-marketing-ideas&type=repositories"],
+    ["marketing-plan","When the user needs a comprehensive marketing plan for a client, a company they advise, or their own product. Also use when the user mentions \"marketing plan,\" \"growth plan,\" \"GTM ","https://github.com/search?q=mktg-marketing-plan&type=repositories"],
+    ["marketing-psychology","When the user wants to apply psychological principles, mental models, or behavioral science to marketing. Also use when the user mentions 'psychology,' 'mental models,' 'cognitive ","https://github.com/search?q=mktg-marketing-psychology&type=repositories"],
+    ["onboarding","When the user wants to optimize post-signup onboarding, user activation, first-run experience, or time-to-value. Also use when the user mentions \"onboarding flow,\" \"activation rate","https://github.com/search?q=mktg-onboarding&type=repositories"],
+    ["paywalls","When the user wants to create or optimize in-app paywalls, upgrade screens, upsell modals, or feature gates. Also use when the user mentions \"paywall,\" \"upgrade screen,\" \"upgrade m","https://github.com/search?q=mktg-paywalls&type=repositories"],
+    ["popups","When the user wants to create or optimize popups, modals, overlays, slide-ins, or banners for conversion purposes. Also use when the user mentions \"exit intent,\" \"popup conversions","https://github.com/search?q=mktg-popups&type=repositories"],
+    ["pricing","When the user wants help with pricing decisions, packaging, or monetization strategy. Also use when the user mentions 'pricing,' 'pricing tiers,' 'freemium,' 'free trial,' 'packagi","https://github.com/search?q=mktg-pricing&type=repositories"],
+    ["product-marketing","When the user wants to create or update their product marketing context document. Also use when the user mentions 'product context,' 'marketing context,' 'set up context,' 'positio","https://github.com/search?q=mktg-product-marketing&type=repositories"],
+    ["programmatic-seo","When the user wants to create SEO-driven pages at scale using templates and data. Also use when the user mentions \"programmatic SEO,\" \"template pages,\" \"pages at scale,\" \"directory","https://github.com/search?q=mktg-programmatic-seo&type=repositories"],
+    ["prospecting","When the user wants to find, qualify, and build a list of prospects to reach out to — across B2B SaaS, general B2B, or local small businesses. Also use when the user mentions \"pros","https://github.com/search?q=mktg-prospecting&type=repositories"],
+    ["public-relations","When the user wants help with public relations, earned media, press coverage, journalist outreach, or media strategy (not pull requests). Also use when the user mentions 'PR,' 'pub","https://github.com/search?q=mktg-public-relations&type=repositories"],
+    ["referrals","When the user wants to create, optimize, or analyze a referral program, affiliate program, or word-of-mouth strategy. Also use when the user mentions 'referral,' 'affiliate,' 'amba","https://github.com/search?q=mktg-referrals&type=repositories"],
+    ["revops","When the user wants help with revenue operations, lead lifecycle management, or marketing-to-sales handoff processes. Also use when the user mentions 'RevOps,' 'revenue operations,","https://github.com/search?q=mktg-revops&type=repositories"],
+    ["sales-enablement","When the user wants to create sales collateral, pitch decks, one-pagers, objection handling docs, or demo scripts. Also use when the user mentions 'sales deck,' 'pitch deck,' 'one-","https://github.com/search?q=mktg-sales-enablement&type=repositories"],
+    ["schema","When the user wants to add, fix, or optimize schema markup and structured data on their site. Also use when the user mentions \"schema markup,\" \"structured data,\" \"JSON-LD,\" \"rich s","https://github.com/search?q=mktg-schema&type=repositories"],
+    ["seo-audit","When the user wants to audit, review, or diagnose SEO issues on their site. Also use when the user mentions \"SEO audit,\" \"technical SEO,\" \"why am I not ranking,\" \"SEO issues,\" \"on-","https://github.com/search?q=mktg-seo-audit&type=repositories"],
+    ["signup","When the user wants to optimize signup, registration, account creation, or trial activation flows. Also use when the user mentions \"signup conversions,\" \"registration friction,\" \"s","https://github.com/search?q=mktg-signup&type=repositories"],
+    ["site-architecture","When the user wants to plan, map, or restructure their website's page hierarchy, navigation, URL structure, or internal linking. Also use when the user mentions \"sitemap,\" \"site ma","https://github.com/search?q=mktg-site-architecture&type=repositories"],
+    ["sms","When the user wants to plan, build, or optimize SMS or MMS marketing — including welcome flows, abandoned cart texts, post-purchase, win-back, promotional sends, or transactional/a","https://github.com/search?q=mktg-sms&type=repositories"],
+    ["social","When the user wants help creating, scheduling, or optimizing social media content for LinkedIn, Twitter/X, Instagram, TikTok, Facebook, or other platforms, or wants to do social li","https://github.com/search?q=mktg-social&type=repositories"],
+    ["video","When the user wants to create, generate, or produce video content using AI tools or programmatic frameworks. Also use when the user mentions 'video production,' 'AI video,' 'Remoti","https://github.com/search?q=mktg-video&type=repositories"]
   ]},
-  {id:"social",icon:"📱",title:"社媒增长",tag:"tag-social",source:"(44个, 1精选)",skills:[
-    ["🔥 Content Production","You are an expert content producer with deep experience across B2B SaaS, developer tools, and technical audiences. Your ","https://github.com/alirezarezvani/claude-skills"],
-    ["Brand Safety & Compliance · 品牌安全合规","Write every output in the **merchant's working language**, using that market's native seller terminology:","https://github.com/search?q=crevideo-brand-safety-compliance&type=repositories"],
-    ["Comprehensive Brand Social Media Skill","- `/social-calendar [BrandName] [Month Year]` — build monthly content calendar","https://github.com/search?q=social-calendar&type=repositories"],
-    ["Creator Fit Scoring · 达人契合打分","Write every output in the **merchant's working language**, using that market's native seller terminol","https://github.com/search?q=crevideo-creator-fit-scoring&type=repositories"],
-    ["Creator Tier Resolver · 达人分级判定","Write every output in the **merchant's working language**, using that market's native seller terminology:","https://github.com/search?q=crevideo-creator-tier-resolver&type=repositories"],
-    ["Crevideo Reach MCP — Playbook","","https://github.com/search?q=crevideo-mcp-playbook&type=repositories"],
-    ["Google → WhatsApp Prospecting","A repeatable pipeline that turns one input — `(product, target country, buyer type)` — into a **validated, compliance-ch","https://github.com/alirezarezvani/claude-skills"],
-    ["LinkedIn Prospecting","A repeatable pipeline that turns one input — `(product, target country, decision-maker role)` — into a **validated, cont","https://github.com/alirezarezvani/claude-skills"],
-    ["Offer Policy Checker · 报价与合规校验","Write every output in the **merchant's working language**, using that market's native seller terminology:","https://github.com/search?q=crevideo-offer-policy-checker&type=repositories"],
-    ["Outreach Message Composer · 多渠道触达文案","Write every output in the **merchant's working language**, using that market's native seller terminology:","https://github.com/search?q=crevideo-outreach-message-composer&type=repositories"],
-    ["Performance Diagnosis · 效果诊断(洞察引擎)","","https://github.com/search?q=crevideo-performance-diagnosis&type=repositories"],
-    ["Reply Triage · 回复分诊","Write every output in the **merchant's working language**, using that market's native seller terminology:","https://github.com/search?q=crevideo-reply-triage&type=repositories"],
-    ["Winback & Pruning · 唤回与汰换","","https://github.com/search?q=crevideo-winback-and-pruning&type=repositories"],
-    ["content-production","博客/指南等内容从零到发布的全流程生产","https://github.com/search?q=content-production&type=repositories"],
-    ["google-whatsapp-prospecting","Google搜索海外采购商WhatsApp并批量验证触达","https://github.com/search?q=google-whatsapp-prospecting&type=repositories"],
-    ["influencer-marketing","全平台KOL/KOC分层筛选、合作与ROI优化","https://github.com/search?q=influencer-marketing&type=repositories"],
-    ["linkedin-prospecting","LinkedIn B2B决策者开发（反查资料→获取邮箱→4步触达）","https://github.com/search?q=linkedin-prospecting&type=repositories"],
-    ["social-content-calendar","全年52周社媒内容营销日历设计","https://github.com/search?q=social-content-calendar&type=repositories"],
-    ["tiktok-creator-marketplace","TikTok创作者市场策略，创作者寻找/活动管理","https://github.com/search?q=tiktok-creator-marketplace&type=repositories"],
-    ["tiktok-growth","TikTok Shop+短视频+达人+广告+直播全链路增长","https://github.com/search?q=tiktok-growth&type=repositories"],
-    ["tiktok-influencer-marketing","TikTok KOL营销活动规划执行与ROI追踪","https://github.com/search?q=tiktok-influencer-marketing&type=repositories"],
-    ["tiktok-live-selling","TikTok直播带货，直播策划/实时销售技巧","https://github.com/search?q=tiktok-live-selling&type=repositories"],
-    ["tiktok-shop-ads","TikTok Shop广告投放，产品购物广告/直播购物广告","https://github.com/search?q=tiktok-shop-ads&type=repositories"],
-    ["tiktok-shop-affiliate-program","TikTok Shop联盟合作，佣金结构/创作者管理","https://github.com/search?q=tiktok-shop-affiliate-program&type=repositories"],
-    ["tiktok-shop-analytics","TikTok Shop分析，店铺表现/创作者ROI追踪","https://github.com/search?q=tiktok-shop-analytics&type=repositories"],
-    ["tiktok-shop-branding","TikTok品牌建设，品牌身份/社区互动","https://github.com/search?q=tiktok-shop-branding&type=repositories"],
-    ["tiktok-shop-compliance","TikTok Shop政策与合规，受限产品/内容指南","https://github.com/search?q=tiktok-shop-compliance&type=repositories"],
-    ["tiktok-shop-content-strategy","TikTok Shop内容创作策略，热门格式/产品展示","https://github.com/search?q=tiktok-shop-content-strategy&type=repositories"],
-    ["tiktok-shop-conversion","TikTok Shop转化优化，产品详情页/紧迫感策略","https://github.com/search?q=tiktok-shop-conversion&type=repositories"],
-    ["tiktok-shop-creator-management","TikTok Shop创作者关系管理，招募/佣金优化","https://github.com/search?q=tiktok-shop-creator-management&type=repositories"],
-    ["tiktok-shop-cross-border","TikTok Shop跨境销售，市场选择/物流方案","https://github.com/search?q=tiktok-shop-cross-border&type=repositories"],
-    ["tiktok-shop-customer-service","TikTok Shop客户服务，响应时间/纠纷解决","https://github.com/search?q=tiktok-shop-customer-service&type=repositories"],
-    ["tiktok-shop-fulfillment","TikTok Shop履约设置，FBT/自发货选项","https://github.com/search?q=tiktok-shop-fulfillment&type=repositories"],
-    ["tiktok-shop-inventory","TikTok Shop库存管理，需求预测/爆款库存规划","https://github.com/search?q=tiktok-shop-inventory&type=repositories"],
-    ["tiktok-shop-listing-optimization","TikTok Shop产品上架优化，标题/描述/图片","https://github.com/search?q=tiktok-shop-listing-optimization&type=repositories"],
-    ["tiktok-shop-pricing","TikTok定价策略，竞争定价/折扣心理","https://github.com/search?q=tiktok-shop-pricing&type=repositories"],
-    ["tiktok-shop-product-research","TikTok Shop产品研究，病毒潜力评分/品类分析","https://github.com/search?q=tiktok-shop-product-research&type=repositories"],
-    ["tiktok-shop-promotions","TikTok Shop促销活动，闪购/优惠券/包邮","https://github.com/search?q=tiktok-shop-promotions&type=repositories"],
-    ["tiktok-shop-returns","TikTok Shop退货政策和流程优化，降低退货率","https://github.com/search?q=tiktok-shop-returns&type=repositories"],
-    ["tiktok-shop-reviews","TikTok Shop评价策略，UGC社交证明","https://github.com/search?q=tiktok-shop-reviews&type=repositories"],
-    ["tiktok-shop-seller-guide","TikTok Shop卖家完整指南，内容策略/联盟计划","https://github.com/search?q=tiktok-shop-seller-guide&type=repositories"],
-    ["tiktok-shop-shipping","TikTok Shop运输设置，承运商选择/运输模板","https://github.com/search?q=tiktok-shop-shipping&type=repositories"],
-    ["tiktok-shop-trending-products","TikTok热门产品发现，病毒产品/品类趋势分析","https://github.com/search?q=tiktok-shop-trending-products&type=repositories"],
-    ["youtube-channel-ops","YouTube频道定位、SEO、增长与变现全链路","https://github.com/search?q=youtube-channel-ops&type=repositories"]
+  {id:"aibiz",icon:"🌐",title:"全球营销",tag:"tag-dsite",source:"(24)",skills:[
+    ["00-marketing-plan-global","Comprehensive 7-section marketing plan for global businesses — strategy, target audience, positioning, channels, content, KPIs, budget. Reads .agents/product-marketing-context-glob","https://github.com/search?q=aibiz-00-marketing-plan-global&type=repositories"],
+    ["01-content-calendar-global","Monthly content calendar for global businesses — multi-channel posting schedule with funnel ratio, content pillars, repurposing matrix, and quality scoring. Reads .agents/product-m","https://github.com/search?q=aibiz-01-content-calendar-global&type=repositories"],
+    ["02-campaign-brief-global","9-section campaign brief for global campaigns — context, objectives, target, message, creative, channels, timeline, deliverables, risks. Reads .agents/product-marketing-context-glo","https://github.com/search?q=aibiz-02-campaign-brief-global&type=repositories"],
+    ["03-performance-eval-global","Diagnose marketing performance for global businesses — root cause analysis, 5-Whys, 48-hour action plan. Has 4 region variants for benchmarks (US/EU/SEA/LATAM). Reads .agents/produ","https://github.com/search?q=aibiz-03-performance-eval-global&type=repositories"],
+    ["04-script-video-global","Short-form video scripts for TikTok, Reels, YouTube Shorts — 2 A/B variants, 6 hook formulas, timestamp breakdown, shoot guide, caption + hashtag, viral score. Reads .agents/produc","https://github.com/search?q=aibiz-04-script-video-global&type=repositories"],
+    ["05-ad-copy-global","6 ad copy variations (2 TOFU + 2 MOFU + 2 BOFU) for global markets. Frameworks: AIDA, PAS, BAB. Platforms: Meta, Google, TikTok. INCLUDES Dropshipping Mode (4 templates) for Shopif","https://github.com/search?q=aibiz-05-ad-copy-global&type=repositories"],
+    ["06-ugc-egc-brief-global","Detailed brief for UGC (customers), EGC (employees), KOC (paid creators) for global markets — shooting guide, do/don't, usage rights, batch management. Trigger: 'creator brief', 'U","https://github.com/search?q=aibiz-06-ugc-egc-brief-global&type=repositories"],
+    ["07-marketing-report-global","Marketing reports under 'read 5 minutes, know what to do next' principle — insights first, numbers as proof, recommendations with deadlines and owners. For global markets. Trigger:","https://github.com/search?q=aibiz-07-marketing-report-global&type=repositories"],
+    ["08-competitor-research-global","3-tier competitor analysis (direct, indirect, secondary) for global markets — positioning, SWOT, content benchmark, market gap. Tools: SimilarWeb, Ahrefs, Semrush, Minea (dropshipp","https://github.com/search?q=aibiz-08-competitor-research-global&type=repositories"],
+    ["09-customer-insight-global","Build deep customer profiles — Consumer vs Shopper, JTBD framework, customer journey mapping, insight validation, internal monologue research","https://github.com/search?q=aibiz-09-customer-insight-global&type=repositories"],
+    ["10-reverse-kpi-global","Reverse KPI calculation for global marketing budgets — work backward from revenue goal to required spend. Universal math, currency-specific per region (US/EU/SEA/LATAM). 3-scenario","https://github.com/search?q=aibiz-10-reverse-kpi-global&type=repositories"],
+    ["11-channel-setup-global","Setup marketing channels for global businesses — channel selection, platform-specific setup checklists, integration guides. Has 4 region variants (US/EU/SEA/LATAM) with region-spec","https://github.com/search?q=aibiz-11-channel-setup-global&type=repositories"],
+    ["12-landing-page-brief-global","Create high-converting landing page briefs — 7-section structure, 1 page = 1 goal = 1 CTA, mobile-first, conversion-optimized. Includes Single-Product LP for Dropshipping mode.","https://github.com/search?q=aibiz-12-landing-page-brief-global&type=repositories"],
+    ["13-data-analysis-global","Turn raw marketing data into actionable insight — analysis by channel, campaign, creative, audience, time. Descriptive → Diagnostic → Predictive → Prescriptive.","https://github.com/search?q=aibiz-13-data-analysis-global&type=repositories"],
+    ["14-email-marketing-global","Email marketing automation for global markets — welcome series, nurture sequences, re-engagement, transactional. Has 4 region variants for LEGAL compliance: US (CAN-SPAM opt-out), ","https://github.com/search?q=aibiz-14-email-marketing-global&type=repositories"],
+    ["15-social-listening-global","Monitor brand, competitors, and industry trends across social media — early crisis detection and content opportunity discovery","https://github.com/search?q=aibiz-15-social-listening-global&type=repositories"],
+    ["16-marketing-psychology-global","Cialdini 7 principles applied to global marketing — reciprocity, scarcity, authority, social proof, liking, commitment, unity. Universal psychology with international examples (App","https://github.com/search?q=aibiz-16-marketing-psychology-global&type=repositories"],
+    ["17-pricing-strategy-global","Pricing strategy for global markets — value-based, anchor pricing, charm pricing, decoy effect. Has 4 region variants for currency psychology (US/EU/SEA/LATAM). INCLUDES Dropshippi","https://github.com/search?q=aibiz-17-pricing-strategy-global&type=repositories"],
+    ["18-referral-program-global","Referral program design for global businesses — 1-way vs 2-way, incentive structure, anti-fraud, attribution. Has 4 region variants for anti-spam compliance (TCPA US, GDPR EU, PDPA","https://github.com/search?q=aibiz-18-referral-program-global&type=repositories"],
+    ["19-ab-test-setup-global","Design valid A/B tests for global marketing — hypothesis formulation, sample size calculation, statistical significance, multi-arm testing, primary vs secondary metrics. Tools: Opt","https://github.com/search?q=aibiz-19-ab-test-setup-global&type=repositories"],
+    ["20-client-intake-brief-global","Generic client intake brief for international marketing agencies — 11-section template covering business overview, target audience, current marketing, goals, budget, timeline, bran","https://github.com/search?q=aibiz-20-client-intake-brief-global&type=repositories"],
+    ["21-ads-audit-global","Comprehensive ads audit for Meta/Google/TikTok with Health Score 0-100. 84 checkpoints across 6 dimensions (Account/Campaign/AdSet/Ad/Tracking/Optimization). Has 4 region variants ","https://github.com/search?q=aibiz-21-ads-audit-global&type=repositories"],
+    ["30-design-master-global","Design Master — 30-design-master-global","https://github.com/search?q=aibiz-30-design-master-global&type=repositories"],
+    ["product-marketing-context-global","Foundation skill for the global marketing cluster. Creates .agents/product-marketing-context-global.md with region-specific context (currency, primary platforms, regulations, perso","https://github.com/search?q=aibiz-product-marketing-context-global&type=repositories"]
   ]},
-  {id:"voc",icon:"🔍",title:"VOC用户洞察",tag:"tag-voc",source:"(13个)",skills:[
-    ["Backlink KOL Extractor","Extract KOL/influencer/media prospects from Semrush competitor data using a three-step methodology: domain pattern match","https://github.com/search?q=backlink-kol-extractor&type=repositories"],
-    ["Contact Extractor","Multi-source email extraction with confidence tiering.","https://github.com/search?q=contact-extractor&type=repositories"],
-    ["Linktree Expander","Given a list of Linktree slugs, produce a per-creator profile with all formal social handles (IG / TikTok / YouTube / Su","https://github.com/search?q=linktree-expander&type=repositories"],
-    ["Media Press Discovery","Build a per-journalist press outreach database from media outlet domains, anchored on Muckrack's public outlet pages, wi","https://github.com/search?q=media-press-discovery&type=repositories"],
-    ["Reddit VOC — 购买前用户洞察 SKILL","从 Reddit 挖**购买前**用户真实声音(VOC: Voice of Customer)— 痛点、价值观红线、行业黑话、替代方案。","https://github.com/search?q=reddit-voc&type=repositories"],
-    ["backlink-kol-extractor","从Semrush外链数据提取KOL/红人/媒体合作线索","https://github.com/search?q=backlink-kol-extractor&type=repositories"],
-    ["contact-extractor","根据YouTube/Podcast等列丰富最多3个候选邮箱","https://github.com/search?q=contact-extractor&type=repositories"],
-    ["linktree-expander","将Linktree用户名扩展为完整创作者画像表格","https://github.com/search?q=linktree-expander&type=repositories"],
-    ["media-press-discovery","从媒体域名出发建立记者级PR外联数据库","https://github.com/search?q=media-press-discovery&type=repositories"],
-    ["offline-retail-us","中国DTC品牌美国线下渠道拓展全案（快闪/地推/O2O）","https://github.com/search?q=offline-retail-us&type=repositories"],
-    ["reddit-voc","挖掘购买前用户真实声音（痛点/红线/黑话/替代方案）","https://github.com/search?q=reddit-voc&type=repositories"],
-    ["trustpilot-voc-deep","全量评论抓取+情感分析+LDA主题建模+AI深度归纳","https://github.com/search?q=trustpilot-voc-deep&type=repositories"],
-    ["trustpilot-voc-quick","5分钟快速获取Trustpilot评分概况与近期评论摘要","https://github.com/search?q=trustpilot-voc-quick&type=repositories"]
+  {id:"aimktg",icon:"🤖",title:"AI营销工具",tag:"tag-auto",source:"(16)",skills:[
+    ["ai-discoverability-audit","Audit how a brand appears in AI-powered search (ChatGPT, Perplexity, Claude, Gemini). Use when user mentions \"AI search,\" \"how do I show up in ChatGPT,\" \"AI discoverability,\" \"AEO,","https://github.com/search?q=aimktg-ai-discoverability-audit&type=repositories"],
+    ["de-ai-ify","Remove AI-generated jargon and restore human voice to text. Built from analyzing 1,000+ AI vs human content pieces.","https://github.com/search?q=aimktg-de-ai-ify&type=repositories"],
+    ["go-mode","Autonomous goal execution — give a goal, get a plan, confirm, execute, report. You steer, Claude drives.","https://github.com/search?q=aimktg-go-mode&type=repositories"],
+    ["homepage-audit","Full conversion audit for any homepage or landing page. Use when someone asks to \"review my homepage,\" \"audit my landing page,\" \"why isn't my page converting,\" \"check my website,\" ","https://github.com/search?q=aimktg-homepage-audit&type=repositories"],
+    ["last30days","Research any topic across Reddit, X, and web from the last 30 days. Get current trends, real community sentiment, and actionable insights in 7 minutes vs 2 hours manual research.","https://github.com/search?q=aimktg-last30days&type=repositories"],
+    ["linkedin-authority-builder","Build a LinkedIn content system for thought leadership. Use when someone needs to establish authority, attract inbound leads, or build a consistent content presence. Covers positio","https://github.com/search?q=aimktg-linkedin-authority-builder&type=repositories"],
+    ["linkedin-profile-optimizer","Audit and rewrite your LinkedIn profile to attract the right people. Scores each section, rewrites headline and about copy, and includes an AI visibility checklist so you show up i","https://github.com/search?q=aimktg-linkedin-profile-optimizer&type=repositories"],
+    ["marketing-principles","Apply timeless marketing and business principles to any problem. Use when someone needs strategic thinking, wants to evaluate a marketing decision, needs a framework for a tough ch","https://github.com/search?q=aimktg-marketing-principles&type=repositories"],
+    ["newsletter-creation-curation","Industry-adaptive B2B newsletter creation with stage, role, and geography-aware workflows","https://github.com/search?q=aimktg-newsletter-creation-curation&type=repositories"],
+    ["plan-my-day","Generate an energy-optimized, time-blocked daily plan based on circadian rhythm research and GTD principles","https://github.com/search?q=aimktg-plan-my-day&type=repositories"],
+    ["positioning-basics","Help founders and marketers nail their positioning. Use when someone mentions \"positioning,\" \"value proposition,\" \"who is this for,\" \"how do I describe my product,\" \"messaging,\" \"I","https://github.com/search?q=aimktg-positioning-basics&type=repositories"],
+    ["reddit-insights","Semantic search across millions of Reddit posts. Unlike keyword search, this understands intent and meaning.","https://github.com/search?q=aimktg-reddit-insights&type=repositories"],
+    ["social-card-gen","Generate platform-specific social post variants (Twitter/X, LinkedIn, Reddit) from one source input. Works with or without Node.js script. Includes platform reasoning, quality revi","https://github.com/search?q=aimktg-social-card-gen&type=repositories"],
+    ["testimonial-collector","Systematically gather, score, and format client testimonials. Use when someone needs social proof, wants to collect feedback, needs to turn happy clients into public advocates, or ","https://github.com/search?q=aimktg-testimonial-collector&type=repositories"],
+    ["voice-extractor","Extract and document someone's authentic writing voice from samples. Use when someone needs a \"voice guide,\" wants to capture their writing DNA, or needs to train AI to write in th","https://github.com/search?q=aimktg-voice-extractor&type=repositories"],
+    ["youtube-summarizer","Automatically fetch YouTube video transcripts, generate structured summaries, and send full transcripts to messaging platforms. Detects YouTube URLs and provides metadata, key insi","https://github.com/search?q=aimktg-youtube-summarizer&type=repositories"]
   ]},
-  {id:"seo",icon:"📊",title:"SEO竞品",tag:"tag-seo",source:"(70个, 65精选)",skills:[
-    ["🔥 AI Citations Tracker","Most \"AI search","https://github.com/search?q=seorescue-ai-citations-tracker&type=repositories"],
-    ["🔥 AI Search / GEO Optimization (May 2026)","Google's official position, published under Search Central docs:","https://github.com/agricidaniel/claude-seo"],
-    ["🔥 AI Search Rescue","A framework for recovering and growing visibility in AI search surfaces: Google AI Overviews, Google AI Mode, ChatGPT, P","https://github.com/search?q=seorescue-ai-search-rescue&type=repositories"],
-    ["🔥 Backlink Profile Analysis","Before analysis, detect available data sources:","https://github.com/agricidaniel/claude-seo"],
-    ["🔥 Beginner SEO Audit — nur kostenlose Tools","Ein gewollt minimaler SEO-Check, der **ohne kostenpflichtige APIs** (Sistrix, DataForSEO, Ahrefs, SEMrush) auskommt. Nut","https://github.com/search?q=seorescue-seo-audit-free&type=repositories"],
-    ["🔥 Channel Economics Analyzer","A simple-but-rigorous channel-level P&L calculator for multi-channel e-commerce businesses. Computes per-channel: revenu","https://github.com/search?q=seorescue-channel-economics-analyzer&type=repositories"],
-    ["🔥 Competitor Comparison & Alternatives Pages","Create high-converting comparison and alternatives pages that target","https://github.com/agricidaniel/claude-seo"],
-    ["🔥 Competitor Deep Audit","Identifies the **real organic competitors** of a target domain (not who the owner thinks competes, but who actually show","https://github.com/search?q=seorescue-competitor-deep-audit&type=repositories"],
-    ["🔥 Content Quality & E-E-A-T Analysis","Before scoring E-E-A-T sub-factors, every page audit should pass Google's","https://github.com/agricidaniel/claude-seo"],
-    ["🔥 DataForSEO: Live SEO Data (Extension)","Live search data via the DataForSEO MCP server. Provides real-time SERP results","https://github.com/agricidaniel/claude-seo"],
-    ["🔥 E-Commerce Competitor Analysis 🔬","Cross-platform competitor analysis for e-commerce brands. Compare competitors across Amazon, Shopify, social media, and ","https://github.com/nexscope-ai/ecommerce-skills"],
-    ["🔥 E-commerce SEO Analysis","Comprehensive product page optimization, marketplace intelligence, and","https://github.com/agricidaniel/claude-seo"],
-    ["🔥 FLOW Framework — Find · Leverage · Optimize · Win","FLOW is an evidence-led SEO operating model built for the AI-search era. Claude SEO","https://github.com/agricidaniel/claude-seo"],
-    ["🔥 Full Website SEO Audit","2. **Detect business type**: analyze homepage signals per seo orchestrator","https://github.com/agricidaniel/claude-seo"],
-    ["🔥 GSC Deep Dive","Google Search Console is the canonical source for what users actually search and click on your site, plus Google's own","https://github.com/search?q=seorescue-gsc-deep-dive&type=repositories"],
-    ["🔥 Google SEO APIs","Direct access to Google's own SEO data. Bridges the gap between crawl-based","https://github.com/agricidaniel/claude-seo"],
-    ["🔥 Hreflang & International SEO","Validate existing hreflang implementations or generate correct hreflang tags","https://github.com/agricidaniel/claude-seo"],
-    ["🔥 Image Optimization Analysis","- Present on all `<img>` elements (except decorative: `role=\"presentation\"`)","https://github.com/agricidaniel/claude-seo"],
-    ["🔥 Local SEO Analysis (March 2026)","| Metric | Value | Source |","https://github.com/agricidaniel/claude-seo"],
-    ["🔥 Maps Intelligence (March 2026)","Maps platform analysis for local businesses. Works with external APIs to assess","https://github.com/agricidaniel/claude-seo"],
-    ["🔥 PSI Weekly Cron Baseline","Automates Google PageSpeed Insights v5 tracking for a configurable list of URLs. Runs on a cron schedule (launchd on mac","https://github.com/search?q=seorescue-psi-weekly-cron-baseline&type=repositories"],
-    ["🔥 Post-Core-Update Recovery","A specific recovery framework for domains that **lost visibility after a Google Core Update**. Core insight from real Ma","https://github.com/search?q=seorescue-post-core-update-recovery&type=repositories"],
-    ["🔥 Programmatic SEO Analysis & Planning","Build and audit SEO pages generated at scale from structured data sources.","https://github.com/agricidaniel/claude-seo"],
-    ["🔥 Recovery Audit","Read and follow the full command specification:","https://github.com/search?q=seorescue-recovery-audit&type=repositories"],
-    ["🔥 Recovery Crawl","Read and follow the full command specification:","https://github.com/search?q=seorescue-recovery-crawl&type=repositories"],
-    ["🔥 Recovery Diagnose","Read and follow the full command specification:","https://github.com/search?q=seorescue-recovery-diagnose&type=repositories"],
-    ["🔥 Recovery Full Workflow","Read and follow the full command specification:","https://github.com/search?q=seorescue-recovery-full&type=repositories"],
-    ["🔥 Recovery Monitor","Read and follow the full command specification:","https://github.com/search?q=seorescue-recovery-monitor&type=repositories"],
-    ["🔥 Recovery Plan","Read and follow the full command specification:","https://github.com/search?q=seorescue-recovery-plan&type=repositories"],
-    ["🔥 SEO Content Brief Generator","Generate research-backed content briefs that help writers produce pages capable of outranking current top results. Brief","https://github.com/agricidaniel/claude-seo"],
-    ["🔥 SEO Drift Monitor (April 2026)","Git for your SEO. Capture baselines, detect regressions, track changes over time.","https://github.com/agricidaniel/claude-seo"],
-    ["🔥 SEO Image Gen: AI Image Generation for SEO Assets (Extension)","Generate production-ready images for SEO use cases using Gemini's image generation","https://github.com/agricidaniel/claude-seo"],
-    ["🔥 SEO Outreach Repo","","https://github.com/search?q=seorescue-seo-outreach-report&type=repositories"],
-    ["🔥 SEO Rescue: Orchestrator","This is the entry point for the seo-rescue plugin. It routes to","https://github.com/search?q=seorescue-rescue&type=repositories"],
-    ["🔥 Schema Markup Analysis & Generation","1. Scan page source for JSON-LD `<script type=\"application/ld+json\">`","https://github.com/agricidaniel/claude-seo"],
-    ["🔥 Search Experience Optimization (SXO)","SXO bridges the gap between SEO (what Google rewards) and UX (what users need).","https://github.com/agricidaniel/claude-seo"],
-    ["🔥 Semantic Topic Clustering (v1.9.0)","SERP-overlap-driven keyword clustering for content architecture. Groups keywords","https://github.com/agricidaniel/claude-seo"],
-    ["🔥 Shopify Marketing 🟢","Complete marketing strategy for Shopify stores. SEO, email marketing, paid ads, social media, conversion optimization, a","https://github.com/nexscope-ai/ecommerce-skills"],
-    ["🔥 Single Page Analysis","- Word count vs page type minimums (see qu","https://github.com/agricidaniel/claude-seo"],
-    ["🔥 Sitemap Analysis & Generation","- Valid XML format","https://github.com/agricidaniel/claude-seo"],
-    ["🔥 Strategic SEO Planning","- Business type, target audience, competitors, goals","https://github.com/agricidaniel/claude-seo"],
-    ["🔥 Technical SEO Audit","As of 2025-2026, AI companies actively crawl the web to train models an","https://github.com/agricidaniel/claude-seo"],
-    ["🔥 seogeo-alert-manager","","https://github.com/aaron-he-zhu/seo-geo-claude-skills"],
-    ["🔥 seogeo-backlink-analyzer","","https://github.com/aaron-he-zhu/seo-geo-claude-skills"],
-    ["🔥 seogeo-competitor-analysis","","https://github.com/aaron-he-zhu/seo-geo-claude-skills"],
-    ["🔥 seogeo-content-gap-analysis","","https://github.com/aaron-he-zhu/seo-geo-claude-skills"],
-    ["🔥 seogeo-content-quality-auditor","","https://github.com/aaron-he-zhu/seo-geo-claude-skills"],
-    ["🔥 seogeo-content-refresher","","https://github.com/aaron-he-zhu/seo-geo-claude-skills"],
-    ["🔥 seogeo-domain-authority-auditor","","https://github.com/aaron-he-zhu/seo-geo-claude-skills"],
-    ["🔥 seogeo-entity-optimizer","","https://github.com/aaron-he-zhu/seo-geo-claude-skills"],
-    ["🔥 seogeo-geo-content-optimizer","","https://github.com/aaron-he-zhu/seo-geo-claude-skills"],
-    ["🔥 seogeo-internal-linking-optimizer","","https://github.com/aaron-he-zhu/seo-geo-claude-skills"],
-    ["🔥 seogeo-keyword-research","","https://github.com/aaron-he-zhu/seo-geo-claude-skills"],
-    ["🔥 seogeo-memory-management","","https://github.com/aaron-he-zhu/seo-geo-claude-skills"],
-    ["🔥 seogeo-meta-tags-optimizer","","https://github.com/aaron-he-zhu/seo-geo-claude-skills"],
-    ["🔥 seogeo-on-page-seo-auditor","","https://github.com/aaron-he-zhu/seo-geo-claude-skills"],
-    ["🔥 seogeo-performance-reporter","","https://github.com/aaron-he-zhu/seo-geo-claude-skills"],
-    ["🔥 seogeo-rank-tracker","","https://github.com/aaron-he-zhu/seo-geo-claude-skills"],
-    ["🔥 seogeo-schema-markup-generator","","https://github.com/aaron-he-zhu/seo-geo-claude-skills"],
-    ["🔥 seogeo-seo-content-writer","","https://github.com/aaron-he-zhu/seo-geo-claude-skills"],
-    ["🔥 seogeo-serp-analysis","","https://github.com/aaron-he-zhu/seo-geo-claude-skills"],
-    ["🔥 seogeo-technical-seo-checker","","https://github.com/aaron-he-zhu/seo-geo-claude-skills"],
-    ["🔥 seorescue-sistrix-monday-recovery-check","","https://github.com/search?q=seorescue-sistrix-monday-recovery-check&type=repositories"],
-    ["🔥 seorescue-subscription-monetization-audit","","https://github.com/search?q=seorescue-subscription-monetization-audit&type=repositories"],
-    ["🔥 serp-content-teardown","Semrush+竞品HTML反推搜索获胜内容结构，确定性流水线","https://github.com/nexscope-ai/ecommerce-skills"],
-    ["ecommerce-competitor-analysis","Amazon+Shopify+社交+广告跨平台全维竞品情报","https://github.com/search?q=ecommerce-competitor-analysis&type=repositories"],
-    ["geo-content-optimizer","","https://github.com/search?q=geo-content-optimizer&type=repositories"],
-    ["geo-optimizer","","https://github.com/search?q=geo-optimizer&type=repositories"],
-    ["seo-ecommerce","Google Shopping可见性+Amazon情报+Schema验证+关键词缺口","https://github.com/search?q=seo-ecommerce&type=repositories"],
-    ["shopify-marketing","Shopify全栈营销（SEO/邮件/广告/社交/转化/留存）","https://github.com/search?q=shopify-marketing&type=repositories"]
+  {id:"seo",icon:"📊",title:"SEO & GEO",tag:"tag-seo",source:"(54)",skills:[
+    ["geo-optimizer","geo-optimizer","https://github.com/search?q=geo-optimizer&type=repositories"],
+    ["seo-audit","Full website SEO audit with parallel subagent delegation. Crawls up to 500 pages, detects business type, delegates to up to 15 specialists (8 always + 7 conditional), generates hea","https://github.com/search?q=seo-audit&type=repositories"],
+    ["seo-backlinks","Backlink profile analysis: referring domains, anchor text distribution, toxic link detection, competitor gap analysis. Works with free APIs (Moz, Bing Webmaster, Common Crawl) and ","https://github.com/search?q=seo-backlinks&type=repositories"],
+    ["seo-cluster","Semantic Topic Clustering (v1.9.0)","https://github.com/search?q=seo-cluster&type=repositories"],
+    ["seo-competitor-pages","Competitor Comparison & Alternatives Pages","https://github.com/search?q=seo-competitor-pages&type=repositories"],
+    ["seo-content","Content Quality & E-E-A-T Analysis","https://github.com/search?q=seo-content&type=repositories"],
+    ["seo-content-brief","SEO Content Brief Generator","https://github.com/search?q=seo-content-brief&type=repositories"],
+    ["seo-dataforseo","DataForSEO: Live SEO Data (Extension)","https://github.com/search?q=seo-dataforseo&type=repositories"],
+    ["seo-drift","SEO Drift Monitor (April 2026)","https://github.com/search?q=seo-drift&type=repositories"],
+    ["seo-flow","FLOW Framework — Find · Leverage · Optimize · Win","https://github.com/search?q=seo-flow&type=repositories"],
+    ["seo-geo","AI Search / GEO Optimization (May 2026)","https://github.com/search?q=seo-geo&type=repositories"],
+    ["seo-google","Direct access to Google's own SEO data. Bridges the gap between crawl-based","https://github.com/search?q=seo-google&type=repositories"],
+    ["seo-hreflang","Hreflang & International SEO","https://github.com/search?q=seo-hreflang&type=repositories"],
+    ["seo-image-gen","AI image generation for SEO assets: OG/social preview images, blog hero images, schema images, product photography, infographics. Powered by Gemini via nanobanana-mcp. Requires ban","https://github.com/search?q=seo-image-gen&type=repositories"],
+    ["seo-images","Image Optimization Analysis","https://github.com/search?q=seo-images&type=repositories"],
+    ["seo-local","Local SEO Analysis (March 2026)","https://github.com/search?q=seo-local&type=repositories"],
+    ["seo-maps","Maps Intelligence (March 2026)","https://github.com/search?q=seo-maps&type=repositories"],
+    ["seo-plan","- Business type, target audience, competitors, goals","https://github.com/search?q=seo-plan&type=repositories"],
+    ["seo-programmatic","Programmatic SEO Analysis & Planning","https://github.com/search?q=seo-programmatic&type=repositories"],
+    ["seo-schema","Schema Markup Analysis & Generation","https://github.com/search?q=seo-schema&type=repositories"],
+    ["seo-sxo","Search Experience Optimization (SXO)","https://github.com/search?q=seo-sxo&type=repositories"],
+    ["seo-technical","- robots.txt: exists, valid, not blocking important resources","https://github.com/search?q=seo-technical&type=repositories"],
+    ["alert-manager","'Use when the user asks to \"set SEO alerts\" or \"排名掉了提醒我\"; configures threshold notifications for FUTURE ranking, traffic, technical, and competitor changes. Not for one-time measur","https://github.com/search?q=seogeo-alert-manager&type=repositories"],
+    ["backlink-analyzer","'Use when the user asks to \"analyze backlinks\" or \"外链分析\"; profiles external referring domains, anchor-text distribution, toxic links, and competitor link gaps. Not for internal lin","https://github.com/search?q=seogeo-backlink-analyzer&type=repositories"],
+    ["competitor-analysis","'Use when the user asks to \"analyze competitors\" or \"竞品分析\"; benchmarks competitor keywords, content, backlinks, AI citations, and traffic share into strengths, weaknesses, and an a","https://github.com/search?q=seogeo-competitor-analysis&type=repositories"],
+    ["content-gap-analysis","'Use when the user asks to \"find content gaps\", \"竞品写了什么\", or \"还应该写什么\"; builds a competitor-relative coverage map of missing topics, keyword gaps, and editorial-calendar opportuniti","https://github.com/search?q=seogeo-content-gap-analysis&type=repositories"],
+    ["content-quality-auditor","'Use when auditing content quality, E-E-A-T, or publish readiness; runs 80-item CORE-EEAT scoring with veto checks and a fix plan. Not for structural on-page tags/headers — use on-","https://github.com/search?q=seogeo-content-quality-auditor&type=repositories"],
+    ["content-refresher","'Use when the user asks to \"update outdated content\" or \"fix traffic/ranking decay\"; scores decay, prioritizes refresh work, and produces an update plan with GEO and republishing g","https://github.com/search?q=seogeo-content-refresher&type=repositories"],
+    ["domain-authority-auditor","'Use when auditing domain authority, trust, or citation credibility; runs 40-item CITE scoring with veto checks (TRUSTED/CAUTIOUS/UNTRUSTED). Not for page-level content quality — u","https://github.com/search?q=seogeo-domain-authority-auditor&type=repositories"],
+    ["entity-optimizer","'Use when the user asks to \"optimize entity presence\"; builds Knowledge Graph, Wikidata, sameAs, and AI recognition signals for a canonical entity identity. Not for page-level AI-c","https://github.com/search?q=seogeo-entity-optimizer&type=repositories"],
+    ["geo-content-optimizer","'Use when the user asks to \"optimize for AI citations\"; improves citation readiness for ChatGPT, Perplexity, AI Overviews, Gemini, and Claude. Not for structural on-page SEO — use ","https://github.com/search?q=seogeo-geo-content-optimizer&type=repositories"],
+    ["internal-linking-optimizer","'Use when the user asks to \"fix internal linking\" or \"find orphan pages\"; maps link architecture, authority flow, anchor text, and crawl depth, then delivers a prioritized source/t","https://github.com/search?q=seogeo-internal-linking-optimizer&type=repositories"],
+    ["keyword-research","'Use when the user asks to \"find keywords\", \"挖词\", or \"搜什么词\"; prioritizes search volume, keyword difficulty, intent, and topic clusters from provided or connected data. Not for comp","https://github.com/search?q=seogeo-keyword-research&type=repositories"],
+    ["memory-management","'Use when the user asks to \"remember project context\"; manages the SEO/GEO memory lifecycle — hot-cache, active work, archive tiers, and privacy cleanup. Not for content or domain ","https://github.com/search?q=seogeo-memory-management&type=repositories"],
+    ["meta-tags-optimizer","'Use when the user asks to \"optimize meta tags\"; improves titles, descriptions, Open Graph, Twitter cards, and CTR test variants. Not for JSON-LD structured data — use schema-marku","https://github.com/search?q=seogeo-meta-tags-optimizer&type=repositories"],
+    ["on-page-seo-auditor","'Use when the user asks to \"audit on-page SEO\" or \"diagnose why a single page dropped\"; scores titles, meta, header structure, keyword placement, links, and images with prioritized","https://github.com/search?q=seogeo-on-page-seo-auditor&type=repositories"],
+    ["performance-reporter","'Use when the user asks to \"generate an SEO report\" or \"出月报\"; builds multi-metric stakeholder reports and dashboards spanning traffic, rankings, authority, and content progress. No","https://github.com/search?q=seogeo-performance-reporter&type=repositories"],
+    ["rank-tracker","'Use when the user asks to \"track rankings\" or \"查排名\"; measures keyword and SERP-position deltas over time from provided exports or connected tools, including AI-response checks. No","https://github.com/search?q=seogeo-rank-tracker&type=repositories"],
+    ["schema-markup-generator","'Use when the user asks to \"generate schema\"; creates JSON-LD for FAQ, HowTo, Article, Product, and LocalBusiness rich-result candidates. Not for title/meta-description tags — use ","https://github.com/search?q=seogeo-schema-markup-generator&type=repositories"],
+    ["seo-content-writer","'Use when the user asks to \"write SEO content\"; drafts new posts, articles, and landing pages with keywords, headers, snippets, and evidence boundaries. Not for AI-citation/GEO rea","https://github.com/search?q=seogeo-seo-content-writer&type=repositories"],
+    ["serp-analysis","'Use when the user asks to \"analyze the SERP\" or \"SERP分析\"; maps SERP features, layout, ranking factors, search intent, AI Overviews, and snippet opportunities for a query. Not for ","https://github.com/search?q=seogeo-serp-analysis&type=repositories"],
+    ["technical-seo-checker","'Use when the user asks to \"check technical SEO\"; audits crawlability, indexing, Core Web Vitals, robots.txt, sitemaps, canonicals, redirects, and migrations. Not for on-page tags ","https://github.com/search?q=seogeo-technical-seo-checker&type=repositories"],
+    ["ai-citations-tracker","'Use when you need to measure (not just describe) brand citation frequency across AI search surfaces over time. Runs a configurable brand-mention prompt set weekly against ChatGPT ","https://github.com/search?q=seorescue-ai-citations-tracker&type=repositories"],
+    ["ai-search-rescue","'Use when a site has lost visibility in AI search surfaces (Google AI Overviews, Google AI Mode, ChatGPT citations, Perplexity citations) or wants to systematically work toward bei","https://github.com/search?q=seorescue-ai-search-rescue&type=repositories"],
+    ["channel-economics-analyzer","'Use when an e-commerce business sells across multiple channels (own shop, Amazon, OTTO, eBay, Etsy, Zalando, etc.) and wants to know which channel is actually profitable vs which ","https://github.com/search?q=seorescue-channel-economics-analyzer&type=repositories"],
+    ["competitor-deep-audit","'Use when an e-commerce or content site wants to deeply understand WHO their organic competitors are (often surprising — not the brands they think) and WHERE the competitors outran","https://github.com/search?q=seorescue-competitor-deep-audit&type=repositories"],
+    ["gsc-deep-dive","'Use when the user wants Google Search Console data pulled directly into the session instead of manually screenshotting / CSV-exporting from search.google.com. Pulls top queries, t","https://github.com/search?q=seorescue-gsc-deep-dive&type=repositories"],
+    ["post-core-update-recovery","'Use when a website experienced a sudden visibility/ranking drop that correlates with a published Google Core Update — symptoms include broad ranking loss across many keywords in a","https://github.com/search?q=seorescue-post-core-update-recovery&type=repositories"],
+    ["psi-weekly-cron-baseline","'Use when setting up automated weekly PageSpeed Insights tracking for a set of URLs — to catch performance regressions before users notice, or to validate that performance optimiza","https://github.com/search?q=seorescue-psi-weekly-cron-baseline&type=repositories"],
+    ["rescue","'Orchestrator and entry point for the seo-rescue plugin. Routes to the sixteen sub-skills and recovery commands covering SEO rescue work after Google Core Updates: free-tier audit,","https://github.com/search?q=seorescue-rescue&type=repositories"],
+    ["seo-audit-free","'Use when the user wants a basic SEO health check on a domain WITHOUT paying for any SEO tools — e.g. \"kostenloser SEO-Check\", \"SEO ohne Sistrix\", \"ich habe nur Google Search Conso","https://github.com/search?q=seorescue-seo-audit-free&type=repositories"],
+    ["seo-outreach-report","'Use when generating a polished single-PDF SEO snapshot for a third-party domain owner. The output is a decision-maker-friendly document in plain language for non-SEO-experts (shop","https://github.com/search?q=seorescue-seo-outreach-report&type=repositories"],
+    ["sistrix-monday-recovery-check","'CSV-first weekly recovery review during an active SEO recovery. No SISTRIX API key required. Compares current and previous SISTRIX keyword exports and produces a structured Monday","https://github.com/search?q=seorescue-sistrix-monday-recovery-check&type=repositories"],
+    ["subscription-monetization-audit","'Use when analyzing a subscription or recurring-revenue business (news site, paywall publisher, SaaS-light, membership platform, e-commerce with subscription tier) for monetization","https://github.com/search?q=seorescue-subscription-monetization-audit&type=repositories"]
   ]},
-  {id:"brand",icon:"🏷️",title:"品牌策略",tag:"tag-brand",source:"(38个, 12精选)",skills:[
-    ["🔥 Procurement Optimizer — Spend Categorization + Supplier Rationalization","","https://github.com/alirezarezvani/claude-skills"],
-    ["🔥 Vendor Management — Operational Third-Party Performance","You are a BizOps / IT / Vendor Management Office (VMO) operator. Your job is **ongoing vendo","https://github.com/alirezarezvani/claude-skills"],
-    ["🔥 partnerships-ar","","https://github.com/alirezarezvani/claude-skills"],
-    ["🔥 pricing-strategist","Help Commercial, Product Marketing, and CMO functions answer three questions at the pricing-design moment:","https://github.com/alirezarezvani/claude-skills"],
-    ["🔥 rzv-capacity-planner","","https://github.com/alirezarezvani/claude-skills"],
-    ["🔥 rzv-channel-economics","","https://github.com/alirezarezvani/claude-skills"],
-    ["🔥 rzv-commercial-forecaster","","https://github.com/alirezarezvani/claude-skills"],
-    ["🔥 rzv-commercial-policy","","https://github.com/alirezarezvani/claude-skills"],
-    ["🔥 rzv-deal-desk","","https://github.com/alirezarezvani/claude-skills"],
-    ["🔥 rzv-knowledge-ops","","https://github.com/alirezarezvani/claude-skills"],
-    ["🔥 rzv-process-mapper","","https://github.com/alirezarezvani/claude-skills"],
-    ["🔥 rzv-rfp-responder","","https://github.com/alirezarezvani/claude-skills"],
-    ["Brand Copywriter","Generate professional marketing copy in two versions: one using the optimal framework for the platform/use case, and one","https://github.com/search?q=founder-brand-copywriter&type=repositories"],
-    ["CRO Optimization","Analyze a landing page and deliver a comprehensive CRO audit with specific, actionable recommendations to maximize conve","https://github.com/search?q=founder-cro-optimization&type=repositories"],
-    ["Competitor Intel","Provide data-backed competitive intelligence by researching real signals across the web—no assumptions, no made-up numbe","https://github.com/search?q=founder-competitor-intel&type=repositories"],
-    ["Go-to-Market Plan","Analyze the founder's business and current stage to deliver 3 specific, actionable go-to-market strategies that will dri","https://github.com/search?q=founder-go-to-market-plan&type=repositories"],
-    ["Lead Magnet Generator","Generate 2 viral lead magnet posts that get your audience to comment a trigger word in exchange for a free resource, max","https://github.com/search?q=founder-lead-magnet-generator&type=repositories"],
-    ["LinkedIn Writer","Generate 2 viral LinkedIn posts in different proven formats, matched to the founder's voice, using battle-tested templat","https://github.com/search?q=founder-linkedin-writer&type=repositories"],
-    ["Marketing Ideas","Analyze the user's business context and produce the 5 best marketing ideas from a curated database of proven strategies,","https://github.com/search?q=founder-marketing-ideas&type=repositories"],
-    ["Outreach Specialist","Generate a personalized outreach sequence (default 3 messages) that sounds human, builds trust, and books calls — tailor","https://github.com/search?q=founder-outreach-specialist&type=repositories"],
-    ["PRD Generator","Transform a rough product idea into a comprehensive, AI-ready Product Requirements Document (PDF) through targeted quest","https://github.com/search?q=founder-prd-generator&type=repositories"],
-    ["Pricing Strategist","Build a comprehensive, justified pricing strategy — tier structures, price points, positioning, and revenue optimization","https://github.com/search?q=founder-pricing-strategist&type=repositories"],
-    ["Product Hunt Launch Plan","Generate a comprehensive, personalized Product Hunt launch plan with actionable steps from A-Z to help the user rank #1 ","https://github.com/search?q=founder-product-hunt-launch-plan&type=repositories"],
-    ["SOP Creator","Transform unstructured process descriptions into clear, actionable Standard Operating Procedures written at a 5th-grade ","https://github.com/search?q=founder-sop-creator&type=repositories"],
-    ["Strategic Planning","Analyze the founder's business and current situation to deliver 3 specific, actionable next moves that will drive measur","https://github.com/search?q=founder-strategic-planning&type=repositories"],
-    ["Viral Hook Creator","Generate 3-5 viral hook options using proven psychological patterns that create curiosity, provide value, and drive enga","https://github.com/search?q=founder-viral-hook-creator&type=repositories"],
-    ["X Writer","Generate 3 viral X posts in different proven formats, matched to a creator voice, using battle-tested templates and patt","https://github.com/search?q=founder-x-writer&type=repositories"],
-    ["brand-ab-compare","两组品牌战略报告从8个维度对比评分","https://github.com/search?q=brand-ab-compare&type=repositories"],
-    ["brand-annual-plan","年度执行计划与52周行事历生成","https://github.com/search?q=brand-annual-plan&type=repositories"],
-    ["brand-budget-ops","预算编制方案与执行监控体系","https://github.com/search?q=brand-budget-ops&type=repositories"],
-    ["brand-chart-visualize","读取战略报告数据调用AntV生成专业图表","https://github.com/search?q=brand-chart-visualize&type=repositories"],
-    ["brand-deep-validation","对推荐赛道进行5D框架深度验证（第三轮）","https://github.com/search?q=brand-deep-validation&type=repositories"],
-    ["brand-gtm-launch","新品全流程GTM上市规划（立项→上市→复盘）","https://github.com/search?q=brand-gtm-launch&type=repositories"],
-    ["brand-imc-framework","整合营销传播框架设计（双路径+年度执行日历）","https://github.com/search?q=brand-imc-framework&type=repositories"],
-    ["brand-knowledge-base","将所有品牌Skill输出整合为Obsidian交叉链接知识库","https://github.com/search?q=brand-knowledge-base&type=repositories"],
-    ["brand-market-scan","市场全景客观扫描，只输出事实数据不做建议（第一轮）","https://github.com/search?q=brand-market-scan&type=repositories"],
-    ["brand-strategy-plan","品牌战略决策与可执行计划制定（第四轮）","https://github.com/search?q=brand-strategy-plan&type=repositories"],
-    ["brand-track-hypothesis","生成3-5个赛道假设并系统化评估排名（第二轮）","https://github.com/search?q=brand-track-hypothesis&type=repositories"]
+  {id:"founder",icon:"💡",title:"创始人工具",tag:"tag-brand",source:"(15)",skills:[
+    ["brand-copywriter","Writes marketing copy using proven copywriting frameworks. Use when user needs copy for ads (Facebook, Instagram, TikTok, YouTube), landing pages, sales pages, email sequences, Lin","https://github.com/search?q=founder-brand-copywriter&type=repositories"],
+    ["competitor-intel","Analyzes competitors using web research to provide verified business metrics, actionable leverage strategies, and predicted next moves. Use when user needs competitive intelligence","https://github.com/search?q=founder-competitor-intel&type=repositories"],
+    ["cro-optimization","Analyzes landing pages and provides detailed CRO (Conversion Rate Optimization) recommendations. Use when user provides a landing page URL or HTML/CSS code and needs optimization a","https://github.com/search?q=founder-cro-optimization&type=repositories"],
+    ["go-to-market-plan","Analyzes the founder's business context to deliver 3 best go-to-market strategies tailored to their current stage, product, and market. Asks up to 10 diagnostic questions when need","https://github.com/search?q=founder-go-to-market-plan&type=repositories"],
+    ["lead-magnet-generator","Creates viral lead magnet posts that drive comments and DMs. Produces 2 versions - a quick punchy format and a detailed format with bullet points. Use when user needs social media ","https://github.com/search?q=founder-lead-magnet-generator&type=repositories"],
+    ["linkedin-writer","Creates viral LinkedIn posts using proven formats, post templates, and voice matching. Use when user needs engaging, high-performing posts for LinkedIn.","https://github.com/search?q=founder-linkedin-writer&type=repositories"],
+    ["marketing-ideas","Produces the best marketing ideas for your business by analyzing your FOUNDER_CONTEXT and matching it against a curated database of 170+ proven marketing strategies. Use when user ","https://github.com/search?q=founder-marketing-ideas&type=repositories"],
+    ["outreach-specialist","Crafts high-converting outreach messages and email sequences for cold outreach, LinkedIn DMs, and follow-ups. Use when user needs personalized outreach messages that book calls and","https://github.com/search?q=founder-outreach-specialist&type=repositories"],
+    ["prd-generator","Generates professional PRD (Product Requirements Document) files optimized for AI coding tools. Takes a rough product idea, asks clarifying questions, and outputs a structured PDF ","https://github.com/search?q=founder-prd-generator&type=repositories"],
+    ["pricing-strategist","Builds comprehensive pricing strategies by reading business context and asking targeted questions interactively. Use when user needs pricing plans, tier structures, price points, p","https://github.com/search?q=founder-pricing-strategist&type=repositories"],
+    ["product-hunt-launch-plan","Creates a comprehensive, personalized Product Hunt launch plan to rank #1. Use when user needs a step-by-step Product Hunt launch strategy, launch checklist, or wants to maximize t","https://github.com/search?q=founder-product-hunt-launch-plan&type=repositories"],
+    ["sop-creator","Creates detailed Standard Operating Procedures (SOPs) for business processes. Use when user needs SOPs, process documentation, operational guides, workflow documentation, or step-b","https://github.com/search?q=founder-sop-creator&type=repositories"],
+    ["strategic-planning","Analyzes the founder's business context to deliver the 3 highest-impact next moves for growth (marketing or sales). Asks up to 10 diagnostic questions when needed to uncover bottle","https://github.com/search?q=founder-strategic-planning&type=repositories"],
+    ["viral-hook-creator","Creates viral social media hooks using proven psychological patterns and trigger words. Use when user needs attention-grabbing openings for posts, threads, videos, or content.","https://github.com/search?q=founder-viral-hook-creator&type=repositories"],
+    ["x-writer","Creates viral X (Twitter) posts using proven formats, post templates, and creator voice matching. Use when user needs engaging, high-performing posts for X/Twitter.","https://github.com/search?q=founder-x-writer&type=repositories"]
   ]},
-  {id:"shop",icon:"🛒",title:"Shopify运营",tag:"tag-shop",source:"(26个)",skills:[
-    ["shopify-ab-testing","Shopify A/B测试，优化产品和结账页面","https://github.com/search?q=shopify-ab-testing&type=repositories"],
-    ["shopify-analytics-guide","Shopify分析和报告，关键指标/数据驱动决策","https://github.com/search?q=shopify-analytics-guide&type=repositories"],
-    ["shopify-app-recommendations","Shopify应用栈顾问，按业务阶段推荐必要应用","https://github.com/search?q=shopify-app-recommendations&type=repositories"],
-    ["shopify-blog-strategy","Shopify博客内容营销，SEO内容/购买指南","https://github.com/search?q=shopify-blog-strategy&type=repositories"],
-    ["shopify-cart-abandonment","Shopify购物车弃单恢复，邮件/短信/再营销","https://github.com/search?q=shopify-cart-abandonment&type=repositories"],
-    ["shopify-checkout-customization","Shopify结账优化，结账扩展/自定义字段/信任元素","https://github.com/search?q=shopify-checkout-customization&type=repositories"],
-    ["shopify-conversion-optimization","Shopify转化率数据驱动优化，产品页面/结账流程","https://github.com/search?q=shopify-conversion-optimization&type=repositories"],
-    ["shopify-dropshipping","Shopify一件代发设置与扩展，供应商集成/自动化","https://github.com/search?q=shopify-dropshipping&type=repositories"],
-    ["shopify-email-flows","Shopify邮件自动化，欢迎系列/弃单挽回/售后跟进","https://github.com/search?q=shopify-email-flows&type=repositories"],
-    ["shopify-facebook-instagram-shop","Shopify社交销售，Facebook Shop/Instagram购物","https://github.com/search?q=shopify-facebook-instagram-shop&type=repositories"],
-    ["shopify-google-channel","Shopify Google整合，购物Feed/Performance Max/Merchant Center","https://github.com/search?q=shopify-google-channel&type=repositories"],
-    ["shopify-international","Shopify国际销售，多币种/翻译/关税设置","https://github.com/search?q=shopify-international&type=repositories"],
-    ["shopify-inventory-management","Shopify多地点库存管理，调拨/低库存预警/需求预测","https://github.com/search?q=shopify-inventory-management&type=repositories"],
-    ["shopify-landing-page-builder","Shopify高转化着陆页构建，活动页面/A/B测试","https://github.com/search?q=shopify-landing-page-builder&type=repositories"],
-    ["shopify-loyalty-program","Shopify客户忠诚度奖励计划，积分系统/VIP等级","https://github.com/search?q=shopify-loyalty-program&type=repositories"],
-    ["shopify-migration","迁移至Shopify，从WooCommerce/Magento等平台数据转移","https://github.com/search?q=shopify-migration&type=repositories"],
-    ["shopify-page-speed","AI驱动Shopify页面速度优化，性能瓶颈诊断与改进","https://github.com/search?q=shopify-page-speed&type=repositories"],
-    ["shopify-product-photography-guide","Shopify DIY产品摄影，布景/灯光/后期编辑","https://github.com/search?q=shopify-product-photography-guide&type=repositories"],
-    ["shopify-seo","全面Shopify SEO优化，技术SEO/页面优化","https://github.com/search?q=shopify-seo&type=repositories"],
-    ["shopify-speed-optimization","Shopify速度审计，懒加载/图片压缩/应用臃肿移除","https://github.com/search?q=shopify-speed-optimization&type=repositories"],
-    ["shopify-store-setup","Shopify店铺搭建从零开始，账户创建到首次销售","https://github.com/search?q=shopify-store-setup&type=repositories"],
-    ["shopify-subscription-setup","Shopify订阅计划设置，循环计费/减少流失","https://github.com/search?q=shopify-subscription-setup&type=repositories"],
-    ["shopify-tax-compliance","Shopify税务设置与合规，销售税/增值税/关税征收","https://github.com/search?q=shopify-tax-compliance&type=repositories"],
-    ["shopify-theme-optimization","Shopify主题速度和UX优化，Core Web Vitals/Liquid代码","https://github.com/search?q=shopify-theme-optimization&type=repositories"],
-    ["shopify-upsell-cross-sell","Shopify追加销售和交叉销售，产品推荐/购物车追加","https://github.com/search?q=shopify-upsell-cross-sell&type=repositories"],
-    ["shopify-wholesale-channel","Shopify B2B批发渠道，批发定价/最低订单量","https://github.com/search?q=shopify-wholesale-channel&type=repositories"]
+  {id:"ecom",icon:"📦",title:"电商 & 运营",tag:"tag-ecom",source:"(8)",skills:[
+    ["attribution-analysis-modeling","Perform multi-touch attribution analysis using Markov chains, Shapley values, and custom attribution models. Use when you need to analyze marketing channel effectiveness, calculate","https://github.com/search?q=attribution-analysis-modeling&type=repositories"],
+    ["mcp-playbook","Crevideo Reach MCP — Playbook","https://github.com/search?q=crevideo-mcp-playbook&type=repositories"],
+    ["BytesAgain Crossborder Product Localizer","Localize product listings across English and Chinese ecommerce channels. Use when adapting Amazon, Shopify, Taobao, Pinduoduo, TK, or independent-site copy.","https://github.com/search?q=crossborder-product-localizer&type=repositories"],
+    ["ecom-details-image","ecom-details-image","https://github.com/search?q=ecom-details-image&type=repositories"],
+    ["email-marketing-bible","Email Marketing Bible, Skill Reference","https://github.com/search?q=email-marketing-bible&type=repositories"],
+    ["inventory-demand-planning","你是一个中小电商（50-200 SKU）的库存管理顾问。用户用飞书多维表或 Excel 管理库存，没有专业 ERP 系统。你需要给出简单可执行的建议，不说理论废话。","https://github.com/search?q=evos-inventory-demand-planning&type=repositories"],
+    ["logistics-exception-management","你是一个中小电商的物流客服顾问。用户通过 Shopline/Shopify 发跨境包裹，主要用 4PX/云途/燕文/DHL/EMS 等渠道。你需要给出具体可执行的处理方案和客户沟通模板。","https://github.com/search?q=evos-logistics-exception-management&type=repositories"],
+    ["social-calendar","Step 0 — Mode Selection and Brand Context","https://github.com/search?q=social-calendar&type=repositories"]
   ]},
-  {id:"ecom",icon:"📦",title:"电商通用",tag:"tag-ecom",source:"(99个)",skills:[
-    ["affiliate-marketing-strategy","建立扩展电商联盟营销计划，佣金结构/联盟招募/效果追踪","https://github.com/search?q=affiliate-marketing-strategy&type=repositories"],
-    ["brand-monitoring","跨社交媒体追踪品牌提及并分析情感趋势","https://github.com/search?q=brand-monitoring&type=repositories"],
-    ["brand-protection-amazon","亚马逊品牌保护：防范劫持者/假货/未经授权卖家","https://github.com/search?q=brand-protection-amazon&type=repositories"],
-    ["brand-protection-ebay","eBay品牌保护：防范未经授权卖家和假货","https://github.com/search?q=brand-protection-ebay&type=repositories"],
-    ["brand-protection-shopify","Shopify/DTC品牌保护：防范假冒商店和未经授权经销商","https://github.com/search?q=brand-protection-shopify&type=repositories"],
-    ["brand-protection-tiktok","TikTok Shop品牌保护：防范未经授权卖家和假货","https://github.com/search?q=brand-protection-tiktok&type=repositories"],
-    ["brand-protection-walmart","Walmart品牌保护：防范未经授权卖家和假货","https://github.com/search?q=brand-protection-walmart&type=repositories"],
-    ["competitive-pricing-strategy","制定数据驱动的定价策略，竞争分析/心理定价/利润优化","https://github.com/search?q=competitive-pricing-strategy&type=repositories"],
-    ["competitor-price-analysis","分析跨电商平台竞品定价策略，识别定价差距","https://github.com/search?q=competitor-price-analysis&type=repositories"],
-    ["competitor-price-tracker","建立竞品价格追踪与监控工作流，价格变动警报","https://github.com/search?q=competitor-price-tracker&type=repositories"],
-    ["conversion-rate-optimization","系统审计转化漏斗，识别流失点并实施修复","https://github.com/search?q=conversion-rate-optimization&type=repositories"],
-    ["cross-border-ecommerce","跨境电商扩展顾问，目标市场评估/履约模式对比/税务合规","https://github.com/search?q=cross-border-ecommerce&type=repositories"],
-    ["customer-feedback-analysis","AI驱动客户反馈和评论情感分析，提取痛点改进优先级","https://github.com/search?q=customer-feedback-analysis&type=repositories"],
-    ["dropshipping-product-research","为一件代发业务寻找利润产品，供应商可靠性/营销可行性","https://github.com/search?q=dropshipping-product-research&type=repositories"],
-    ["dynamic-pricing-ecommerce","实施动态定价策略，需求定价/竞品响应调价/算法模型","https://github.com/search?q=dynamic-pricing-ecommerce&type=repositories"],
-    ["ebay-advertising","eBay广告投放，推广列表/竞价策略/预算分配","https://github.com/search?q=ebay-advertising&type=repositories"],
-    ["ebay-product-research","eBay盈利产品研究，售罄率/均价/竞争密度分析","https://github.com/search?q=ebay-product-research&type=repositories"],
-    ["ebay-seller-guide","eBay卖家完整指南，上架优化/SEO/卖家评级提升","https://github.com/search?q=ebay-seller-guide&type=repositories"],
-    ["ebay-seller-tools","eBay卖家必备工具，上架/调价/分析/库存管理","https://github.com/search?q=ebay-seller-tools&type=repositories"],
-    ["ebay-seo","优化eBay列表适配Cassini搜索算法，提升搜索可见性","https://github.com/search?q=ebay-seo&type=repositories"],
-    ["ecom-details-image Skill","AI-powered ecommerce visual creation skill. Generate professional product images using 25 scene templates optimized for ","https://github.com/search?q=ecom-details-image&type=repositories"],
-    ["ecommerce-ab-testing","电商A/B测试，统计严谨性最大化转化和收入","https://github.com/search?q=ecommerce-ab-testing&type=repositories"],
-    ["ecommerce-branding","建立强化电商品牌标识，定位/文案/视觉指南","https://github.com/search?q=ecommerce-branding&type=repositories"],
-    ["ecommerce-business-plan","创建全面电商商业计划，市场分析/财务预测/运营规划","https://github.com/search?q=ecommerce-business-plan&type=repositories"],
-    ["ecommerce-checkout-optimization","优化结账流程减少弃单，摩擦分析/支付方式优化","https://github.com/search?q=ecommerce-checkout-optimization&type=repositories"],
-    ["ecommerce-content-marketing","电商内容营销策略，内容日历/平台特定策略","https://github.com/search?q=ecommerce-content-marketing&type=repositories"],
-    ["ecommerce-customer-retention","提升客户留存复购率，邮件流程/忠诚度计划/订阅模式","https://github.com/search?q=ecommerce-customer-retention&type=repositories"],
-    ["ecommerce-email-marketing-builder","构建完整电商邮件营销系统，自动流程/文案/ESP设置","https://github.com/search?q=ecommerce-email-marketing-builder&type=repositories"],
-    ["ecommerce-feed-management","AI驱动产品Feed管理与监控，同步错误/属性完整性","https://github.com/search?q=ecommerce-feed-management&type=repositories"],
-    ["ecommerce-growth-strategy","电商增长策略顾问，单位经济诊断/90天增长路线图","https://github.com/search?q=ecommerce-growth-strategy&type=repositories"],
-    ["ecommerce-keyword-research","跨平台电商关键词研究，高转化关键词/搜索量信号","https://github.com/search?q=ecommerce-keyword-research&type=repositories"],
-    ["ecommerce-landing-page","审计优化电商着陆页转化率，CTA/信任信号/页面结构","https://github.com/search?q=ecommerce-landing-page&type=repositories"],
-    ["ecommerce-marketing-strategy-builder","构建全渠道电商营销策略，广告/SEO/邮件/内容全覆盖","https://github.com/search?q=ecommerce-marketing-strategy-builder&type=repositories"],
-    ["ecommerce-personalization","设计电商个性化策略，产品推荐/动态内容/客户细分","https://github.com/search?q=ecommerce-personalization&type=repositories"],
-    ["ecommerce-ppc-strategy-planner","跨平台PPC广告策略规划，ROAS目标/广告简报","https://github.com/search?q=ecommerce-ppc-strategy-planner&type=repositories"],
-    ["ecommerce-returns-management","优化退货流程降低退货率，政策设计/逆向物流/根因分析","https://github.com/search?q=ecommerce-returns-management&type=repositories"],
-    ["ecommerce-shipping-rates","比较优化跨承运商运费，最大化利润的运输策略","https://github.com/search?q=ecommerce-shipping-rates&type=repositories"],
-    ["ecommerce-social-media-marketing","电商社媒营销策略，内容日历/社交商务整合","https://github.com/search?q=ecommerce-social-media-marketing&type=repositories"],
-    ["ecommerce-subscription-model","设计和推出订阅制电商模式，定价层级/减少流失","https://github.com/search?q=ecommerce-subscription-model&type=repositories"],
-    ["ecommerce-video-marketing","电商视频营销策略，产品视频/UGC/直播内容","https://github.com/search?q=ecommerce-video-marketing&type=repositories"],
-    ["etsy-advertising","Etsy广告策略，预算分配/竞价管理/站外广告分析","https://github.com/search?q=etsy-advertising&type=repositories"],
-    ["etsy-competitor-analysis","Etsy竞品研究，定价对比/畅销品分析/差异化策略","https://github.com/search?q=etsy-competitor-analysis&type=repositories"],
-    ["etsy-custom-orders","Etsy定制订单管理，沟通模板/定价/退货政策","https://github.com/search?q=etsy-custom-orders&type=repositories"],
-    ["etsy-digital-products","Etsy数字产品创建销售，模板/可打印品/交付设置","https://github.com/search?q=etsy-digital-products&type=repositories"],
-    ["etsy-keyword-research","Etsy搜索优化，长尾关键词/标签研究/季节性趋势","https://github.com/search?q=etsy-keyword-research&type=repositories"],
-    ["etsy-listing-photography","Etsy产品摄影，构图/光线/背景/后期编辑","https://github.com/search?q=etsy-listing-photography&type=repositories"],
-    ["etsy-multi-shop","Etsy多店铺管理策略，品类分离/品牌差异化","https://github.com/search?q=etsy-multi-shop&type=repositories"],
-    ["etsy-offsite-ads","Etsy站外广告分析，退出时机/ROI追踪/费用影响","https://github.com/search?q=etsy-offsite-ads&type=repositories"],
-    ["etsy-pricing-strategy","Etsy定价策略，成本计算/竞争对手定价/感知价值","https://github.com/search?q=etsy-pricing-strategy&type=repositories"],
-    ["etsy-print-on-demand","Etsy按需打印集成，Printful/Printify/样品/利润优化","https://github.com/search?q=etsy-print-on-demand&type=repositories"],
-    ["etsy-product-description","Etsy产品描述撰写，关键词整合/利益导向文案","https://github.com/search?q=etsy-product-description&type=repositories"],
-    ["etsy-review-strategy","Etsy评价生成策略，感谢卡/跟进消息/照片评价激励","https://github.com/search?q=etsy-review-strategy&type=repositories"],
-    ["etsy-seasonal-strategy","Etsy季节性销售日历，假日准备/热门品类分析","https://github.com/search?q=etsy-seasonal-strategy&type=repositories"],
-    ["etsy-seller-guide","Etsy卖家完整指南，店铺设置/SEO/定价策略","https://github.com/search?q=etsy-seller-guide&type=repositories"],
-    ["etsy-seo","Etsy SEO分析优化，标题/标签/描述评分提升搜索可见性","https://github.com/search?q=etsy-seo&type=repositories"],
-    ["etsy-seo-tags","Etsy标签优化，13标签策略/属性优化/搜索排名因素","https://github.com/search?q=etsy-seo-tags&type=repositories"],
-    ["etsy-shipping-strategy","Etsy运输策略，免费配送/国际运输/追踪设置","https://github.com/search?q=etsy-shipping-strategy&type=repositories"],
-    ["etsy-shop-analytics","Etsy店铺分析，流量来源/转化率/热门列表表现","https://github.com/search?q=etsy-shop-analytics&type=repositories"],
-    ["etsy-shop-branding","Etsy店铺品牌建设，横幅设计/品牌故事/统一摄影风格","https://github.com/search?q=etsy-shop-branding&type=repositories"],
-    ["etsy-shop-setup","Etsy店铺启动指南，政策/品牌/首批列表设置","https://github.com/search?q=etsy-shop-setup&type=repositories"],
-    ["etsy-social-media-marketing","Etsy社媒营销，Pinterest/Instagram/TikTok引流","https://github.com/search?q=etsy-social-media-marketing&type=repositories"],
-    ["etsy-star-seller","Etsy星级卖家达成指南，响应时间/运输追踪/五星评价","https://github.com/search?q=etsy-star-seller&type=repositories"],
-    ["google-shopping-optimization","优化Google Shopping广告和产品Feed，最大化ROAS","https://github.com/search?q=google-shopping-optimization&type=repositories"],
-    ["influencer-outreach","寻找联系管理KOL合作伙伴，外联模板/谈判策略","https://github.com/search?q=influencer-outreach&type=repositories"],
-    ["inventory-tracking-software","AI驱动库存追踪监控，低库存预警/补货点计算","https://github.com/search?q=inventory-tracking-software&type=repositories"],
-    ["market-gap-analysis","识别电商服务不足的市场空白和未满足的客户需求","https://github.com/search?q=market-gap-analysis&type=repositories"],
-    ["minimum-advertised-price","MAP最低广告价格政策制定与执行，跨渠道违规监控","https://github.com/search?q=minimum-advertised-price&type=repositories"],
-    ["multichannel-ecommerce","跨多市场渠道管理电商运营，库存同步/订单路由","https://github.com/search?q=multichannel-ecommerce&type=repositories"],
-    ["omnichannel-ecommerce","全渠道电商策略，统一品牌体验/库存同步","https://github.com/search?q=omnichannel-ecommerce&type=repositories"],
-    ["online-reputation-management","在线声誉管理，监控框架/负面评价应对策略","https://github.com/search?q=online-reputation-management&type=repositories"],
-    ["price-optimization-tool","数据驱动产品定价优化，弹性分析/利润建模","https://github.com/search?q=price-optimization-tool&type=repositories"],
-    ["product-description-generator","为任何电商平台生成优化产品描述/标题/要点","https://github.com/search?q=product-description-generator&type=repositories"],
-    ["product-differentiation-amazon","通过竞品评论和市场定位制定亚马逊产品差异化策略","https://github.com/search?q=product-differentiation-amazon&type=repositories"],
-    ["product-differentiation-ebay","通过eBay卖家反馈分析制定产品差异化策略","https://github.com/search?q=product-differentiation-ebay&type=repositories"],
-    ["product-differentiation-shopify","通过竞品店铺和评论分析制定Shopify/DTC差异化策略","https://github.com/search?q=product-differentiation-shopify&type=repositories"],
-    ["product-differentiation-tiktok","通过病毒产品趋势制定TikTok Shop产品差异化策略","https://github.com/search?q=product-differentiation-tiktok&type=repositories"],
-    ["product-launch-strategy","规划执行电商产品发布，发布前中后完整流程","https://github.com/search?q=product-launch-strategy&type=repositories"],
-    ["product-page-seo","优化电商产品页搜索引擎可见性，结构化数据/页面速度","https://github.com/search?q=product-page-seo&type=repositories"],
-    ["product-review-analysis","跨电商平台分析产品评论，提取客户反馈可行洞察","https://github.com/search?q=product-review-analysis&type=repositories"],
-    ["product-title-optimization","优化产品标题提升搜索可见性和点击率，适配各平台","https://github.com/search?q=product-title-optimization&type=repositories"],
-    ["profit-margin-calculator-amazon","亚马逊FBA利润计算器，成本分解/盈亏平衡点分析","https://github.com/search?q=profit-margin-calculator-amazon&type=repositories"],
-    ["profit-margin-calculator-shopify","Shopify/DTC利润计算器，含广告支出和CAC分析","https://github.com/search?q=profit-margin-calculator-shopify&type=repositories"],
-    ["profit-margin-calculator-tiktok","TikTok Shop利润计算器，联盟佣金/平台费用分析","https://github.com/search?q=profit-margin-calculator-tiktok&type=repositories"],
-    ["profit-margin-calculator-walmart","Walmart利润计算器，WFS履约/推荐费分析","https://github.com/search?q=profit-margin-calculator-walmart&type=repositories"],
-    ["restock-alert","AI驱动补货提醒，最优补货点/安全库存计算","https://github.com/search?q=restock-alert&type=repositories"],
-    ["sales-tracking-tool","跨平台追踪分析电商销售表现，KPI仪表盘/趋势分析","https://github.com/search?q=sales-tracking-tool&type=repositories"],
-    ["share-of-shelf","数字货架份额分析，衡量品牌品类可见性并追踪趋势","https://github.com/search?q=share-of-shelf&type=repositories"],
-    ["shoppable-video","创建优化可购物视频内容，TikTok Shop/Instagram Reels策略","https://github.com/search?q=shoppable-video&type=repositories"],
-    ["supply-chain-optimization-amazon","亚马逊卖家供应链瓶颈诊断与成本优化","https://github.com/search?q=supply-chain-optimization-amazon&type=repositories"],
-    ["supply-chain-optimization-shopify","Shopify/DTC供应链瓶颈分析，现金流/库存效率诊断","https://github.com/search?q=supply-chain-optimization-shopify&type=repositories"],
-    ["supply-chain-optimization-tiktok","TikTok Shop供应链瓶颈分析，佣金/退货率诊断","https://github.com/search?q=supply-chain-optimization-tiktok&type=repositories"],
-    ["supply-chain-optimization-walmart","Walmart供应链瓶颈分析，WFS成本/推荐费诊断","https://github.com/search?q=supply-chain-optimization-walmart&type=repositories"],
-    ["walmart-advertising-strategy","Walmart Connect广告，赞助产品/竞价策略","https://github.com/search?q=walmart-advertising-strategy&type=repositories"],
-    ["walmart-listing-optimization","Walmart产品列表优化，搜索可见性/转化率","https://github.com/search?q=walmart-listing-optimization&type=repositories"],
-    ["walmart-price-tracker","Walmart价格追踪与竞争定价分析，调价策略生成","https://github.com/search?q=walmart-price-tracker&type=repositories"],
-    ["walmart-seller-guide","Walmart Marketplace卖家指南，上架/WFS履约","https://github.com/search?q=walmart-seller-guide&type=repositories"],
-    ["walmart-seller-tools","Walmart卖家必备工具，产品研究/广告管理","https://github.com/search?q=walmart-seller-tools&type=repositories"],
-    ["warehouse-optimization","仓储与库存优化，库存健康度/安全库存计算","https://github.com/search?q=warehouse-optimization&type=repositories"],
-    ["woocommerce-seo","优化WooCommerce商店搜索引擎排名，技术SEO/结构化数据","https://github.com/search?q=woocommerce-seo&type=repositories"]
-  ]},
-  {id:"amazon",icon:"📦",title:"Amazon运营",tag:"tag-amazon",source:"(14个)",skills:[
-    ["amazon-ad-architecture","广告Campaign架构设计与搭建","https://github.com/search?q=amazon-ad-architecture&type=repositories"],
-    ["amazon-ad-diagnosis","已有产品广告全链路诊断与优化方案","https://github.com/search?q=amazon-ad-diagnosis&type=repositories"],
-    ["amazon-aplus-image-prompt","A+页面模块排布与图片设计提示词","https://github.com/search?q=amazon-aplus-image-prompt&type=repositories"],
-    ["amazon-compliance-review","Listing文案包多维度并行合规审查","https://github.com/search?q=amazon-compliance-review&type=repositories"],
-    ["amazon-ip-risk-assessment","产品外观/知识产权侵权风险排查与报告生成","https://github.com/search?q=amazon-ip-risk-assessment&type=repositories"],
-    ["amazon-keyword-research","关键词调研与结构化词库搭建","https://github.com/search?q=amazon-keyword-research&type=repositories"],
-    ["amazon-listing-copywriter","基于调研数据生成高转化Listing文案","https://github.com/search?q=amazon-listing-copywriter&type=repositories"],
-    ["amazon-main-image-prompt","主副图AI生成/拍摄提示词设计","https://github.com/search?q=amazon-main-image-prompt&type=repositories"],
-    ["amazon-market-research","美国站市场调研，基于1688链接生成结构化市场报告","https://github.com/search?q=amazon-market-research&type=repositories"],
-    ["amazon-pre-launch-review","上架前所有环节最终复查，确保就绪","https://github.com/search?q=amazon-pre-launch-review&type=repositories"],
-    ["amazon-product-selection","从榜单数据中筛选Top 30潜力产品并结构化分析","https://github.com/search?q=amazon-product-selection&type=repositories"],
-    ["amazon-product-shortlist","选品可行性多维度深度筛选，输出可执行落地清单","https://github.com/search?q=amazon-product-shortlist&type=repositories"],
-    ["amazon-supplier-decision","评估选择1688/Alibaba供应商并输出决策文档","https://github.com/search?q=amazon-supplier-decision&type=repositories"],
-    ["amazon-weekly-ad-review","每周广告数据复盘与优化行动清单","https://github.com/search?q=amazon-weekly-ad-review&type=repositories"]
-  ]},
-  {id:"ads",icon:"📢",title:"广告投放",tag:"tag-ads",source:"(50个)",skills:[
-    ["✅ A/B Test Design & Experiment Planning","1. Understand what the user wants to test (creative, audience, bidding, landing page)","https://github.com/search?q=ads-test&type=repositories"],
-    ["✅ Ads Create: Campaign Concept & Copy Brief Generator","Generates structured campaign concepts and platform-specific copy from your brand","https://github.com/search?q=ads-create&type=repositories"],
-    ["✅ Ads DNA: Brand DNA Extractor","Extracts brand identity from a website and saves it as `brand-profile.json`","https://github.com/search?q=ads-dna&type=repositories"],
-    ["✅ Ads Generate: AI Ad Image Generator","Generates platform-sized ad creative images from your campaign brief and brand","https://github.com/search?q=ads-generate&type=repositories"],
-    ["✅ Ads Photoshoot: AI Product Photography","Transforms a product image or description into professional ad-ready photography","https://github.com/search?q=ads-photoshoot&type=repositories"],
-    ["✅ Amazon Ads Deep Analysis","Amazon owns ~80% of US retail media (~$56B in 2025). This sub-skill audits","https://github.com/search?q=ads-amazon&type=repositories"],
-    ["✅ Apple Ads (formerly Apple Search Ads) Deep Analysis","1. Collect Apple Ads account data (exports from Apple Ads dashboard or pasted metric","https://github.com/search?q=ads-apple&type=repositories"],
-    ["✅ Budget Allocation & Bidding Strategy","1. Collect budget and performance data across all active platforms","https://github.com/search?q=ads-budget&type=repositories"],
-    ["✅ Competitor Ad Intelligence","1. Identify target competitors (from user input or industry analysis)","https://github.com/search?q=ads-competitor&type=repositories"],
-    ["✅ Cross-Platform Attribution Health Audit","Attribution decay is the silent revenue killer of 2026 — Consent Mode V2 EEA","https://github.com/search?q=ads-attribution&type=repositories"],
-    ["✅ Cross-Platform Creative Quality Audit","1. Collect creative assets or performance data from active platforms","https://github.com/search?q=ads-creative&type=repositories"],
-    ["✅ Full Multi-Platform Ads Audit","This audit operates under the **10-Principle Thinking Framework** (see","https://github.com/search?q=ads-audit&type=repositories"],
-    ["✅ Google Ads Deep Analysis","1. Collect Google Ads account data (export, Change History, Search Terms Report)","https://github.com/search?q=ads-google&type=repositories"],
-    ["✅ Landing Page Quality for Ad Campaigns","1. Collect landing page URLs from active ad campaigns","https://github.com/search?q=ads-landing&type=repositories"],
-    ["✅ LinkedIn Ads Deep Analysis","Campaigns are now called Ad Sets. This skill uses the new terminology.","https://github.com/search?q=ads-linkedin&type=repositories"],
-    ["✅ Meta Ads Deep Analysis","Meta's delivery stack was rebuilt across three releases:","https://github.com/search?q=ads-meta&type=repositories"],
-    ["✅ Microsoft Ads Deep Analysis","1. Collect Microsoft Ads data (account export, UET tag status, import results)","https://github.com/search?q=ads-microsoft&type=repositories"],
-    ["✅ PPC Financial Calculator & Modeling","1. Ask the user what calculation they need (or detect from context)","https://github.com/search?q=ads-math&type=repositories"],
-    ["✅ Server-Side Tracking Pipeline Audit","Audits the entire server-side measurement pipeline that backs every paid","https://github.com/search?q=ads-server-side-tracking&type=repositories"],
-    ["✅ Strategic Paid Advertising Plan","Strategic planning is where the **10-Principle Thinking Framework** (see","https://github.com/search?q=ads-plan&type=repositories"],
-    ["✅ TikTok Ads Deep Analysis","1. Collect TikTok Ads data (Ads Manager export, Pixel/Events API status)","https://github.com/search?q=ads-tiktok&type=repositories"],
-    ["✅ YouTube Ads Analysis","1. Collect YouTube Ads data (Google Ads export filtered to Video campaigns)","https://github.com/search?q=ads-youtube&type=repositories"],
-    ["Arcads external API","- **Never** print API keys, commit `.env`, or paste keys into `MASTER_CONTEXT.md`.","https://github.com/search?q=arcads-external-api&type=repositories"],
-    ["Generate YouTube Thumbnail","A reusable workflow for creating YouTube thumbnails via Arcads' Nano Banana 2 image endpoint with proper character liken","https://github.com/search?q=arcads-generate-youtube-thumbnail&type=repositories"],
-    ["ads","多渠道付费广告审计优化，覆盖Google/Meta/YouTube/LinkedIn/TikTok/Microsoft/Apple/Amazon，250+检查项","https://github.com/search?q=ads&type=repositories"],
-    ["ads-amazon","亚马逊广告深度分析，Sponsored Products/Brands/Display及DSP","https://github.com/search?q=ads-amazon&type=repositories"],
-    ["ads-apple","Apple Search Ads深度分析，面向移动应用广告主","https://github.com/search?q=ads-apple&type=repositories"],
-    ["ads-attribution","跨平台归因健康审计，GA4归因模型/Consent Mode V2/MMP集成","https://github.com/search?q=ads-attribution&type=repositories"],
-    ["ads-audit","全平台付费广告审计，并行子代理生成各平台健康评分","https://github.com/search?q=ads-audit&type=repositories"],
-    ["ads-budget","全广告平台预算分配与出价策略审查，70/20/10规则","https://github.com/search?q=ads-budget&type=repositories"],
-    ["ads-competitor","跨平台竞品广告情报分析，Google/Meta/LinkedIn/TikTok全覆盖","https://github.com/search?q=ads-competitor&type=repositories"],
-    ["ads-create","广告活动概念与文案简报生成器，基于品牌档案生成结构化方案","https://github.com/search?q=ads-create&type=repositories"],
-    ["ads-creative","跨平台创意质量审计，检测创意疲劳/平台合规性/多样性评分","https://github.com/search?q=ads-creative&type=repositories"],
-    ["ads-dna","品牌DNA提取器，扫描网站提取视觉识别/语调/配色/字体/图片风格","https://github.com/search?q=ads-dna&type=repositories"],
-    ["ads-generate","AI广告创意图片生成，根据简报与品牌档案生成各平台尺寸图片","https://github.com/search?q=ads-generate&type=repositories"],
-    ["ads-google","Google Ads深度分析，搜索/PMax/AI Max/展示/YouTube/Demand Gen，80项检查","https://github.com/search?q=ads-google&type=repositories"],
-    ["ads-landing","付费广告落地页质量评估，信息匹配/页面速度/移动体验/信任信号","https://github.com/search?q=ads-landing&type=repositories"],
-    ["ads-linkedin","LinkedIn广告B2B深度分析，27项检查技术/受众/创意/线索/出价","https://github.com/search?q=ads-linkedin&type=repositories"],
-    ["ads-math","PPC财务计算器，CPA/ROAS/CPL/盈亏平衡/预算预测/LTV:CAC","https://github.com/search?q=ads-math&type=repositories"],
-    ["ads-meta","Meta广告深度分析，Facebook/Instagram/Threads，50项检查","https://github.com/search?q=ads-meta&type=repositories"],
-    ["ads-microsoft","Microsoft/Bing广告深度分析，搜索/PMax/受众网络/Copilot集成，24项检查","https://github.com/search?q=ads-microsoft&type=repositories"],
-    ["ads-photoshoot","广告创意产品摄影增强，5种专业摄影风格生成（影棚/悬浮/场景等）","https://github.com/search?q=ads-photoshoot&type=repositories"],
-    ["ads-plan","战略性付费广告规划，行业特定模板与分阶段实施路线图","https://github.com/search?q=ads-plan&type=repositories"],
-    ["ads-server-side-tracking","服务端追踪管道审计，sGTM/Meta CAPI/事件去重/像素调试/PII哈希","https://github.com/search?q=ads-server-side-tracking&type=repositories"],
-    ["ads-test","付费广告A/B测试设计，含统计显著性/样本量/测试时长估算","https://github.com/search?q=ads-test&type=repositories"],
-    ["ads-tiktok","TikTok广告深度分析，28项检查创意/追踪/出价/TikTok Shop","https://github.com/search?q=ads-tiktok&type=repositories"],
-    ["ads-youtube","YouTube广告专项分析，可跳过插播/bumper/Shorts/Demand Gen/CTV格式","https://github.com/search?q=ads-youtube&type=repositories"],
-    ["chatgpt-image-ad (Arcads)","Generate one or more **standalone Meta ad image creatives** via Arcads' `POST /v2/images/generate` with `model: \"gpt-ima","https://github.com/search?q=arcads-chatgpt-image-ad&type=repositories"],
-    ["image-ad-clone (Arcads)","Take an existing image ad and turn it into a reusable, parameterizable prompt template that gets appended to the shared ","https://github.com/search?q=arcads-image-ad-clone&type=repositories"],
-    ["nano-banana-image-ad (Arcads)","Generate one or more **standalone Meta ad image creatives** via Arcads' `POST /v2/images/generate` with the Nano Banana ","https://github.com/search?q=arcads-nano-banana-image-ad&type=repositories"]
-  ]},
-  {id:"mktg",icon:"📋",title:"营销套件",tag:"tag-mktg",source:"(81个, 3精选)",skills:[
-    ["🔥 /last30days Research Skill","Scans Reddit, X, and web for the last 30 days, identifies patterns, extracts community insights, and delivers actionable","https://github.com/search?q=aimktg-last30days&type=repositories"],
-    ["🔥 YouTube Summarizer Skill","Automatically fetch transcripts from YouTube videos, generate structured summaries, and deliver full transcripts to mess","https://github.com/search?q=aimktg-youtube-summarizer&type=repositories"],
-    ["🔥 🎯 Go Mode — Autonomous Goal Execution","Give me a goal. I'll plan it, confirm with you, execute it, and report back. You steer — I drive.","https://github.com/search?q=aimktg-go-mode&type=repositories"],
-    ["✅ A/B Test Setup","You are an expert in experimentation and A/B testing. Your goal is to help design tests that produce statistically valid","https://github.com/search?q=amktg-ab-test-setup&type=repositories"],
-    ["✅ AI SEO","You are an expert in AI search optimization — the practice of making content discoverable, extractable, and citable by A","https://github.com/search?q=mktg-ai-seo&type=repositories"],
-    ["✅ ASO Audit","Analyze App Store and Google Play listings against ASO best practices. Fetches","https://github.com/search?q=mktg-aso&type=repositories"],
-    ["✅ Ad Creative","You are an expert performance creative strategist. Your goal is to generate high-performing ad creative at scale — headl","https://github.com/search?q=mktg-ad-creative&type=repositories"],
-    ["✅ Analytics Tracking","You are an expert in analytics implementation and measurement. Your goal is to help set up tracking that provides action","https://github.com/search?q=mktg-analytics&type=repositories"],
-    ["✅ Churn Prevention","You are an expert in SaaS retention and churn prevention. Your goal is to help reduce both voluntary churn (customers ch","https://github.com/search?q=mktg-churn-prevention&type=repositories"],
-    ["✅ Cold Email Writing","You are an expert cold email writer. Your goal is to write emails that sound like they came from a sharp, thoughtful hum","https://github.com/search?q=mktg-cold-email&type=repositories"],
-    ["✅ Community Marketing","You are an expert community builder and community-led growth strategist. Your goal is to help the user design, launch, a","https://github.com/search?q=mktg-community-marketing&type=repositories"],
-    ["✅ Competitor & Alternative Pages","You are an expert in creating competitor comparison and alternative pages. Your goal is to build pages that rank for com","https://github.com/search?q=mktg-competitors&type=repositories"],
-    ["✅ Competitor Profiling","You are an expert competitive intelligence analyst. Your goal is to take a list of competitor URLs and produce comprehen","https://github.com/search?q=mktg-competitor-profiling&type=repositories"],
-    ["✅ Content Strategy","Content planning, creation, and distribution for sustainable organic growth.","https://github.com/search?q=amktg-content-strategy&type=repositories"],
-    ["✅ Conversion Rate Optimization (CRO)","You are a conversion rate optimization expert. Your goal is to analyze marketing pages and provide actionable recommenda","https://github.com/search?q=mktg-cro&type=repositories"],
-    ["✅ Copy Editing","You are an expert copy editor specializing in marketing and conversion copy. Your goal is to systematically improve exis","https://github.com/search?q=amktg-copy-editing&type=repositories"],
-    ["✅ Copywriting","You are an expert conversion copywriter. Your goal is to write marketing copy that is clear, compelling,","https://github.com/search?q=amktg-copywriting&type=repositories"],
-    ["✅ Customer Research","You are an expert customer researcher. Your goal is to help uncover what customers actually","https://github.com/search?q=mktg-customer-research&type=repositories"],
-    ["✅ De-AI-ify Text","Remove AI-generated patterns and restore natural human voice to your writing.","https://github.com/search?q=aimktg-de-ai-ify&type=repositories"],
-    ["✅ Directory Submissions","You are an expert in directory-driven distribution for software products. Your goa","https://github.com/search?q=mktg-directory-submissions&type=repositories"],
-    ["✅ Email Sequence Design","You are an expert in email marketing and automation. Your goal is to create email sequences that nurture relationships, ","https://github.com/search?q=mktg-emails&type=repositories"],
-    ["✅ Free Tool Strategy (Engineering as Marketing)","You are an expert in engineering-as-marketing strategy. Your goal is to help plan and evaluate free tools that generate ","https://github.com/search?q=mktg-free-tools&type=repositories"],
-    ["✅ Image","You are an expert visual content producer who helps create marketing images using AI generation models, desig","https://github.com/search?q=mktg-image&type=repositories"],
-    ["✅ Launch Strategy","You are an expert in SaaS product launches and feature announcements. Your goal is to help users plan launches that buil","https://github.com/search?q=mktg-launch&type=repositories"],
-    ["✅ Lead Magnets","You are an expert in lead magnet strategy. Your goal is to help plan lead magnets that capture emails, generate qualifie","https://github.com/search?q=mktg-lead-magnets&type=repositories"],
-    ["✅ Marketing Ideas for SaaS","You are a marketing strategist with a library of 140 proven marketing ideas. Your goal is to","https://github.com/search?q=amktg-marketing-ideas&type=repositories"],
-    ["✅ Marketing Psychology & Mental Models","You are an expert in applying psychological principles and mental models to marketing. Your goal is to help users unders","https://github.com/search?q=mktg-marketing-psychology&type=repositories"],
-    ["✅ Onboarding CRO","You are an expert in user onboarding and activation. Your goal is to help users reach their \"aha moment\" as quickly as p","https://github.com/search?q=mktg-onboarding&type=repositories"],
-    ["✅ Paid Ads","You are an expert performance marketer with direct access to ad platform accounts. Your goal is to help create, optimize","https://github.com/search?q=mktg-ads&type=repositories"],
-    ["✅ Paywall and Upgrade Screen CRO","You are an expert in in-app paywalls and upgrade flows. Your goal is to convert free users to paid, or upgrade users to ","https://github.com/search?q=mktg-paywalls&type=repositories"],
-    ["✅ Plan My Day","Generate a clean, actionable hour-by-hour plan for the day based on priorities, energy patterns, and constraints.","https://github.com/search?q=aimktg-plan-my-day&type=repositories"],
-    ["✅ Popup CRO","You are an expert in popup and modal optimization. Your goal is to cr","https://github.com/search?q=amktg-popup-cro&type=repositories"],
-    ["✅ Pricing Strategy","You are an expert in SaaS pricing and monetization strategy with","https://github.com/search?q=amktg-pricing-strategy&type=repositories"],
-    ["✅ Product Marketing Context","You help users create and maintain a product marketing context document. This captures foundational positioning and mess","https://github.com/search?q=mktg-product-marketing&type=repositories"],
-    ["✅ Programmatic SEO","","https://github.com/search?q=amktg-programmatic-seo&type=repositories"],
-    ["✅ Prospecting","You are an expert at building qualified prospect lists across three motions: B2B SaaS, general B2B, and local small busi","https://github.com/search?q=mktg-prospecting&type=repositories"],
-    ["✅ Public Relations & Earned Media","","https://github.com/search?q=mktg-public-relations&type=repositories"],
-    ["✅ Referral & Affiliate Programs","You are an expert in viral growth and referral marketing with access to referral pr","https://github.com/search?q=amktg-referral-program&type=repositories"],
-    ["✅ RevOps","You are an expert in revenue operations. Your goal is to help design and optimize the systems that connect marketing, sa","https://github.com/search?q=mktg-revops&type=repositories"],
-    ["✅ SEO Audit","You are an expert in search engine optimization. Your goal is to identify SEO issues and provide actionable recommendati","https://github.com/search?q=mktg-seo-audit&type=repositories"],
-    ["✅ SMS Marketing","You are an expert in SMS and MMS marketing for direct-to-consumer brands, mobile apps, and SaaS products with high-engag","https://github.com/search?q=mktg-sms&type=repositories"],
-    ["✅ Sales Enablement","You are an expert in B2B sales enablement. Your goal is to create sales collateral that reps actually use — decks, one-p","https://github.com/search?q=mktg-sales-enablement&type=repositories"],
-    ["✅ Schema Markup","You are an expert in structured data and schema markup. Your goal is to implement schema.org markup that helps search en","https://github.com/search?q=amktg-schema-markup&type=repositories"],
-    ["✅ Signup Flow CRO","You are an expert in optimizing signup and registration flows. Y","https://github.com/search?q=amktg-signup-flow-cro&type=repositories"],
-    ["✅ Site Architecture","You are an information architecture expert. Your goal is to help plan website structure — page hierarchy, navigation, UR","https://github.com/search?q=mktg-site-architecture&type=repositories"],
-    ["✅ Video","You are an expert video producer who helps create marketing videos using AI generation models, AI avatars, and programma","https://github.com/search?q=mktg-video&type=repositories"],
-    ["✅ mktg-social","","https://github.com/search?q=mktg-social&type=repositories"],
-    ["AI Discoverability Audit","You are an AI discoverability expert. Audit how a brand appears in AI search and recommendation systems, identify gaps, ","https://github.com/search?q=aimktg-ai-discoverability-audit&type=repositories"],
-    ["Case Study Builder","Everyone wants social proof. Nobody makes time to create it. You finish a project, the client's happy, you move on — and","https://github.com/search?q=aimktg-case-study-builder&type=repositories"],
-    ["Cold Outreach Sequence","Here's what I've learned about cold outreach: the word \"cold\" is the problem.","https://github.com/search?q=aimktg-cold-outreach-sequence&type=repositories"],
-    ["Content Idea Generator","Content without positioning is noise. Before generating ideas, confirm positioning is clear. If not, run `positioning-ba","https://github.com/search?q=aimktg-content-idea-generator&type=repositories"],
-    ["Daily Briefing Builder","Generates a morning brief from your Obsidian vault. Reads today's action file, scans for unposted content, and fetches w","https://github.com/search?q=aimktg-daily-briefing-builder&type=repositories"],
-    ["Homepage Audit","You are a conversion expert. Your goal: audit a homepage or landing page with systematic scoring, then produce an impact","https://github.com/search?q=aimktg-homepage-audit&type=repositories"],
-    ["LinkedIn Authority Builder","Here's what most people get wrong about LinkedIn: they're trying to go viral.","https://github.com/search?q=aimktg-linkedin-authority-builder&type=repositories"],
-    ["LinkedIn Profile Optimizer","Most LinkedIn profiles are written for the person who has the profile, not the person who's supposed to find it. This sk","https://github.com/search?q=aimktg-linkedin-profile-optimizer&type=repositories"],
-    ["Marketing Plan","","https://github.com/search?q=mktg-marketing-plan&type=repositories"],
-    ["Marketing Principles","You are a strategic advisor channeling the masters: Drucker, Ogilvy, Godin, Buffett, Munger, Bezos, Jobs.","https://github.com/search?q=aimktg-marketing-principles&type=repositories"],
-    ["Meeting Prep (Claude Code Edition)","Generate a meeting prep brief from your Obsidian vault. Researches participants, surfaces vault history, builds a priori","https://github.com/search?q=aimktg-meeting-prep&type=repositories"],
-    ["Newsletter Creation & Curation Skill","Use this skill to create B2B newsletters that match business context, not generic content templates.","https://github.com/search?q=aimktg-newsletter-creation-curation&type=repositories"],
-    ["Positioning Basics","You are a positioning expert. Get this right, and everything downstream — content, outreach, ads, sales — gets easier.","https://github.com/search?q=aimktg-positioning-basics&type=repositories"],
-    ["Reddit Insights MCP","Semantic search across millions of Reddit posts. Unlike keyword search, this understands intent and meaning.","https://github.com/search?q=aimktg-reddit-insights&type=repositories"],
-    ["Social Card Generator","Transform one source message into platform-ready social copy for Twitter/X, LinkedIn, and Reddit.","https://github.com/search?q=aimktg-social-card-gen&type=repositories"],
-    ["Testimonial Collector","Detect from context or ask: *\"One script, full system, or full system with campaign?\"*","https://github.com/search?q=aimktg-testimonial-collector&type=repositories"],
-    ["Tweet Draft Reviewer","Paste a tweet draft and get a score out of 10, a rule-by-rule breakdown, and a rewrite if the score is below 7. Takes 30","https://github.com/search?q=aimktg-tweet-draft-reviewer&type=repositories"],
-    ["Vault Cleanup Auditor","Runs 4 targeted checks against your Obsidian vault and saves a prioritized audit report to `vault-audit/YYYY-MM-DD-audit","https://github.com/search?q=aimktg-vault-cleanup-auditor&type=repositories"],
-    ["Voice Extractor","AI-generated content all sounds the same. The fix isn't better prompts — it's teaching the AI how you actually communica","https://github.com/search?q=aimktg-voice-extractor&type=repositories"],
-    ["market","AI营销套件主编排器，全面营销分析与内容生成","https://github.com/search?q=market&type=repositories"],
-    ["market-ads","跨平台广告创意与文案生成，受众定位/预算建议/创意规格","https://github.com/search?q=market-ads&type=repositories"],
-    ["market-audit","全方位营销审计引擎，并行子智能体生成评分报告","https://github.com/search?q=market-audit&type=repositories"],
-    ["market-brand","品牌声线与语调分析，生成品牌指南文档","https://github.com/search?q=market-brand&type=repositories"],
-    ["market-competitors","竞争对手情报分析，识别定位差距并挖掘可借鉴策略","https://github.com/search?q=market-competitors&type=repositories"],
-    ["market-copy","网站文案评分与优化生成，基于成熟文案框架提供改进建议","https://github.com/search?q=market-copy&type=repositories"],
-    ["market-emails","邮件营销序列生成，主题行/正文/定时/细分策略","https://github.com/search?q=market-emails&type=repositories"],
-    ["market-funnel","销售漏斗分析与优化，识别流失点并给出收入影响估算","https://github.com/search?q=market-funnel&type=repositories"],
-    ["market-landing","落地页转化率优化分析，分区块优先级修复建议","https://github.com/search?q=market-landing&type=repositories"],
-    ["market-launch","产品发布周计划生成器，含模板/清单/全渠道策略","https://github.com/search?q=market-launch&type=repositories"],
-    ["market-proposal","营销服务客户提案生成，含定价锚定方案和ROI预测模型","https://github.com/search?q=market-proposal&type=repositories"],
-    ["market-report","Markdown格式综合营销报告生成，评分/发现/行动计划","https://github.com/search?q=market-report&type=repositories"],
-    ["market-report-pdf","PDF格式专业营销报告，含评分仪表盘和可视化图表","https://github.com/search?q=market-report-pdf&type=repositories"],
-    ["market-seo","全方位SEO审计，页面优化/内容质量/关键词/技术SEO","https://github.com/search?q=market-seo&type=repositories"],
-    ["market-social","30天社媒内容日历生成，含平台专属帖子和话题标签策略","https://github.com/search?q=market-social&type=repositories"]
-  ]},
-  {id:"auto",icon:"⚡",title:"营销自动化",tag:"tag-auto",source:"(43个)",skills:[
-    ["✅ Analytics & Attribution","Performance measurement and attribution modeling for data-driven marketing decisions.","https://github.com/search?q=amktg-analytics-attribution&type=repositories"],
-    ["✅ Brand Building","Brand strategy, identity, and positioning for differentiated market presence.","https://github.com/search?q=amktg-brand-building&type=repositories"],
-    ["✅ Email Marketing","Email campaign strategy, automation, and optimization for engagement and conversion.","https://github.com/search?q=amktg-email-marketing&type=repositories"],
-    ["✅ Email Sequence","","https://github.com/search?q=amktg-email-sequence&type=repositories"],
-    ["✅ Launch Strategy","","https://github.com/search?q=amktg-launch-strategy&type=repositories"],
-    ["✅ Marketing Problem-Solving","Systematic techniques for solving complex marketing challenges, breaki","https://github.com/search?q=amktg-problem-solving&type=repositories"],
-    ["✅ Marketing Psychology","","https://github.com/search?q=amktg-marketing-psychology&type=repositories"],
-    ["✅ Paid Advertising","Paid media strategy and optimization across platforms for profitable customer acquisition.","https://github.com/search?q=amktg-paid-advertising&type=repositories"],
-    ["✅ SEO Mastery","Search engine optimization strategies and tactics for sustainable organic growth.","https://github.com/search?q=amktg-seo-mastery&type=repositories"],
-    ["✅ Social Media","Social media strategy, content creation, and community building across platforms.","https://github.com/search?q=amktg-social-media&type=repositories"],
-    ["✅ amktg-competitor-alternatives","","https://github.com/search?q=amktg-competitor-alternatives&type=repositories"],
-    ["✅ amktg-form-cro","","https://github.com/search?q=amktg-form-cro&type=repositories"],
-    ["✅ amktg-free-tool-strategy","","https://github.com/search?q=amktg-free-tool-strategy&type=repositories"],
-    ["✅ amktg-onboarding-cro","","https://github.com/search?q=amktg-onboarding-cro&type=repositories"],
-    ["✅ amktg-page-cro","","https://github.com/search?q=amktg-page-cro&type=repositories"],
-    ["✅ amktg-paywall-upgrade-cro","","https://github.com/search?q=amktg-paywall-upgrade-cro&type=repositories"],
-    ["ab-test-setup","规划设计A/B测试实验，提升营销转化","https://github.com/search?q=ab-test-setup&type=repositories"],
-    ["analytics-attribution","性能衡量、归因建模和营销ROI分析","https://github.com/search?q=analytics-attribution&type=repositories"],
-    ["brand-building","品牌战略、标识、定位和品牌声音开发","https://github.com/search?q=brand-building&type=repositories"],
-    ["competitor-alternatives","创建竞品对比页面为SEO和销售赋能","https://github.com/search?q=competitor-alternatives&type=repositories"],
-    ["content-strategy","内容规划、创作和分发策略","https://github.com/search?q=content-strategy&type=repositories"],
-    ["copy-editing","编辑审查改进现有营销文案","https://github.com/search?q=copy-editing&type=repositories"],
-    ["copywriting","为任何页面编写或优化营销文案","https://github.com/search?q=copywriting&type=repositories"],
-    ["email-marketing","邮件活动策略、自动化和优化","https://github.com/search?q=email-marketing&type=repositories"],
-    ["email-sequence","创建优化邮件序列、滴灌活动和自动化流程","https://github.com/search?q=email-sequence&type=repositories"],
-    ["form-cro","优化潜在客户/联系/演示申请表单以提升转化","https://github.com/search?q=form-cro&type=repositories"],
-    ["free-tool-strategy","规划构建免费工具用于获客和SEO增长","https://github.com/search?q=free-tool-strategy&type=repositories"],
-    ["launch-strategy","产品发布、功能公告和上市策略规划","https://github.com/search?q=launch-strategy&type=repositories"],
-    ["marketing-ideas","SaaS软件产品的营销创意与增长策略","https://github.com/search?q=marketing-ideas&type=repositories"],
-    ["marketing-psychology","将心理学原理和行为科学应用于营销","https://github.com/search?q=marketing-psychology&type=repositories"],
-    ["onboarding-cro","优化注册后引导流程与用户激活体验","https://github.com/search?q=onboarding-cro&type=repositories"],
-    ["page-cro","优化营销页面的转化率（首页/落地页/定价页）","https://github.com/search?q=page-cro&type=repositories"],
-    ["paid-advertising","跨平台付费媒体策略和广告优化","https://github.com/search?q=paid-advertising&type=repositories"],
-    ["paywall-upgrade-cro","优化应用内付费墙和升级弹窗促进付费转化","https://github.com/search?q=paywall-upgrade-cro&type=repositories"],
-    ["popup-cro","创建优化弹窗、模态框和横幅以提升转化","https://github.com/search?q=popup-cro&type=repositories"],
-    ["pricing-strategy","定价决策、产品打包与变现策略","https://github.com/search?q=pricing-strategy&type=repositories"],
-    ["problem-solving","运用系统性方法应对营销挑战","https://github.com/search?q=problem-solving&type=repositories"],
-    ["programmatic-seo","使用模板和大数据创建SEO驱动页面","https://github.com/search?q=programmatic-seo&type=repositories"],
-    ["referral-program","创建优化推荐/联盟计划与口碑策略","https://github.com/search?q=referral-program&type=repositories"],
-    ["schema-markup","添加修复网站结构化数据标记","https://github.com/search?q=schema-markup&type=repositories"],
-    ["seo-mastery","搜索引擎优化策略与有机增长战术","https://github.com/search?q=seo-mastery&type=repositories"],
-    ["signup-flow-cro","优化注册/账户创建/试用激活流程降低流失","https://github.com/search?q=signup-flow-cro&type=repositories"],
-    ["social-media","社交媒体策略、内容创作和平台算法优化","https://github.com/search?q=social-media&type=repositories"]
-  ]},
-  {id:"ops",icon:"⚙️",title:"运营工具",tag:"tag-ops",source:"(56个, 17精选)",skills:[
-    ["🔥 BytesAgain Crossborder Product Localizer","Localize product listings across English and Chinese ecommerce channels. It turns product facts into channel-ready ecomm","https://github.com/search?q=crossborder-product-localizer&type=repositories"],
-    ["🔥 Carrier Relationship Management","You are a senior transportation manager with 15+ years managing carrier portfolios ranging from 40 to 200+ active carrie","https://github.com/search?q=evos-carrier-relationship-management&type=repositories"],
-    ["🔥 Email Marketing Bible, Skill Reference","","https://github.com/search?q=email-marketing-bible&type=repositories"],
-    ["🔥 Energy Procurement","You are a senior energy procurement manager at a large commercial and industrial (C&I) consumer with multiple facilities","https://github.com/search?q=evos-energy-procurement&type=repositories"],
-    ["🔥 Executing Marketing Campaigns","This Skill helps marketing teams plan campaigns, develop messaging, manage execution across channels, and measure result","https://github.com/davila7/claude-code-templates"],
-    ["🔥 Find Skills","This skill helps you discover and install skills from the open agent skills ecosystem.","https://github.com/vercel-labs/skills"],
-    ["🔥 Firecrawl Deep Research","Use this only for report-scale research: a rigorous, cited synthesis the user","https://github.com/search?q=firecrawl-deep-research&type=repositories"],
-    ["🔥 Inventory Demand Planning","You are a senior demand planner at a multi-location retailer operating 40–200 stores with regional distribution centers.","https://github.com/search?q=evos-inventory-demand-planning&type=repositories"],
-    ["🔥 Logistics Exception Management","You are a senior freight exceptions analyst with 15+ years managing shipment exceptions across all modes — LTL, FTL, par","https://github.com/search?q=evos-logistics-exception-management&type=repositories"],
-    ["🔥 Production Scheduling","You are a senior production scheduler at a discrete and batch manufacturing facility operating 3–8 production lines with","https://github.com/search?q=evos-production-scheduling&type=repositories"],
-    ["🔥 Quality & Non-Conformance Management","You are a senior quality engineer with 15+ years in regulated manufacturing environments — FDA 21 CFR 820 (medical devic","https://github.com/search?q=evos-quality-nonconformance&type=repositories"],
-    ["🔥 Returns & Reverse Logistics","You are a senior returns operations manager with 15+ years handling the full returns lifecycle across retail, e-commerce","https://github.com/search?q=evos-returns-reverse-logistics&type=repositories"],
-    ["🔥 SEO: Universal SEO Analysis Skill","Comprehensive SEO analysis across all industries (SaaS, local services,","https://github.com/search?q=seo&type=repositories"],
-    ["🔥 Universal web scraper","AI-driven data extraction from ~100 Actors across 15+ platforms via the Apify CLI.","https://github.com/apify/agent-skills"],
-    ["🔥 Web Application Testing","To test local web applications, write native Python Playwright scripts.","https://github.com/anthropics/skills"],
-    ["🔥 agent-browser","浏览器自动化（导航/填表/截图/数据提取）","https://github.com/vercel-labs/agent-browser"],
-    ["🔥 last30days","","https://github.com/search?q=last30days&type=repositories"],
-    ["✅ A/B Test Setup (Global)","","https://github.com/search?q=aibiz-19-ab-test-setup-global&type=repositories"],
-    ["✅ Ad Copy (Global)","Before writing ad copy, read context file (if exists):","https://github.com/search?q=aibiz-05-ad-copy-global&type=repositories"],
-    ["✅ Ads Audit (Global) — Health Score & Action Plan","","https://github.com/search?q=aibiz-21-ads-audit-global&type=repositories"],
-    ["✅ Channel Setup A-Z (Global)","Setup marketing channels for global businesses — selection, platform-specific checklists, integration guides. Region var","https://github.com/search?q=aibiz-11-channel-setup-global&type=repositories"],
-    ["✅ Competitive Research (Global)","Ask user up to 4 questions before starting:","https://github.com/search?q=aibiz-08-competitor-research-global&type=repositories"],
-    ["✅ Email Marketing (Global)","","https://github.com/search?q=aibiz-14-email-marketing-global&type=repositories"],
-    ["✅ Global Campaign Brief","","https://github.com/search?q=aibiz-02-campaign-brief-global&type=repositories"],
-    ["✅ Global Content Calendar","","https://github.com/search?q=aibiz-01-content-calendar-global&type=repositories"],
-    ["✅ Global Marketing Plan","","https://github.com/search?q=aibiz-00-marketing-plan-global&type=repositories"],
-    ["✅ Global Short-Form Video Script","Before writing the script, read `.agents/product-marketing-context-global.md` f","https://github.com/search?q=aibiz-04-script-video-global&type=repositories"],
-    ["✅ Landing Page Brief (Global)","1. **What product/service?** Brie","https://github.com/search?q=aibiz-12-landing-page-brief-global&type=repositories"],
-    ["✅ Marketing Data Analysis (Global)","1. **Data source?** Meta Ads, TikTok","https://github.com/search?q=aibiz-13-data-analysis-global&type=repositories"],
-    ["✅ Marketing Psychology (Global)","","https://github.com/search?q=aibiz-16-marketing-psychology-global&type=repositories"],
-    ["✅ Marketing Report (Global)","Ask up to 4 questions before reporting:","https://github.com/search?q=aibiz-07-marketing-report-global&type=repositories"],
-    ["✅ PDF Processing Guide","This guide covers essential PDF processing operations using Python libraries and command-line tools. For advanced featur","https://github.com/search?q=pdf&type=repositories"],
-    ["✅ Performance Evaluation (Global)","Diagnose marketing performance — paid ads, organic, funnel — find root cause, propose optimization with 48h action plan ","https://github.com/search?q=aibiz-03-performance-eval-global&type=repositories"],
-    ["✅ Pricing Strategy (Global)","","https://github.com/search?q=aibiz-17-pricing-strategy-global&type=repositories"],
-    ["✅ Referral Program (Global)","","https://github.com/search?q=aibiz-18-referral-program-global&type=repositories"],
-    ["✅ Reverse KPI Calculation (Global)","Calculate marketing budget by working backward from revenue goal — or forward from available spend to expected revenue. ","https://github.com/search?q=aibiz-10-reverse-kpi-global&type=repositories"],
-    ["✅ UGC / EGC / KOC Brief (Global)","Ask up to 4 questions before creating the brief:","https://github.com/search?q=aibiz-06-ugc-egc-brief-global&type=repositories"],
-    ["✅ aibiz-20-client-intake-brief-global","","https://github.com/search?q=aibiz-20-client-intake-brief-global&type=repositories"],
-    ["✅ aibiz-30-design-master-global","","https://github.com/search?q=aibiz-30-design-master-global&type=repositories"],
-    ["✅ aibiz-product-marketing-context-global","","https://github.com/search?q=aibiz-product-marketing-context-global&type=repositories"],
-    ["Caveman Compress","Compress natural language files (CLAUDE.md, todos, preferences) into caveman-speak to reduce input tokens. Compressed ve","https://github.com/search?q=caveman-compress&type=repositories"],
-    ["Caveman Help","Display this reference card when invoked. One-shot — do NOT change mode, write flag files, or persist anything. Output i","https://github.com/search?q=caveman-help&type=repositories"],
-    ["Customer Insight (Global)","Ask up to 4 questions before starting:","https://github.com/search?q=aibiz-09-customer-insight-global&type=repositories"],
-    ["Customs & Trade Compliance","Classify your product, calculate what it costs to import, and screen for trade restrictions.","https://github.com/search?q=compliance-customs-and-trade&type=repositories"],
-    ["DOCX creation, editing, and analysis","A .docx file is a ZIP archive containing XML files.","https://github.com/search?q=docx&type=repositories"],
-    ["Document Skills Suite","Comprehensive document handling for Microsoft Office formats and PDFs.","https://github.com/search?q=document-skills&type=repositories"],
-    ["GPT-Image2 Style Library","Use this skill to turn a user's image-generation intent into a production-ready GPT-Image2 prompt using the awesome-gpt-","https://github.com/search?q=gpt-image-2-style-library&type=repositories"],
-    ["Marketing Attribution Analysis & Modeling","A comprehensive attribution analysis skill that evaluates marketing channel effectiveness using advanced statistical mod","https://github.com/search?q=attribution-analysis-modeling&type=repositories"],
-    ["Social Listening & Monitoring (Global)","1. **Brand / product?** Brand name, primary product names, founder name (if personal","https://github.com/search?q=aibiz-15-social-listening-global&type=repositories"],
-    ["Web Search & Extraction","Search the web and extract content via [inference.sh](https://inference.sh) CLI.","https://github.com/search?q=web-search&type=repositories"],
-    ["caveman-stats","","https://github.com/search?q=caveman-stats&type=repositories"],
-    ["executing-marketing-campaigns","营销活动规划创建与优化（内容/社交/邮件/分析）","https://github.com/search?q=executing-marketing-campaigns&type=repositories"],
-    ["report-pdf-export","Markdown报告导出PDF（横版A4、中文、深蓝配色）","https://github.com/search?q=report-pdf-export&type=repositories"],
-    ["security-precommit-check","Git提交前敏感信息扫描（API Key/私钥/凭证）","https://github.com/search?q=security-precommit-check&type=repositories"],
-    ["user-lifecycle-ops","DTC用户生命周期运营（EDM/私域/社群/自动化）","https://github.com/search?q=user-lifecycle-ops&type=repositories"],
-    ["xlsx","","https://github.com/search?q=xlsx&type=repositories"]
-  ]},
-  {id:"comply",icon:"🛡️",title:"合规",tag:"tag-comply",source:"(51个)",skills:[
-    ["Agricultural Compliance","Full regulatory workflow for fertilizers, pesticides, seeds, plant protection products, biostimulants, organic certifica","https://github.com/search?q=compliance-agricultural-compliance&type=repositories"],
-    ["Alcohol & Spirits Compliance","Full regulatory workflow for wine, beer, spirits, and RTD beverages. Excise, labeling, direct-to-consumer shipping, adve","https://github.com/search?q=compliance-alcohol-spirits-compliance&type=repositories"],
-    ["Automotive Aftermarket Compliance","Full regulatory workflow for automotive aftermarket parts, accessories, electronics, tyres, batteries. UN/ECE, DOT, Type","https://github.com/search?q=compliance-automotive-aftermarket-compliance&type=repositories"],
-    ["Baby & Children's Products Compliance","Full regulatory workflow for nursery products, child care articles, strollers, cots, baby bottles. EN safety standards, ","https://github.com/search?q=compliance-baby-children-products-compliance&type=repositories"],
-    ["Baby Formula Compliance","Full regulatory workflow for infant formula and follow-on products. Strictest food category — highest liability, longest","https://github.com/search?q=compliance-baby-formula-compliance&type=repositories"],
-    ["Battery Compliance","EU Battery Regulation 2023/1542 and global rules for portable, LMT, EV, industrial, and SLI batteries. Passport, carbon ","https://github.com/search?q=compliance-battery-compliance&type=repositories"],
-    ["Candle & Fragrance Compliance","Full regulatory workflow for candles, wax melts, reed diffusers, room sprays, fragrance products. IFRA, CLP allergens, f","https://github.com/search?q=compliance-candle-fragrance-compliance&type=repositories"],
-    ["Claims Substantiation","Validate marketing claims against regulations. Every claim on your product or marketing must be substantiated before use","https://github.com/search?q=compliance-claims-substantiation&type=repositories"],
-    ["Compliance Audit Sprint","Run a compliance sprint for your product before launch or market entry. Not a framework audit -- a practical \"can I sell","https://github.com/search?q=compliance-compliance-audit-sprint&type=repositories"],
-    ["Compliance MCP Tools","Three MCP servers provide product compliance automation. For detailed workflows and parameters, load `tool-patterns.md`.","https://github.com/search?q=compliance-compliance-mcp-tools&type=repositories"],
-    ["Compliance Remediation","Fix compliance issues to unblock market entry. Focus: reformulate, relabel, test, certify. Practical actions with timeli","https://github.com/search?q=compliance-compliance-remediation&type=repositories"],
-    ["Compliance Reporting","Generate per-product, per-market compliance reports. Exportable for retail buyers, distributors, marketplace listings, a","https://github.com/search?q=compliance-compliance-reporting&type=repositories"],
-    ["Cosmetics Compliance","Full regulatory workflow for cosmetics and personal care products across 8 major markets. From formulation to shelf.","https://github.com/search?q=compliance-cosmetics-compliance&type=repositories"],
-    ["Cybersecurity Compliance","Regulatory workflow for connected products and digital elements. CRA, RED cybersecurity, PSTI, SBOM, vulnerability handl","https://github.com/search?q=compliance-cybersecurity-compliance&type=repositories"],
-    ["Dangerous Goods Transport","How to classify, document, pack, and declare dangerous goods for any transport mode. Scope: hazardous materials — classi","https://github.com/search?q=compliance-dangerous-goods-transport&type=repositories"],
-    ["Digital Product Passport (DPP)","EU framework linking physical products to a machine-readable data record via a unique identifier and data carrier. Manda","https://github.com/search?q=compliance-digital-product-passport&type=repositories"],
-    ["Electronics Compliance","Full regulatory workflow for electronics, IoT, and connected devices. CE, FCC, UKCA, batteries, cybersecurity, and envir","https://github.com/search?q=compliance-electronics-compliance&type=repositories"],
-    ["Evidence Blitz","Gather all compliance evidence for certification, audit, retail buyer, or marketplace listing. Parallel agents per docum","https://github.com/search?q=compliance-evidence-blitz&type=repositories"],
-    ["Firearms Compliance","Full regulatory workflow for firearms, ammunition, replicas, and energy-rated projectile devices across 8 jurisdictions.","https://github.com/search?q=compliance-firearms-compliance&type=repositories"],
-    ["Food Compliance","Full regulatory workflow for food, beverages, and dietary supplements across major markets. From recipe to retail shelf.","https://github.com/search?q=compliance-food-compliance&type=repositories"],
-    ["HS Classification","The customs nomenclature layer. One classification drives duty rate, import/export controls, dangerous-goods rules, and ","https://github.com/search?q=compliance-hs-classification&type=repositories"],
-    ["Herbal Medicine Compliance","Full regulatory workflow for botanical and herbal medicinal products. Sits between pharmaceutical, food supplement, and ","https://github.com/search?q=compliance-herbal-medicine-compliance&type=repositories"],
-    ["Household Chemicals Compliance","Full regulatory workflow for detergents, cleaners, disinfectants, biocides, aerosols, adhesives, paints. REACH, CLP, BPR","https://github.com/search?q=compliance-household-chemicals-compliance&type=repositories"],
-    ["Import/Export Documentation","Generate the complete documentation package for international shipments. Missing one document = shipment held at customs","https://github.com/search?q=compliance-import-export-docs&type=repositories"],
-    ["Jewelry Compliance","Full regulatory workflow for fine jewelry, fashion jewelry, watches, gemstones. Hallmarking, heavy metal restrictions, c","https://github.com/search?q=compliance-jewelry-compliance&type=repositories"],
-    ["Labeling Compliance","Country-specific labeling requirements for physical products. What must be on your label to legally sell in each market.","https://github.com/search?q=compliance-labeling-compliance&type=repositories"],
-    ["Market Entry Checklist","All-in-one checklist for entering a new market with a physical product. From product classification to first legal sale.","https://github.com/search?q=compliance-market-entry-checklist&type=repositories"],
-    ["Marketplace Compliance","Meet compliance requirements for major online marketplaces. Each platform has its own documentation requirements on top ","https://github.com/search?q=compliance-marketplace-compliance&type=repositories"],
-    ["Medical Device Compliance","Full regulatory workflow for medical devices, IVDs, and software as a medical device (SaMD). EU MDR/IVDR, FDA, UKCA, cla","https://github.com/search?q=compliance-medical-device-compliance&type=repositories"],
-    ["Multi-Jurisdiction Scan","Map all regulations for your product across all target markets in parallel. One agent per market. Output: unified compli","https://github.com/search?q=compliance-multi-jurisdiction-scan&type=repositories"],
-    ["Optical Eyewear Compliance","Full regulatory workflow for sunglasses, prescription lenses, safety eyewear, and head-mounted displays. Spans cosmetic ","https://github.com/search?q=compliance-optical-eyewear-compliance&type=repositories"],
-    ["Packaging Compliance","Packaging regulations by market. EPR registration, waste directives, recycling symbols, plastic taxes, and SUP restricti","https://github.com/search?q=compliance-packaging-compliance&type=repositories"],
-    ["Packaging Traceability","Resolve any product identifier -> the complete packaging bill-of-materials. Suppliers, quantities per material, packagin","https://github.com/search?q=compliance-packaging-traceability&type=repositories"],
-    ["Pet Product Compliance","Full regulatory workflow for pet food, treats, supplements, toys, accessories, and veterinary products. Feed regulation,","https://github.com/search?q=compliance-pet-product-compliance&type=repositories"],
-    ["Product Compliance","\"Can I sell [product] in [market]?\" -- with a precise, sourced answer.","https://github.com/search?q=compliance-product-compliance&type=repositories"],
-    ["Product Compliance Frameworks Reference","Quick reference for product regulations that affect physical goods. For detailed per-framework data, load `frameworks-ca","https://github.com/search?q=compliance-compliance-frameworks-ref&type=repositories"],
-    ["Product Safety Incident Response","Step-by-step protocol from detection of a product safety issue to case closure. Time-critical: missed notification deadl","https://github.com/search?q=compliance-product-safety-incident&type=repositories"],
-    ["Professional Cosmetics Compliance","Full regulatory workflow for salon-only and B2B cosmetics. Same regulations as retail cosmetics PLUS additional professi","https://github.com/search?q=compliance-professional-cosmetics-compliance&type=repositories"],
-    ["Recall Response","Handle product recall or safety alert from detection through close-out. Timelines are legal deadlines, not suggestions.","https://github.com/search?q=compliance-recall-response&type=repositories"],
-    ["Regulatory Calendar","Track every compliance deadline, renewal, and upcoming regulation. Miss a date = product pulled from market or penalty.","https://github.com/search?q=compliance-regulatory-calendar&type=repositories"],
-    ["Regulatory Intelligence","Monitor regulations that could block your product from sale. Focus on signals that require action: substance bans, label","https://github.com/search?q=compliance-regulatory-intelligence&type=repositories"],
-    ["Responsible Person / Legal Representative","Every major market requires a local legal entity accountable for your product. No RP = no market access.","https://github.com/search?q=compliance-responsible-person&type=repositories"],
-    ["Responsible Sourcing & Supply-Chain Due Diligence","Operationalises due diligence on minerals, materials, and labour across the supply chain. Scope boundary: `sustainabilit","https://github.com/search?q=compliance-responsible-sourcing&type=repositories"],
-    ["Sporting Goods Compliance","Full regulatory workflow for sports PPE, helmets, buoyancy aids, climbing equipment, e-bikes/e-scooters, firearms, arche","https://github.com/search?q=compliance-sporting-goods-compliance&type=repositories"],
-    ["Substance Screening","Deep ingredient/material screening against 13 regulatory databases. Input: ingredient list. Output: per-substance, per-j","https://github.com/search?q=compliance-substance-screening&type=repositories"],
-    ["Supplement Compliance","Full regulatory workflow for dietary/food supplements, vitamins, minerals, botanicals, probiotics. Claims, GMP, country-","https://github.com/search?q=compliance-supplement-compliance&type=repositories"],
-    ["Sustainability Compliance","Mandatory environmental and sustainability obligations for physical product companies. Not voluntary CSR -- these are en","https://github.com/search?q=compliance-sustainability-compliance&type=repositories"],
-    ["Testing & Certification","Map every test and certification required per product category per market. Lab selection, cost estimates, timelines, and","https://github.com/search?q=compliance-testing-certification&type=repositories"],
-    ["Textile Compliance","Full regulatory workflow for textiles, apparel, footwear, and home textiles. Chemical safety, labeling, flammability, an","https://github.com/search?q=compliance-textile-compliance&type=repositories"],
-    ["Tobacco & Vape Compliance","Full regulatory workflow for tobacco, e-cigarettes, vapes, e-liquids, nicotine pouches, HnB. TPD2, FDA PMTA, plain packa","https://github.com/search?q=compliance-tobacco-vape-compliance&type=repositories"],
-    ["Toy Compliance","Full regulatory workflow for toys and children's products. High-stakes category: non-compliance = immediate recall, heav","https://github.com/search?q=compliance-toy-compliance&type=repositories"]
-  ]},
-  {id:"pr",icon:"📰",title:"公关外联",tag:"tag-pr",source:"(18个)",skills:[
-    ["Angle Generator","You are **angle-generator**, a newsjack.sh skill. You are not a press release writer. You are not a copywriter. You are ","https://github.com/search?q=pr-angle-generator&type=repositories"],
-    ["Coverage Tracker","Track whether configured keywords appeared in real coverage. Keep this simple: `news-search` collects dated article evid","https://github.com/search?q=pr-coverage-tracker&type=repositories"],
-    ["Coverage Tracker Setup","This sets up a simple keyword tracker that the `coverage-tracker` skill runs for you. Think of it like a Google Alert: i","https://github.com/search?q=pr-coverage-tracker-setup&type=repositories"],
-    ["Fact Check","You are the factual accuracy gate inside newsjack.sh. Your job is narrow: pull","https://github.com/search?q=pr-fact-check&type=repositories"],
-    ["Find Journalists","You are **find-journalists**, the Newsjack skill that turns a story angle into a short, defensible list of journalists t","https://github.com/search?q=pr-find-journalists&type=repositories"],
-    ["Headline Generator","You are **headline-generator**, a newsjack.sh skill. You are the best headline writer on the desk. One story comes in; a","https://github.com/search?q=pr-headline-generator&type=repositories"],
-    ["Journalist Fit Check","This is the **Journalist Fit Check** skill inside newsjack.sh. It is the gatekeeper. It exists because too many pitches ","https://github.com/search?q=pr-journalist-fit-check&type=repositories"],
-    ["Meanest Editor","You are the **Meanest Editor** — a veteran PR director with 25 years in the business. You've roasted 10,000 drafts. You ","https://github.com/search?q=pr-meanest-editor&type=repositories"],
-    ["News Search","You are **news-search**, the Newsjack skill that turns a topic, company, competitor, or hook into a short list of **date","https://github.com/search?q=pr-news-search&type=repositories"],
-    ["Newsjack Detector","Find timely public signals and decide whether a client has a credible, non-spammy reason to use them. The monitoring eng","https://github.com/search?q=pr-newsjack-detector&type=repositories"],
-    ["Newsjack Monitor Setup","You are **newsjack-monitor-setup**. Your job is to help someone build a monitor profile — a small saved file that tells ","https://github.com/search?q=pr-newsjack-monitor-setup&type=repositories"],
-    ["Newsjack Triage","You are **newsjack-triage**, the standing-routing stage of the newsjacking pipeline. The engine has already decided whic","https://github.com/search?q=pr-newsjack-triage&type=repositories"],
-    ["Newsworthiness Check","You are **newsworthiness-check**, a newsjack.sh skill. Your job is to stop PR inflation before it turns into spam.","https://github.com/search?q=pr-newsworthiness-check&type=repositories"],
-    ["PR Strategist","You are **pr-strategist**, a newsjack.sh skill. Not a press-release writer, not a media-list builder. You are an opinion","https://github.com/search?q=pr-pr-strategist&type=repositories"],
-    ["Reactive Comment","You are the **Reactive Comment** gate inside newsjack.sh. The user gives","https://github.com/search?q=pr-reactive-comment&type=repositories"],
-    ["Relevance Coarse Filter","You are **relevance-coarse-filter**, the first cheap gate in a newsjacking pipeline. Your one job: drop obvious junk so ","https://github.com/search?q=pr-relevance-coarse-filter&type=repositories"],
-    ["Story Origin Check","You are **story-origin-check**, a Newsjack researcher. You do not score PR fit, and you do not compute freshness. You an","https://github.com/search?q=pr-story-origin-check&type=repositories"],
-    ["crisis-holding","You are the comms operator for a brewing crisis. Your job is not to make the company sound good. Your job is to keep the","https://github.com/search?q=pr-crisis-holding&type=repositories"]
-  ]},
-  {id:"util",icon:"🔧",title:"通用工具",tag:"tag-util",source:"(11个, 1精选)",skills:[
-    ["🔥 跨境电商 SEO 全案","```","https://github.com/agricidaniel/claude-seo"],
-    ["Security Pre-Commit Check","Layered defense against accidental secret / identity leaks in git commits. Combines a **central scanner + universal rule","https://github.com/search?q=security-precommit-check&type=repositories"],
-    ["apify-ultimate-scraper","通用爬虫，支持Instagram/Facebook/TikTok/YouTube等15+平台","https://github.com/search?q=apify-ultimate-scraper&type=repositories"],
-    ["document-skills","专业文档处理，支持docx/pdf/pptx/xlsx格式","https://github.com/search?q=document-skills&type=repositories"],
-    ["ecom-details-image","25种场景模板AI电商产品图生成","https://github.com/search?q=ecom-details-image&type=repositories"],
-    ["find-skills","搜索发现与安装Agent Skills","https://github.com/search?q=find-skills&type=repositories"],
-    ["firecrawl-deep-research","深度研究报告生成（多角度分析+完整来源）","https://github.com/search?q=firecrawl-deep-research&type=repositories"],
-    ["frontend-design","生产级前端界面/组件/页面/仪表盘创建","https://github.com/search?q=frontend-design&type=repositories"],
-    ["gpt-image-2-style-library","GPT-Image2视觉风格库与提示词模板","https://github.com/search?q=gpt-image-2-style-library&type=repositories"],
-    ["web-search","Tavily+Exa网络搜索与内容提取","https://github.com/search?q=web-search&type=repositories"],
-    ["webapp-testing","基于Playwright的本地Web应用功能验证与调试","https://github.com/search?q=webapp-testing&type=repositories"]
+  {id:"util",icon:"🔧",title:"文档 & 工具",tag:"tag-util",source:"(4)",skills:[
+    ["docx","Use this skill whenever the user wants to create, read, edit, or manipulate Word documents (.docx files). Triggers include: any mention of 'Word doc', 'word document', '.docx', or ","https://github.com/search?q=docx&type=repositories"],
+    ["pdf","Use this skill whenever the user wants to do anything with PDF files. This includes reading or extracting text/tables from PDFs, combining or merging multiple PDFs into one, splitt","https://github.com/search?q=pdf&type=repositories"],
+    ["xlsx","Use this skill any time a spreadsheet file is the primary input or output. This means any task where the user wants to: open, read, edit, or fix an existing .xlsx, .xlsm, .csv, or ","https://github.com/search?q=xlsx&type=repositories"],
+    ["seo","Comprehensive SEO analysis for any website or business type. Full site audits, single-page analysis, technical SEO (crawlability, indexability, Core Web Vitals with INP), schema ma","https://github.com/search?q=seo&type=repositories"]
   ]},
 ];
 
-function render(catFilter,searchText){
-  const c=document.getElementById("sections"),s=searchText.toLowerCase().trim();
-  let h="",t=0,d=0;
+(function(){
+const sections=document.getElementById("sections"),search=document.getElementById("search"),filterWrap=document.getElementById("filters"),hint=document.getElementById("resultHint"),toast=document.getElementById("toast"),btt=document.getElementById("btt"),searchClear=document.getElementById("searchClear");
+let activeCat="all",animFrame;
+
+function render(){
+  const q=search.value.trim().toLowerCase();
+  let total=0;
+  let html="";
   S.forEach(cat=>{
-    if(catFilter!=="all"&&cat.id!==catFilter)return;
-    const f=cat.skills.filter(([n,d])=>n.toLowerCase().includes(s)||d.includes(searchText));
-    if(!f.length)return;t+=f.length;
-    const src=cat.source?` <small style="opacity:.5;font-weight:400;font-size:11px">${cat.source}</small>`:"";
-    h+=`<section class="section"><div class="section-header"><span class="section-icon">${cat.icon}</span><h2 class="section-title">${cat.title}</h2>${src}<span class="section-count">${f.length}</span></div><div class="grid">`;
-    f.forEach(([n,dc,gh])=>{h+=`<div class="card" style="animation-delay:${d}s" onclick="copySkill(this,'${n.replace(/'/g,"\\'")}')" title="点击复制"><a class="card-gh" href="${gh}" target="_blank" title="GitHub源码" onclick="event.stopPropagation()">↗</a><div class="card-name">${n}<span class="card-copy-icon">📋</span></div><div class="card-desc">${dc}</div><span class="card-tag ${cat.tag}">${cat.title}</span></div>`;d+=.015});
-    h+=`</div></section>`;
+    let filtered=cat.skills;
+    if(activeCat!=="all"&&cat.id!==activeCat) return;
+    if(q){filtered=filtered.filter(s=>s[0].toLowerCase().includes(q)||s[1].toLowerCase().includes(q));}
+    if(filtered.length===0&&q) return;
+    total+=filtered.length;
+    html+=`<section class="section" data-cat="${cat.id}"><div class="section-header"><span class="section-icon">${cat.icon}</span><span class="section-title">${cat.title}</span><span class="section-count">${filtered.length} skills</span></div><div class="grid">`;
+    filtered.forEach((s,i)=>{
+      const animDelay=(q||activeCat!=="all")?0:i*0.02;
+      html+=`<div class="card" style="animation-delay:${animDelay}s" data-name="${s[0].replace(/"/g,'&quot;')}" onclick="copySkill(this,'${s[0].replace(/'/g,"\'")}')"><span class="card-name">${s[0]} <span class="card-copy-icon" title="Copy">copy</span></span><div class="card-desc">${s[1]||""}</div><span class="card-tag ${cat.tag}">${cat.title}</span></div>`;
+    });
+    html+=`</div></section>`;
   });
-  c.innerHTML=t?h:`<div class="empty"><div class="empty-icon">🔎</div><div class="empty-text">没有匹配的Skill，试试其他关键词</div></div>`;
-  document.getElementById("resultHint").textContent=t?`共 ${t} 个`:"";
-  document.getElementById("totalCount").textContent=t||622;
+  sections.innerHTML=html||`<div class="empty"><div class="empty-icon">search</div><div class="empty-text">No skills found for "${q}"</div></div>`;
+  hint.textContent=`${total} skills`;
+  document.getElementById("totalCount").textContent=total;
 }
-function copySkill(el,name){
-  navigator.clipboard.writeText(name).then(()=>{el.classList.add("copied");showToast(`已复制：${name}`);setTimeout(()=>el.classList.remove("copied"),1500)}).catch(()=>showToast("复制失败"));
+
+function updateFilters(){
+  filterWrap.querySelectorAll(".filter-tab").forEach(b=>b.classList.toggle("active",b.dataset.cat===activeCat));
 }
-let tt;
-function showToast(m){const e=document.getElementById("toast");e.textContent=m;e.classList.add("show");clearTimeout(tt);tt=setTimeout(()=>e.classList.remove("show"),2000)}
-const si=document.getElementById("search"),sc=document.getElementById("searchClear"),ft=document.querySelectorAll(".filter-tab");let cc="all";
-si.addEventListener("input",()=>{const v=si.value;sc.classList.toggle("visible",v.length>0);render(cc,v)});
-sc.addEventListener("click",()=>{si.value="";sc.classList.remove("visible");render(cc,"");si.focus()});
-ft.forEach(t=>{t.addEventListener("click",()=>{ft.forEach(x=>x.classList.remove("active"));t.classList.add("active");cc=t.dataset.cat;render(cc,si.value)})});
-const btt=document.getElementById("btt");window.addEventListener("scroll",()=>btt.classList.toggle("visible",scrollY>500));btt.addEventListener("click",()=>window.scrollTo({top:0,behavior:"smooth"}));
-document.getElementById("btnCopyUrl").addEventListener("click",()=>{navigator.clipboard.writeText(location.href).then(()=>showToast("链接已复制，可粘贴分享给同事"))});
-document.addEventListener("keydown",e=>{if((e.ctrlKey||e.metaKey)&&e.key==="k"){e.preventDefault();si.focus()}if(e.key==="Escape"){si.value="";sc.classList.remove("visible");render(cc,"")}});
-render("all","");
+
+search.addEventListener("input",function(){
+  if(this.value){searchClear.classList.add("visible")}else{searchClear.classList.remove("visible")}
+  cancelAnimationFrame(animFrame);
+  animFrame=requestAnimationFrame(render);
+});
+
+searchClear.addEventListener("click",function(){search.value="";searchClear.classList.remove("visible");activeCat="all";updateFilters();render();search.focus();});
+
+filterWrap.addEventListener("click",function(e){
+  if(e.target.classList.contains("filter-tab")){
+    activeCat=e.target.dataset.cat;
+    updateFilters();
+    render();
+  }
+});
+
+window.copySkill=function(card,name){
+  navigator.clipboard.writeText(name).then(()=>{
+    card.classList.add("copied");
+    setTimeout(()=>card.classList.remove("copied"),1200);
+  });
+  toast.textContent=`Copied: ${name}`;
+  toast.classList.add("show");
+  setTimeout(()=>toast.classList.remove("show"),1500);
+};
+
+document.getElementById("btnCopyUrl").addEventListener("click",function(){
+  navigator.clipboard.writeText(location.href).then(()=>{
+    toast.textContent="Link copied!";
+    toast.classList.add("show");
+    setTimeout(()=>toast.classList.remove("show"),1500);
+  });
+});
+
+window.addEventListener("scroll",function(){btt.classList.toggle("visible",scrollY>400);});
+btt.addEventListener("click",function(){scrollTo({top:0,behavior:"smooth"});});
+
+updateFilters();
+render();
+})();
 </script>
 </body>
 </html>
