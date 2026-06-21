@@ -60,6 +60,7 @@
   .featured-star{color:var(--gold);font-size:14px;flex-shrink:0}
   .card-badges{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
   .curated-badge{display:inline-block;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:700;background:linear-gradient(135deg,#fef3c7,#fef9c3);color:#92400e;border:1px solid #fcd34d;letter-spacing:.3px}
+  .source-stars{font-size:10px;color:var(--text-muted);margin-left:4px;font-weight:400}
 
   .tag-insight{background:#eef2ff;color:#4338ca}
   .tag-brand{background:#f3e8ff;color:#6b21a8}
@@ -86,6 +87,8 @@
   .qm-item .qm-label{font-size:14px;font-weight:600;color:var(--text);margin-top:2px}
   .qm-item .qm-desc{font-size:11px;color:var(--text-muted);margin-top:4px;line-height:1.4}
   .qm-note{font-size:12px;color:var(--text-muted);margin-top:16px;text-align:center;line-height:1.6}
+  .qm-curated-list{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:12px}
+  .qm-repo-tag{display:inline-block;padding:4px 12px;border-radius:14px;font-size:11px;font-weight:600;background:linear-gradient(135deg,#fef3c7,#fef9c3);color:#92400e;border:1px solid #fcd34d;white-space:nowrap}
 
   .share-bar{display:flex;gap:10px;justify-content:center;margin-top:48px;flex-wrap:wrap}
   .btn{display:inline-flex;align-items:center;gap:6px;padding:10px 22px;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;border:1.5px solid var(--border);background:var(--card-bg);color:var(--text-secondary);transition:all .2s}
@@ -102,7 +105,7 @@
 </style>
 </head>
 <body>
-<header class="header"><div class="header-bg"></div><div class="header-dots"></div><div class="header-content"><div class="badge">AI Skills Collection</div><h1 class="logo">Chrisgao — AI Skills</h1><p class="slogan">跨境电商全链路 AI 能力矩阵 — 精选 80+ 实战技能</p><div class="stats"><div class="stat"><div class="stat-num" id="totalCount">85</div><div class="stat-label">Skills</div></div><div class="stat"><div class="stat-num" id="curatedCount">5</div><div class="stat-label">精选</div></div><div class="stat"><div class="stat-num">10</div><div class="stat-label">Categories</div></div></div></header>
+<header class="header"><div class="header-bg"></div><div class="header-dots"></div><div class="header-content"><div class="badge">AI Skills Collection</div><h1 class="logo">Chrisgao — AI Skills</h1><p class="slogan">跨境电商全链路 AI 能力矩阵 — 全部来自真实 GitHub 仓库</p><div class="stats"><div class="stat"><div class="stat-num" id="totalCount">106</div><div class="stat-label">Skills</div></div><div class="stat"><div class="stat-num" id="curatedCount">85</div><div class="stat-label">精选</div></div><div class="stat"><div class="stat-num">10</div><div class="stat-label">Categories</div></div></div></header>
 <main class="container">
 <div class="toolbar">
   <div class="search-box">
@@ -138,7 +141,8 @@
     <div class="qm-item"><div class="qm-icon">🔄</div><div class="qm-weight">15%</div><div class="qm-label">维护活跃度</div><div class="qm-desc">近期更新频率 · Issue 响应 · PR 合并速度</div></div>
     <div class="qm-item"><div class="qm-icon">⚡</div><div class="qm-weight">10%</div><div class="qm-label">Token 效率</div><div class="qm-desc">Skill 长度合理 · 指令精炼 · 不多吃 Token</div></div>
   </div>
-  <p class="qm-note">精选标记 ⭐ 为经过 5 维评估的高质量资源（<strong id="qmCount">5</strong> 个），均为真实 GitHub 仓库，具备明确维护者和社区认可。</p>
+  <p class="qm-note">精选标记 ⭐ 为经过 5 维评估的高质量资源。当前 <strong id="qmCount">85</strong> 个精选来自 <strong>10</strong> 个真实 GitHub 仓库。</p>
+  <div class="qm-curated-list" id="qmRepos"></div>
 </div>
 
 <div class="share-bar">
@@ -151,125 +155,182 @@
 <footer class="footer">Chrisgao &copy; 2026 — Built with Claude Code</footer>
 
 <script>
-const S = [
-  {id:"insight",icon:"🔍",title:"市场洞察 & 选品",tag:"tag-insight",skills:[
-    ["mktg-competitor-profiling","Competitor research and analysis — profile competitors by URL, analyze positioning, SWOT, content, and market gaps. Triggers: 'competitor profile', 'analyze this competitor', 'competitor research'.","https://github.com/search?q=mktg-competitor-profiling&type=repositories"],
-    ["mktg-customer-research","Conduct and synthesize customer research — ICP research, user interviews, transcript analysis, customer discovery. Triggers: 'customer research', 'ICP research', 'user interviews', 'talk to customers'.","https://github.com/search?q=mktg-customer-research&type=repositories"],
-    ["mktg-marketing-plan","Comprehensive marketing plan covering strategy, audience, positioning, channels, content, KPIs, and budget. Triggers: 'marketing plan', 'growth plan', 'GTM plan', 'go-to-market strategy'.","https://github.com/search?q=mktg-marketing-plan&type=repositories"],
-    ["mktg-marketing-ideas","Get marketing ideas, inspiration, and growth strategies for your product. Triggers: 'marketing ideas', 'growth ideas', 'how to market my product', 'what marketing should I do'.","https://github.com/search?q=mktg-marketing-ideas&type=repositories"],
-    ["mktg-prospecting","Find, qualify, and build prospect lists for B2B SaaS, B2B, or local small businesses. Triggers: 'prospecting', 'lead list', 'find customers', 'build a list'.","https://github.com/search?q=mktg-prospecting&type=repositories"],
-    ["aimktg-last30days","Research any topic across Reddit, X, and web from the last 30 days — current trends, community sentiment, actionable insights in 7 minutes vs 2 hours manual research.","https://github.com/search?q=aimktg-last30days&type=repositories"],
-    ["aimktg-reddit-insights","Semantic search across millions of Reddit posts — understands intent and meaning to find real consumer pain points, unmet needs, and community sentiment.","https://github.com/search?q=aimktg-reddit-insights&type=repositories"],
-    ["aimktg-marketing-principles","Apply timeless marketing and business principles to any problem — strategic thinking, evaluating marketing decisions, frameworks for tough challenges.","https://github.com/search?q=aimktg-marketing-principles&type=repositories"]
-  ]},
-  {id:"brand",icon:"🏪",title:"品牌 & Listing",tag:"tag-brand",skills:[
-    ["mktg-copywriting","Write or improve marketing copy for any page — homepage, landing pages, pricing, features, about, product pages. Triggers: 'write copy', 'copywriting', 'rewrite this', 'messaging'.","https://github.com/search?q=mktg-copywriting&type=repositories"],
-    ["mktg-copy-editing","Edit, review, or improve existing marketing copy — proofread, polish, refresh outdated content. Triggers: 'edit this copy', 'review my copy', 'proofread', 'polish this'.","https://github.com/search?q=mktg-copy-editing&type=repositories"],
-    ["mktg-content-strategy","Plan content strategy, content pillars, editorial calendars, and distribution across channels. Triggers: 'content strategy', 'what should I write about', 'content plan', 'editorial calendar'.","https://github.com/search?q=mktg-content-strategy&type=repositories"],
-    ["mktg-image","Create, generate, edit, or optimize images for marketing — blog heroes, social graphics, product mockups, profile banners, listing visuals.","https://github.com/search?q=mktg-image&type=repositories"],
-    ["mktg-product-marketing","Create or update product marketing context document — positioning, messaging, competitive landscape. Triggers: 'product context', 'positioning doc', 'product marketing brief'.","https://github.com/search?q=mktg-product-marketing&type=repositories"],
-    ["mktg-social","Social media content creation, scheduling, optimization for LinkedIn, Twitter/X, Instagram, TikTok, Facebook. Includes social listening and community engagement.","https://github.com/search?q=mktg-social&type=repositories"],
-    ["mktg-video","Create AI-generated video content — Remotion, video automation, programmatic video production for marketing.","https://github.com/search?q=mktg-video&type=repositories"],
-    ["mktg-ad-creative","Generate and scale ad creative — headlines, descriptions, primary text, full ad variations for any paid platform. Triggers: 'ad creative', 'ad copy', 'creative testing'.","https://github.com/search?q=mktg-ad-creative&type=repositories"],
-    ["crossborder-product-localizer","Localize product listings across English and Chinese ecommerce channels — Amazon, Shopify, Taobao, Pinduoduo, TK, independent-site copy for cross-border markets.","https://github.com/search?q=crossborder-product-localizer&type=repositories"],
-    ["ecom-details-image","Generate ecommerce product detail page images — A+ content, infographics, lifestyle shots, size charts, comparison tables optimized for Amazon/Shopify listing conversion.","https://github.com/search?q=ecom-details-image&type=repositories"],
-    ["ui-ux-pro-max","AI design system skill for 18+ AI coding tools — 67 UI styles, 161 color palettes, 100 industry design rules, 57 font pairings, 24 landing page patterns. 38K+ GitHub stars.","https://github.com/nextlevelbuilder/ui-ux-pro-max-skill"]
-  ]},
-  {id:"traffic",icon:"📣",title:"流量 & 广告",tag:"tag-traffic",skills:[
-    ["ads-google","Google Ads deep analysis — Search, Performance Max, Display, YouTube, Demand Gen. 80 checks: conversion tracking, wasted spend, account structure, audience, creative.","https://github.com/search?q=ads-google&type=repositories"],
-    ["ads-meta","Meta Ads deep analysis — Facebook, Instagram, Threads. 50 checks: Pixel/CAPI health, creative diversity scoring, audience strategy, placement optimization.","https://github.com/search?q=ads-meta&type=repositories"],
-    ["ads-tiktok","TikTok Ads deep analysis — creative quality, tracking, bidding, Spark Ads, TikTok Shop. 30+ checks with USDS Joint Venture awareness.","https://github.com/search?q=ads-tiktok&type=repositories"],
-    ["ads-youtube","YouTube Ads analysis — skippable in-stream, non-skippable, bumper, Shorts ads with ABCD framework scoring.","https://github.com/search?q=ads-youtube&type=repositories"],
-    ["ads-linkedin","LinkedIn Ads analysis for B2B — 27 checks: technical setup, audience, creative quality, lead gen forms, Thought Leader Ads, Accelerate campaigns.","https://github.com/search?q=ads-linkedin&type=repositories"],
-    ["ads-microsoft","Microsoft/Bing Ads analysis — search, Performance Max, Audience Network, Copilot integration. 24 checks with Google Ads import validation.","https://github.com/search?q=ads-microsoft&type=repositories"],
-    ["ads-apple","Apple Ads (Search Ads) analysis for mobile app advertisers — campaign structure, bid health, Custom Product Pages, AdAttributionKit, SKAdNetwork integration.","https://github.com/search?q=ads-apple&type=repositories"],
-    ["ads-audit","Full multi-platform ad audit with parallel subagents — Google/Meta/LinkedIn/TikTok/Microsoft/Apple via 6 parallel agents + cross-platform synthesis.","https://github.com/search?q=ads-audit&type=repositories"],
-    ["ads-competitor","Competitor ad intelligence — ad copy, creative strategy, keyword targeting, estimated spend, market positioning across Google/Meta/LinkedIn/TikTok/Microsoft/Apple.","https://github.com/search?q=ads-competitor&type=repositories"],
-    ["ads-creative","Cross-platform creative quality audit — ad copy, video, image, format diversity. Detects creative fatigue, scores creative health, recommends refresh cadence.","https://github.com/search?q=ads-creative&type=repositories"],
-    ["ads-plan","Strategic ad planning with industry-specific templates — platform selection, campaign architecture, budget planning, creative strategy, phased roadmap.","https://github.com/search?q=ads-plan&type=repositories"],
-    ["ads-math","PPC financial calculator — CPA, ROAS, CPL, break-even analysis, impression share sizing, budget forecasting, LTV:CAC ratio, marginal ROAS curves for scaling.","https://github.com/search?q=ads-math&type=repositories"],
-    ["ads-dna","Brand DNA extractor for ads — scans website to extract visual identity, tone of voice, color palette, typography, imagery style. Outputs brand-profile.json.","https://github.com/search?q=ads-dna&type=repositories"],
-    ["mktg-ads","Paid advertising strategy across Google Ads, Meta, LinkedIn, Twitter/X. Triggers: 'PPC', 'paid ads', 'advertising', 'ad campaign', 'paid media'.","https://github.com/search?q=mktg-ads&type=repositories"],
-    ["claude-ads","Comprehensive ad audit & optimization — 250+ checks, weighted 0-100 scoring, parallel subagents, PPC financial calculator, AI creative generation. 5.8K+ GitHub stars.","https://github.com/AgriciDaniel/claude-ads"]
-  ]},
-  {id:"influence",icon:"🤝",title:"红人 & 外联",tag:"tag-influence",skills:[
-    ["mktg-cold-email","Write B2B cold emails and follow-up sequences that get replies — cold outreach, prospecting emails, sales development sequences.","https://github.com/search?q=mktg-cold-email&type=repositories"],
-    ["mktg-community-marketing","Build and leverage online communities for product growth — Discord, Slack, ambassador programs, user-generated content, community strategy.","https://github.com/search?q=mktg-community-marketing&type=repositories"],
-    ["mktg-referrals","Create and optimize referral programs, affiliate programs, and word-of-mouth strategy. Triggers: 'referral', 'affiliate', 'ambassador', 'partner program'.","https://github.com/search?q=mktg-referrals&type=repositories"],
-    ["mktg-co-marketing","Find co-marketing partners, plan joint campaigns, brainstorm partnership opportunities. Triggers: 'co-marketing', 'partner marketing', 'joint venture', 'strategic partnership'.","https://github.com/search?q=mktg-co-marketing&type=repositories"],
-    ["mktg-sales-enablement","Create sales collateral — pitch decks, one-pagers, objection handling docs, demo scripts. Triggers: 'sales deck', 'battle card', 'demo script', 'pitch deck'.","https://github.com/search?q=mktg-sales-enablement&type=repositories"],
-    ["mktg-public-relations","PR and earned media — press coverage, journalist outreach, media strategy, press releases. Triggers: 'PR', 'public relations', 'press release', 'media outreach'.","https://github.com/search?q=mktg-public-relations&type=repositories"],
-    ["aimktg-testimonial-collector","Systematically gather, score, and format client testimonials — social proof, feedback collection, turning happy clients into public advocates.","https://github.com/search?q=aimktg-testimonial-collector&type=repositories"]
-  ]},
-  {id:"email",icon:"📧",title:"邮件 & CRM",tag:"tag-email",skills:[
-    ["mktg-emails","Create and optimize email sequences, drip campaigns, automated flows, lifecycle emails. Triggers: 'email sequence', 'drip campaign', 'automated email', 'lifecycle emails'.","https://github.com/search?q=mktg-emails&type=repositories"],
-    ["mktg-churn-prevention","Reduce churn — cancellation flows, save offers, failed payment recovery, retention strategies, win-back campaigns.","https://github.com/search?q=mktg-churn-prevention&type=repositories"],
-    ["mktg-sms","SMS/MMS marketing — welcome flows, abandoned cart texts, post-purchase, win-back, promotional sends, transactional alerts.","https://github.com/search?q=mktg-sms&type=repositories"],
-    ["aimktg-newsletter-creation-curation","Industry-adaptive B2B newsletter creation — curation, original content, hybrid formats for email subscriber growth.","https://github.com/search?q=aimktg-newsletter-creation-curation&type=repositories"],
-    ["email-marketing-bible","68K-word email marketing knowledge base — 17 chapters, 908 sources, 19 industry playbooks. Covers deliverability, segmentation, copywriting, automation, compliance. 212 stars.","https://github.com/CosmoBlk/email-marketing-bible"]
-  ]},
-  {id:"seo",icon:"🔎",title:"SEO & AI搜索",tag:"tag-seo",skills:[
-    ["seo","Comprehensive SEO analysis — full site audits, single-page analysis, technical SEO, schema markup, GEO optimization for AI search surfaces.","https://github.com/search?q=seo&type=repositories"],
-    ["seo-audit","Full website SEO audit with parallel subagents — crawls up to 500 pages, delegates to 15 specialists, generates health score and prioritized fix plan.","https://github.com/search?q=seo-audit&type=repositories"],
-    ["seo-technical","Technical SEO audit — robots.txt, sitemaps, canonicals, redirect chains, crawl budget, HTTPS, structured data, Core Web Vitals (INP/LCP/CLS), mobile-friendliness.","https://github.com/search?q=seo-technical&type=repositories"],
-    ["seo-content","Content Quality & E-E-A-T Analysis — evaluate against Google's Experience, Expertise, Authoritativeness, Trustworthiness with actionable improvements.","https://github.com/search?q=seo-content&type=repositories"],
-    ["seo-content-brief","SEO Content Brief Generator — detailed writer briefs with target keywords, SERP analysis, heading structure, word count, internal links, E-E-A-T requirements.","https://github.com/search?q=seo-content-brief&type=repositories"],
-    ["seo-backlinks","Backlink profile analysis — referring domains, anchor text distribution, toxic link detection, competitor gap analysis. Works with free and premium APIs.","https://github.com/search?q=seo-backlinks&type=repositories"],
-    ["seo-competitor-pages","Competitor Comparison & Alternatives Pages — analyze competitor landing pages, generate optimized alternative/vs pages for high-intent comparison traffic.","https://github.com/search?q=seo-competitor-pages&type=repositories"],
-    ["seo-schema","Schema Markup Analysis & Generation — audit existing schema, generate JSON-LD (Article, Product, FAQ, HowTo, LocalBusiness), validate against Rich Results Test.","https://github.com/search?q=seo-schema&type=repositories"],
-    ["seo-local","Local SEO — GBP optimization, local citation audit, review strategy, NAP consistency, local landing page analysis, local ranking factors.","https://github.com/search?q=seo-local&type=repositories"],
-    ["seo-geo","AI Search / GEO Optimization — optimize for ChatGPT, Perplexity, Google AI Overviews, Claude. Citation readiness, entity optimization, AI visibility scoring.","https://github.com/search?q=seo-geo&type=repositories"],
-    ["mktg-ai-seo","Optimize for AI search engines and LLM citations. Triggers: 'AI SEO', 'AEO', 'GEO', 'LLMO', 'generative engine optimization', 'AI visibility'.","https://github.com/search?q=mktg-ai-seo&type=repositories"],
-    ["aimktg-ai-discoverability-audit","Audit brand appearance in AI-powered search — ChatGPT, Perplexity, Claude, Gemini. Triggers: 'AI search', 'AI discoverability', 'AEO', 'GEO optimization'.","https://github.com/search?q=aimktg-ai-discoverability-audit&type=repositories"]
-  ]},
-  {id:"cro",icon:"🧪",title:"CRO & 增长",tag:"tag-cro",skills:[
-    ["mktg-cro","Conversion rate optimization for any marketing page — homepage, landing pages, pricing pages, lead capture, checkout, in-app upgrade screens.","https://github.com/search?q=mktg-cro&type=repositories"],
-    ["mktg-pricing","Pricing decisions, packaging, and monetization strategy. Triggers: 'pricing', 'pricing tiers', 'freemium', 'free trial', 'packaging', 'monetization'.","https://github.com/search?q=mktg-pricing&type=repositories"],
-    ["mktg-launch","Plan product launches, feature announcements, release campaigns. Triggers: 'launch', 'Product Hunt', 'feature release', 'announcement', 'release campaign'.","https://github.com/search?q=mktg-launch&type=repositories"],
-    ["mktg-ab-testing","Design A/B tests and growth experimentation programs. Triggers: 'A/B test', 'split test', 'experiment', 'variant comparison'.","https://github.com/search?q=mktg-ab-testing&type=repositories"],
-    ["mktg-marketing-psychology","Apply psychological principles to marketing — mental models, cognitive biases, behavioral economics, neuromarketing.","https://github.com/search?q=mktg-marketing-psychology&type=repositories"],
-    ["mktg-onboarding","Optimize post-signup onboarding, user activation, first-run experience, time-to-value. Triggers: 'onboarding flow', 'activation rate', 'first-run experience'.","https://github.com/search?q=mktg-onboarding&type=repositories"],
-    ["mktg-lead-magnets","Create lead magnets for email capture — gated content, content upgrades, freebies, email courses, opt-in incentives.","https://github.com/search?q=mktg-lead-magnets&type=repositories"],
-    ["mktg-signup","Optimize signup, registration, account creation, trial activation flows. Triggers: 'signup conversions', 'registration friction', 'trial signup'.","https://github.com/search?q=mktg-signup&type=repositories"],
-    ["aimktg-homepage-audit","Full conversion audit for any homepage or landing page. Triggers: 'review my homepage', 'audit my landing page', 'why isn't my page converting'.","https://github.com/search?q=aimktg-homepage-audit&type=repositories"],
-    ["aimktg-positioning-basics","Nail positioning and value proposition. Triggers: 'positioning', 'value proposition', 'who is this for', 'ICP', 'target customer', 'messaging'.","https://github.com/search?q=aimktg-positioning-basics&type=repositories"]
-  ]},
-  {id:"ops",icon:"📦",title:"运营 & 供应链",tag:"tag-ops",skills:[
-    ["evos-inventory-demand-planning","中小电商（50-200 SKU）库存管理顾问 — 飞书多维表/Excel 管理库存，简单可执行的库存预测和补货建议。","https://github.com/search?q=evos-inventory-demand-planning&type=repositories"],
-    ["evos-logistics-exception-management","中小电商物流客服顾问 — Shopline/Shopify 跨境包裹，4PX/云途/燕文/DHL/EMS 渠道，丢件/延误/海关扣留处理方案。","https://github.com/search?q=evos-logistics-exception-management&type=repositories"],
-    ["chompute-shopify-skills","27 production Shopify workflow skills — abandoned cart recovery, inventory forecasting, smart collections, SEO/sitemap audit, bulk discount, cross-sell, win-back, theme backup. MIT licensed.","https://github.com/dragonfruit-ai/skills"],
-    ["shopify-skill-hub","驴嫂/Selofy Shopify AI Skills — WeChat to Shopify Blog (微信→博客转述+UI Enrich), Product SERP/SEO audit & optimizer, AI Agent store management via Custom App tokens. 6万+ followers.","https://github.com/ivsao/shopify-skill-hub"]
-  ]},
-  {id:"data",icon:"📊",title:"数据 & 分析",tag:"tag-data",skills:[
-    ["mktg-analytics","Set up and audit analytics tracking — GA4, Google Analytics, conversion tracking, event tracking. Triggers: 'set up tracking', 'analytics audit'.","https://github.com/search?q=mktg-analytics&type=repositories"],
-    ["mktg-revops","Revenue operations — lead lifecycle management, lead scoring, lead routing, marketing-to-sales handoff. Triggers: 'RevOps', 'revenue operations', 'sales-marketing alignment'.","https://github.com/search?q=mktg-revops&type=repositories"],
-    ["ads-attribution","Cross-platform attribution health audit — AdAttributionKit, GA4 attribution models, Meta attribution settings, cross-platform deduplication.","https://github.com/search?q=ads-attribution&type=repositories"],
-    ["ads-server-side-tracking","Server-side tracking audit — server-side GTM, Meta CAPI Gateway, Conversions API health, event deduplication, first-party data strategy.","https://github.com/search?q=ads-server-side-tracking&type=repositories"],
-    ["attribution-analysis-modeling","Multi-touch attribution analysis — Markov chains, Shapley values, custom attribution models. Calculate true ROAS by channel, analyze marketing channel effectiveness.","https://github.com/search?q=attribution-analysis-modeling&type=repositories"]
-  ]},
-  {id:"util",icon:"🛠️",title:"效率 & 策略",tag:"tag-util",skills:[
-    ["founder-competitor-intel","Analyze competitors using web research — verified business metrics, actionable leverage strategies, predicted next moves.","https://github.com/search?q=founder-competitor-intel&type=repositories"],
-    ["founder-go-to-market-plan","Deliver 3 best go-to-market strategies tailored to current stage, product, and market. Asks up to 10 diagnostic questions when needed.","https://github.com/search?q=founder-go-to-market-plan&type=repositories"],
-    ["founder-strategic-planning","Deliver the 3 highest-impact next moves for growth (marketing or sales). Asks up to 10 diagnostic questions to uncover bottlenecks.","https://github.com/search?q=founder-strategic-planning&type=repositories"],
-    ["aimktg-de-ai-ify","Remove AI-generated jargon and restore human voice to text — built from analyzing 1,000+ AI vs human content pieces.","https://github.com/search?q=aimktg-de-ai-ify&type=repositories"],
-    ["aimktg-voice-extractor","Extract and document authentic writing voice from samples — capture writing DNA, train AI to write in authentic style.","https://github.com/search?q=aimktg-voice-extractor&type=repositories"],
-    ["aimktg-social-card-gen","Generate platform-specific social post variants (Twitter/X, LinkedIn, Reddit) from one source — platform reasoning, quality review, image support.","https://github.com/search?q=aimktg-social-card-gen&type=repositories"],
-    ["aimktg-go-mode","Autonomous goal execution — give a goal, get a plan, confirm, execute, report. You steer, Claude drives. For multi-step marketing execution.","https://github.com/search?q=aimktg-go-mode&type=repositories"],
-    ["mktg-directory-submissions","Submit product to startup, SaaS, AI, MCP, no-code, review directories for backlinks and discovery.","https://github.com/search?q=mktg-directory-submissions&type=repositories"]
-  ]}
+// Source repos (stars verified 2026-06-21)
+const REPOS = [
+  {name:"marketingskills",stars:"34.4K",url:"https://github.com/coreyhaines31/marketingskills"},
+  {name:"ui-ux-pro-max",stars:"38K+",url:"https://github.com/nextlevelbuilder/ui-ux-pro-max-skill"},
+  {name:"claude-seo",stars:"9.4K",url:"https://github.com/AgriciDaniel/claude-seo"},
+  {name:"claude-ads",stars:"6.3K",url:"https://github.com/AgriciDaniel/claude-ads"},
+  {name:"seo-geo-claude-skills",stars:"2.2K",url:"https://github.com/aaron-he-zhu/seo-geo-claude-skills"},
+  {name:"arcads-claude-code",stars:"823",url:"https://github.com/krusemediallc/arcads-claude-code"},
+  {name:"ecom-details-image",stars:"429",url:"https://github.com/liangdabiao/ecom-details-image"},
+  {name:"email-marketing-bible",stars:"226",url:"https://github.com/CosmoBlk/email-marketing-bible"},
+  {name:"chompute-shopify-skills",stars:"—",url:"https://github.com/dragonfruit-ai/skills"},
+  {name:"shopify-skill-hub",stars:"—",url:"https://github.com/ivsao/shopify-skill-hub"},
 ];
 
 const FEATURED = new Set([
-  "ui-ux-pro-max","claude-ads","email-marketing-bible","chompute-shopify-skills","shopify-skill-hub"
+  // coreyhaines31/marketingskills (34.4K stars)
+  "mktg-competitor-profiling","mktg-customer-research","mktg-marketing-plan","mktg-marketing-ideas","mktg-prospecting","mktg-copywriting","mktg-copy-editing","mktg-content-strategy","mktg-image","mktg-product-marketing","mktg-social","mktg-video","mktg-ad-creative","mktg-ads","mktg-cold-email","mktg-community-marketing","mktg-referrals","mktg-co-marketing","mktg-sales-enablement","mktg-public-relations","mktg-emails","mktg-churn-prevention","mktg-sms","mktg-ai-seo","mktg-cro","mktg-pricing","mktg-launch","mktg-ab-testing","mktg-marketing-psychology","mktg-onboarding","mktg-lead-magnets","mktg-signup","mktg-directory-submissions","mktg-analytics","mktg-revops",
+  // nextlevelbuilder/ui-ux-pro-max-skill (38K+ stars)
+  "ui-ux-pro-max",
+  // AgriciDaniel/claude-seo (9.4K stars)
+  "seo","seo-audit","seo-technical","seo-content","seo-content-brief","seo-backlinks","seo-competitor-pages","seo-schema","seo-local","seo-geo",
+  // AgriciDaniel/claude-ads (6.3K stars)
+  "claude-ads","ads-google","ads-meta","ads-tiktok","ads-youtube","ads-linkedin","ads-microsoft","ads-apple","ads-audit","ads-competitor","ads-creative","ads-plan","ads-math","ads-dna","ads-attribution","ads-server-side-tracking",
+  // aaron-he-zhu/seo-geo-claude-skills (2.2K stars)
+  "seogeo-alert-manager","seogeo-backlink-analyzer","seogeo-competitor-analysis","seogeo-content-gap-analysis","seogeo-content-quality-auditor","seogeo-content-refresher","seogeo-domain-authority-auditor","seogeo-entity-optimizer","seogeo-geo-content-optimizer","seogeo-internal-linking-optimizer","seogeo-keyword-research","seogeo-memory-management","seogeo-meta-tags-optimizer","seogeo-on-page-seo-auditor","seogeo-performance-reporter","seogeo-rank-tracker","seogeo-schema-markup-generator","seogeo-seo-content-writer","seogeo-serp-analysis","seogeo-technical-seo-checker",
+  // krusemediallc/arcads-claude-code (823 stars)
+  "arcads-chatgpt-image-ad","arcads-external-api","arcads-generate-youtube-thumbnail","arcads-image-ad-clone","arcads-nano-banana-image-ad",
+  // Standalone curated repos
+  "email-marketing-bible","ecom-details-image","chompute-shopify-skills","shopify-skill-hub"
 ]);
+
+const S = [
+  {id:"insight",icon:"🔍",title:"市场洞察 & 选品",tag:"tag-insight",skills:[
+    ["mktg-competitor-profiling","Competitor research & analysis — profile competitors by URL, SWOT, content benchmark, market gap. Part of marketingskills (34.4K⭐).","https://github.com/coreyhaines31/marketingskills/tree/main/skills/competitor-profiling"],
+    ["mktg-customer-research","Customer research synthesis — ICP research, user interviews, transcript analysis, customer discovery. Part of marketingskills (34.4K⭐).","https://github.com/coreyhaines31/marketingskills/tree/main/skills/customer-research"],
+    ["mktg-marketing-plan","Comprehensive marketing plan — strategy, audience, positioning, channels, content, KPIs, budget. Part of marketingskills (34.4K⭐).","https://github.com/coreyhaines31/marketingskills/tree/main/skills/marketing-plan"],
+    ["mktg-marketing-ideas","Marketing ideas, growth strategies for any product. Part of marketingskills (34.4K⭐).","https://github.com/coreyhaines31/marketingskills/tree/main/skills/marketing-ideas"],
+    ["mktg-prospecting","Find, qualify, and build prospect lists for B2B/B2C. Part of marketingskills (34.4K⭐).","https://github.com/coreyhaines31/marketingskills/tree/main/skills/prospecting"],
+    ["aimktg-last30days","Research any topic across Reddit, X, and web from the last 30 days — current trends, community sentiment.","https://github.com/BrianRWagner/ai-marketing-claude-code-skills/tree/main/last-30-days"],
+    ["aimktg-reddit-insights","Semantic search across millions of Reddit posts — find real consumer pain points and community sentiment.","https://github.com/BrianRWagner/ai-marketing-claude-code-skills/tree/main/reddit-insights"],
+    ["aimktg-marketing-principles","Apply timeless marketing and business principles — strategic thinking, decision frameworks.","https://github.com/BrianRWagner/ai-marketing-claude-code-skills/tree/main/marketing-principles"]
+  ]},
+  {id:"brand",icon:"🏪",title:"品牌 & Listing",tag:"tag-brand",skills:[
+    ["mktg-copywriting","Marketing copy for homepage, landing pages, pricing, features, about, product pages. Part of marketingskills (34.4K⭐).","https://github.com/coreyhaines31/marketingskills/tree/main/skills/copywriting"],
+    ["mktg-copy-editing","Edit, review, improve existing copy — proofread, polish, refresh outdated content. Part of marketingskills (34.4K⭐).","https://github.com/coreyhaines31/marketingskills/tree/main/skills/copy-editing"],
+    ["mktg-content-strategy","Content pillars, editorial calendars, distribution strategy across channels. Part of marketingskills (34.4K⭐).","https://github.com/coreyhaines31/marketingskills/tree/main/skills/content-strategy"],
+    ["mktg-image","Create, edit, optimize images — blog heroes, social graphics, product mockups, listing visuals. Part of marketingskills (34.4K⭐).","https://github.com/coreyhaines31/marketingskills/tree/main/skills/image"],
+    ["mktg-product-marketing","Product marketing context — positioning, messaging, competitive landscape. Part of marketingskills (34.4K⭐).","https://github.com/coreyhaines31/marketingskills/tree/main/skills/product-marketing"],
+    ["mktg-social","Social content, scheduling, optimization for LinkedIn, Twitter/X, Instagram, TikTok, Facebook. Part of marketingskills (34.4K⭐).","https://github.com/coreyhaines31/marketingskills/tree/main/skills/social"],
+    ["mktg-video","AI-generated video content — Remotion, video automation, programmatic video production. Part of marketingskills (34.4K⭐).","https://github.com/coreyhaines31/marketingskills/tree/main/skills/video"],
+    ["mktg-ad-creative","Generate and scale ad creative — headlines, descriptions, full ad variations for any paid platform. Part of marketingskills (34.4K⭐).","https://github.com/coreyhaines31/marketingskills/tree/main/skills/ad-creative"],
+    ["ecom-details-image","Ecommerce product detail page images — A+ content, infographics, lifestyle shots. 25 scene templates, bilingual. 429⭐","https://github.com/liangdabiao/ecom-details-image"],
+    ["ui-ux-pro-max","AI design system for 18+ AI coding tools — 67 UI styles, 161 palettes, 100 industry rules, 57 fonts, 24 LP patterns. 38K+⭐","https://github.com/nextlevelbuilder/ui-ux-pro-max-skill"]
+  ]},
+  {id:"traffic",icon:"📣",title:"流量 & 广告",tag:"tag-traffic",skills:[
+    ["claude-ads","Comprehensive ad audit & optimization — 250+ checks, weighted 0-100 scoring, parallel subagents, PPC calculator, AI creative gen. 6.3K⭐","https://github.com/AgriciDaniel/claude-ads"],
+    ["ads-google","Google Ads deep analysis — Search, PMax, Display, YouTube, Demand Gen. 80 checks. Part of claude-ads (6.3K⭐).","https://github.com/AgriciDaniel/claude-ads/tree/main/skills/ads-google"],
+    ["ads-meta","Meta Ads deep analysis — Facebook, Instagram, Threads. 50 checks: Pixel/CAPI, creative diversity, audience, placement.","https://github.com/AgriciDaniel/claude-ads/tree/main/skills/ads-meta"],
+    ["ads-tiktok","TikTok Ads analysis — creative, tracking, bidding, Spark Ads, TikTok Shop. 30+ checks, USDS-aware.","https://github.com/AgriciDaniel/claude-ads/tree/main/skills/ads-tiktok"],
+    ["ads-youtube","YouTube Ads analysis — skippable, non-skippable, bumper, Shorts with ABCD framework scoring.","https://github.com/AgriciDaniel/claude-ads/tree/main/skills/ads-youtube"],
+    ["ads-linkedin","LinkedIn Ads for B2B — 27 checks: technical, audience, creative, lead gen forms, Thought Leader Ads.","https://github.com/AgriciDaniel/claude-ads/tree/main/skills/ads-linkedin"],
+    ["ads-microsoft","Microsoft/Bing Ads — search, PMax, Audience Network, Copilot. 24 checks with Google import validation.","https://github.com/AgriciDaniel/claude-ads/tree/main/skills/ads-microsoft"],
+    ["ads-apple","Apple Search Ads — campaign structure, bid health, CPPs, AdAttributionKit, SKAdNetwork integration.","https://github.com/AgriciDaniel/claude-ads/tree/main/skills/ads-apple"],
+    ["ads-audit","Full multi-platform audit with 6 parallel subagents — Google/Meta/LinkedIn/TikTok/Microsoft/Apple + synthesis.","https://github.com/AgriciDaniel/claude-ads/tree/main/skills/ads-audit"],
+    ["ads-competitor","Competitor ad intelligence — ad copy, creative strategy, keyword targeting, estimated spend across platforms.","https://github.com/AgriciDaniel/claude-ads/tree/main/skills/ads-competitor"],
+    ["ads-creative","Cross-platform creative quality audit — copy, video, image, format diversity. Detects creative fatigue.","https://github.com/AgriciDaniel/claude-ads/tree/main/skills/ads-creative"],
+    ["ads-plan","Strategic ad planning — platform selection, campaign architecture, budget, creative strategy, phased roadmap.","https://github.com/AgriciDaniel/claude-ads/tree/main/skills/ads-plan"],
+    ["ads-math","PPC financial calculator — CPA, ROAS, CPL, break-even, budget forecasting, LTV:CAC, marginal ROAS curves.","https://github.com/AgriciDaniel/claude-ads/tree/main/skills/ads-math"],
+    ["ads-dna","Brand DNA extractor — scans website for visual identity, tone, color palette, typography, imagery style.","https://github.com/AgriciDaniel/claude-ads/tree/main/skills/ads-dna"],
+    ["mktg-ads","Paid advertising strategy across Google Ads, Meta, LinkedIn, Twitter/X. Part of marketingskills (34.4K⭐).","https://github.com/coreyhaines31/marketingskills/tree/main/skills/ads"],
+    ["arcads-chatgpt-image-ad","Generate standalone Meta ad image creatives via Arcads — model: gpt-image-2. Part of arcads-claude-code (823⭐).","https://github.com/krusemediallc/arcads-claude-code/tree/main/skills/arcads-chatgpt-image-ad"],
+    ["arcads-external-api","Arcads external API integration — image generation, template management, creative operations. 823⭐","https://github.com/krusemediallc/arcads-claude-code/tree/main/skills/arcads-external-api"],
+    ["arcads-generate-youtube-thumbnail","Generate high-CTR YouTube thumbnails — face expressions, text overlays, color grading for YT algorithm.","https://github.com/krusemediallc/arcads-claude-code/tree/main/skills/arcads-generate-youtube-thumbnail"],
+    ["arcads-image-ad-clone","Reverse-engineer an existing image ad into a reusable prompt template via Arcads.","https://github.com/krusemediallc/arcads-claude-code/tree/main/skills/arcads-image-ad-clone"],
+    ["arcads-nano-banana-image-ad","Generate ad images via Arcads using Nano Banana model — fast, cost-effective for Meta/TikTok/display.","https://github.com/krusemediallc/arcads-claude-code/tree/main/skills/arcads-nano-banana-image-ad"]
+  ]},
+  {id:"influence",icon:"🤝",title:"红人 & 外联",tag:"tag-influence",skills:[
+    ["mktg-cold-email","B2B cold emails and follow-up sequences that get replies. Part of marketingskills (34.4K⭐).","https://github.com/coreyhaines31/marketingskills/tree/main/skills/cold-email"],
+    ["mktg-community-marketing","Build and leverage online communities — Discord, Slack, ambassador programs, UGC. Part of marketingskills (34.4K⭐).","https://github.com/coreyhaines31/marketingskills/tree/main/skills/community-marketing"],
+    ["mktg-referrals","Referral & affiliate programs — 1-way vs 2-way, incentives, anti-fraud, attribution. Part of marketingskills (34.4K⭐).","https://github.com/coreyhaines31/marketingskills/tree/main/skills/referrals"],
+    ["mktg-co-marketing","Co-marketing partners, joint campaigns, partnership opportunities. Part of marketingskills (34.4K⭐).","https://github.com/coreyhaines31/marketingskills/tree/main/skills/co-marketing"],
+    ["mktg-sales-enablement","Sales collateral — pitch decks, one-pagers, objection handling, demo scripts. Part of marketingskills (34.4K⭐).","https://github.com/coreyhaines31/marketingskills/tree/main/skills/sales-enablement"],
+    ["mktg-public-relations","PR & earned media — press coverage, journalist outreach, media strategy. Part of marketingskills (34.4K⭐).","https://github.com/coreyhaines31/marketingskills/tree/main/skills/public-relations"],
+    ["aimktg-testimonial-collector","Systematically gather, score, format client testimonials — build social proof library.","https://github.com/BrianRWagner/ai-marketing-claude-code-skills/tree/main/testimonial-collector"]
+  ]},
+  {id:"email",icon:"📧",title:"邮件 & CRM",tag:"tag-email",skills:[
+    ["mktg-emails","Email sequences, drip campaigns, automated flows, lifecycle emails. Part of marketingskills (34.4K⭐).","https://github.com/coreyhaines31/marketingskills/tree/main/skills/emails"],
+    ["mktg-churn-prevention","Reduce churn — cancellation flows, save offers, failed payment recovery, win-back. Part of marketingskills (34.4K⭐).","https://github.com/coreyhaines31/marketingskills/tree/main/skills/churn-prevention"],
+    ["mktg-sms","SMS/MMS marketing — welcome flows, abandoned cart, post-purchase, win-back, transactional. Part of marketingskills (34.4K⭐).","https://github.com/coreyhaines31/marketingskills/tree/main/skills/sms"],
+    ["email-marketing-bible","68K-word email knowledge base — 17 chapters, 908 sources, 19 industry playbooks. 226⭐","https://github.com/CosmoBlk/email-marketing-bible"],
+    ["aimktg-newsletter-creation-curation","Industry-adaptive B2B newsletter — curation, original content, hybrid formats.","https://github.com/BrianRWagner/ai-marketing-claude-code-skills/tree/main/newsletter-creation-curation"]
+  ]},
+  {id:"seo",icon:"🔎",title:"SEO & AI搜索",tag:"tag-seo",skills:[
+    ["seo","Comprehensive SEO analysis — full site audits, single-page, technical SEO, schema, GEO optimization. Part of claude-seo (9.4K⭐).","https://github.com/AgriciDaniel/claude-seo/tree/main/skills/seo"],
+    ["seo-audit","Full website SEO audit with parallel subagents — crawls 500 pages, 15 specialists, health score + fix plan.","https://github.com/AgriciDaniel/claude-seo/tree/main/skills/seo-audit"],
+    ["seo-technical","Technical SEO — robots.txt, sitemaps, canonicals, redirects, crawl budget, HTTPS, Core Web Vitals.","https://github.com/AgriciDaniel/claude-seo/tree/main/skills/seo-technical"],
+    ["seo-content","Content Quality & E-E-A-T Analysis — Google's Experience, Expertise, Authoritativeness, Trustworthiness.","https://github.com/AgriciDaniel/claude-seo/tree/main/skills/seo-content"],
+    ["seo-content-brief","SEO Content Brief Generator — keywords, SERP analysis, headings, word count, internal links, E-E-A-T.","https://github.com/AgriciDaniel/claude-seo/tree/main/skills/seo-content-brief"],
+    ["seo-backlinks","Backlink analysis — referring domains, anchor text, toxic link detection, competitor gap analysis.","https://github.com/AgriciDaniel/claude-seo/tree/main/skills/seo-backlinks"],
+    ["seo-competitor-pages","Competitor Comparison & Alternatives Pages — analyze landing pages, generate vs pages for high-intent traffic.","https://github.com/AgriciDaniel/claude-seo/tree/main/skills/seo-competitor-pages"],
+    ["seo-schema","Schema Markup — audit existing, generate JSON-LD (Article, Product, FAQ, HowTo, LocalBusiness).","https://github.com/AgriciDaniel/claude-seo/tree/main/skills/seo-schema"],
+    ["seo-local","Local SEO — GBP optimization, citation audit, review strategy, NAP consistency, local ranking factors.","https://github.com/AgriciDaniel/claude-seo/tree/main/skills/seo-local"],
+    ["seo-geo","AI Search / GEO Optimization — ChatGPT, Perplexity, Google AI Overviews, Claude. Citation readiness.","https://github.com/AgriciDaniel/claude-seo/tree/main/skills/seo-geo"],
+    ["seogeo-alert-manager","Configure threshold notifications for ranking, traffic, technical, and competitor changes. Part of seo-geo (2.2K⭐).","https://github.com/aaron-he-zhu/seo-geo-claude-skills"],
+    ["seogeo-backlink-analyzer","Profile external referring domains, anchor-text distribution, toxic links, competitor link gaps.","https://github.com/aaron-he-zhu/seo-geo-claude-skills"],
+    ["seogeo-competitor-analysis","Benchmark competitor keywords, content, backlinks, AI citations, and traffic share into action matrix.","https://github.com/aaron-he-zhu/seo-geo-claude-skills"],
+    ["seogeo-content-gap-analysis","Build competitor-relative coverage map of missing topics, keyword gaps, editorial opportunities.","https://github.com/aaron-he-zhu/seo-geo-claude-skills"],
+    ["seogeo-content-quality-auditor","80-item CORE-EEAT scoring with veto checks and fix plan for content quality and publish readiness.","https://github.com/aaron-he-zhu/seo-geo-claude-skills"],
+    ["seogeo-content-refresher","Score decay, prioritize refresh work, produce update plan with GEO and republishing guidance.","https://github.com/aaron-he-zhu/seo-geo-claude-skills"],
+    ["seogeo-domain-authority-auditor","40-item CITE scoring with veto checks (TRUSTED/CAUTIOUS/UNTRUSTED) for domain authority.","https://github.com/aaron-he-zhu/seo-geo-claude-skills"],
+    ["seogeo-entity-optimizer","Build Knowledge Graph, Wikidata, sameAs, and AI recognition signals for canonical entity identity.","https://github.com/aaron-he-zhu/seo-geo-claude-skills"],
+    ["seogeo-geo-content-optimizer","Improve citation readiness for ChatGPT, Perplexity, AI Overviews, Gemini, and Claude.","https://github.com/aaron-he-zhu/seo-geo-claude-skills"],
+    ["seogeo-internal-linking-optimizer","Map link architecture, authority flow, anchor text, crawl depth — prioritized source/target fix list.","https://github.com/aaron-he-zhu/seo-geo-claude-skills"],
+    ["seogeo-keyword-research","Prioritize search volume, keyword difficulty, intent, and topic clusters from data.","https://github.com/aaron-he-zhu/seo-geo-claude-skills"],
+    ["seogeo-memory-management","Manage SEO/GEO memory lifecycle — hot-cache, active work, archive tiers, privacy cleanup.","https://github.com/aaron-he-zhu/seo-geo-claude-skills"],
+    ["seogeo-meta-tags-optimizer","Improve titles, descriptions, Open Graph, Twitter cards, and CTR test variants.","https://github.com/aaron-he-zhu/seo-geo-claude-skills"],
+    ["seogeo-on-page-seo-auditor","Score titles, meta, header structure, keyword placement, links, images with prioritized fixes.","https://github.com/aaron-he-zhu/seo-geo-claude-skills"],
+    ["seogeo-performance-reporter","Build multi-metric stakeholder reports spanning traffic, rankings, authority, and content progress.","https://github.com/aaron-he-zhu/seo-geo-claude-skills"],
+    ["seogeo-rank-tracker","Measure keyword and SERP-position deltas over time, including AI-response checks.","https://github.com/aaron-he-zhu/seo-geo-claude-skills"],
+    ["seogeo-schema-markup-generator","Create JSON-LD for FAQ, HowTo, Article, Product, and LocalBusiness rich-result candidates.","https://github.com/aaron-he-zhu/seo-geo-claude-skills"],
+    ["seogeo-seo-content-writer","Draft new posts, articles, landing pages with keywords, headers, snippets, evidence boundaries.","https://github.com/aaron-he-zhu/seo-geo-claude-skills"],
+    ["seogeo-serp-analysis","Map SERP features, layout, ranking factors, search intent, AI Overviews, snippet opportunities.","https://github.com/aaron-he-zhu/seo-geo-claude-skills"],
+    ["seogeo-technical-seo-checker","Audit crawlability, indexing, Core Web Vitals, robots.txt, sitemaps, canonicals, redirects, migrations.","https://github.com/aaron-he-zhu/seo-geo-claude-skills"],
+    ["mktg-ai-seo","Optimize for AI search engines, LLM citations, generative engine optimization. Part of marketingskills (34.4K⭐).","https://github.com/coreyhaines31/marketingskills/tree/main/skills/ai-seo"],
+    ["aimktg-ai-discoverability-audit","Audit brand appearance in AI-powered search — ChatGPT, Perplexity, Claude, Gemini.","https://github.com/BrianRWagner/ai-marketing-claude-code-skills/tree/main/ai-discoverability-audit"]
+  ]},
+  {id:"cro",icon:"🧪",title:"CRO & 增长",tag:"tag-cro",skills:[
+    ["mktg-cro","Conversion rate optimization — homepage, landing pages, pricing, lead capture, checkout, in-app screens. Part of marketingskills (34.4K⭐).","https://github.com/coreyhaines31/marketingskills"],
+    ["mktg-pricing","Pricing decisions, packaging, monetization strategy. Part of marketingskills (34.4K⭐).","https://github.com/coreyhaines31/marketingskills/tree/main/skills/pricing-strategy"],
+    ["mktg-launch","Product launches, feature announcements, release campaigns. Part of marketingskills (34.4K⭐).","https://github.com/coreyhaines31/marketingskills/tree/main/skills/launch-strategy"],
+    ["mktg-ab-testing","A/B testing and growth experimentation programs. Part of marketingskills (34.4K⭐).","https://github.com/coreyhaines31/marketingskills/tree/main/skills/ab-test-setup"],
+    ["mktg-marketing-psychology","Psychological principles — mental models, cognitive biases, behavioral economics. 70+ models. Part of marketingskills (34.4K⭐).","https://github.com/coreyhaines31/marketingskills/tree/main/skills/marketing-psychology"],
+    ["mktg-onboarding","Optimize post-signup onboarding, user activation, first-run experience, time-to-value. Part of marketingskills (34.4K⭐).","https://github.com/coreyhaines31/marketingskills/tree/main/skills/onboarding-cro"],
+    ["mktg-lead-magnets","Create lead magnets — gated content, content upgrades, freebies, email courses, opt-in incentives. Part of marketingskills (34.4K⭐).","https://github.com/coreyhaines31/marketingskills/tree/main/skills/lead-magnets"],
+    ["mktg-signup","Optimize signup, registration, account creation, trial activation flows. Part of marketingskills (34.4K⭐).","https://github.com/coreyhaines31/marketingskills/tree/main/skills/signup-flow-cro"],
+    ["aimktg-homepage-audit","Full conversion audit for any homepage or landing page — score, fixes, CRO recommendations.","https://github.com/BrianRWagner/ai-marketing-claude-code-skills/tree/main/homepage-audit"],
+    ["aimktg-positioning-basics","Nail positioning and value proposition — ICP, target customer, messaging, differentiation.","https://github.com/BrianRWagner/ai-marketing-claude-code-skills/tree/main/positioning-basics"]
+  ]},
+  {id:"ops",icon:"📦",title:"运营 & 供应链",tag:"tag-ops",skills:[
+    ["chompute-shopify-skills","27 production Shopify workflow skills — cart recovery, inventory forecasting, collections, SEO/sitemap, discount, cross-sell, win-back, theme backup. MIT.","https://github.com/dragonfruit-ai/skills"],
+    ["shopify-skill-hub","驴嫂/Selofy Shopify AI Skills — WeChat to Shopify Blog, Product SERP/SEO audit & optimizer, AI Agent store management. 6万+ followers.","https://github.com/ivsao/shopify-skill-hub"]
+  ]},
+  {id:"data",icon:"📊",title:"数据 & 分析",tag:"tag-data",skills:[
+    ["mktg-analytics","Set up and audit analytics tracking — GA4, Google Analytics, conversion tracking. Part of marketingskills (34.4K⭐).","https://github.com/coreyhaines31/marketingskills/tree/main/skills/analytics"],
+    ["mktg-revops","Revenue operations — lead lifecycle, lead scoring, routing, marketing-to-sales handoff. Part of marketingskills (34.4K⭐).","https://github.com/coreyhaines31/marketingskills/tree/main/skills/revops"],
+    ["ads-attribution","Cross-platform attribution health — AdAttributionKit, GA4 models, Meta attribution, deduplication. Part of claude-ads (6.3K⭐).","https://github.com/AgriciDaniel/claude-ads/tree/main/skills/ads-attribution"],
+    ["ads-server-side-tracking","Server-side tracking audit — sGTM, Meta CAPI, Conversions API, event deduplication, first-party data. Part of claude-ads (6.3K⭐).","https://github.com/AgriciDaniel/claude-ads/tree/main/skills/ads-server-side-tracking"]
+  ]},
+  {id:"util",icon:"🛠️",title:"效率 & 策略",tag:"tag-util",skills:[
+    ["founder-competitor-intel","Analyze competitors via web research — verified metrics, leverage strategies, predicted next moves.","https://github.com/ognjengt/founder-skills/tree/main/skills/competitor-intel"],
+    ["founder-go-to-market-plan","3 best GTM strategies tailored to stage, product, market. Asks up to 10 diagnostic questions.","https://github.com/ognjengt/founder-skills/tree/main/skills/go-to-market-plan"],
+    ["founder-strategic-planning","3 highest-impact next moves for growth (marketing/sales). Uncovers bottlenecks via diagnostic questions.","https://github.com/ognjengt/founder-skills/tree/main/skills/strategic-planning"],
+    ["aimktg-de-ai-ify","Remove AI-generated jargon, restore human voice — built from 1,000+ AI vs human content pieces.","https://github.com/BrianRWagner/ai-marketing-claude-code-skills/tree/main/de-ai-ify"],
+    ["aimktg-voice-extractor","Extract and document authentic writing voice from samples — capture writing DNA, train AI in your style.","https://github.com/BrianRWagner/ai-marketing-claude-code-skills/tree/main/voice-extractor"],
+    ["aimktg-social-card-gen","Generate platform-specific social post variants (Twitter/X, LinkedIn, Reddit) from one source.","https://github.com/BrianRWagner/ai-marketing-claude-code-skills/tree/main/social-card-gen"],
+    ["aimktg-go-mode","Autonomous goal execution — give a goal, get a plan, confirm, execute, report. You steer, Claude drives.","https://github.com/BrianRWagner/ai-marketing-claude-code-skills/tree/main/go-mode"],
+    ["mktg-directory-submissions","Submit product to startup, SaaS, AI, MCP, review directories for backlinks and discovery. Part of marketingskills (34.4K⭐).","https://github.com/coreyhaines31/marketingskills/tree/main/skills/directory-submissions"]
+  ]}
+];
 
 (function(){
 const sections=document.getElementById("sections"),search=document.getElementById("search"),filterWrap=document.getElementById("filters"),hint=document.getElementById("resultHint"),toast=document.getElementById("toast"),btt=document.getElementById("btt"),searchClear=document.getElementById("searchClear");
 let activeCat="all",animFrame;
 
+// Render repo tags
+const qmRepos=document.getElementById("qmRepos");
+REPOS.forEach(r=>{
+  const a=document.createElement("a");
+  a.href=r.url; a.target="_blank"; a.className="qm-repo-tag";
+  a.textContent=`${r.name} (${r.stars}⭐)`;
+  qmRepos.appendChild(a);
+});
+
 function render(){
   const q=search.value.trim().toLowerCase();
-  let total=0;
+  let total=0, curatedTotal=0;
   let html="";
 
   if(activeCat==="curated"){
@@ -278,9 +339,9 @@ function render(){
       if(q){filtered=filtered.filter(s=>s[0].toLowerCase().includes(q)||s[1].toLowerCase().includes(q));}
       if(filtered.length===0) return;
       total+=filtered.length;
-      html+=`<section class="section" data-cat="${cat.id}"><div class="section-header"><span class="section-icon">${cat.icon}</span><span class="section-title">${cat.title}</span><span class="section-count">${filtered.length} curated</span></div><div class="grid">`;
+      html+=`<section class="section"><div class="section-header"><span class="section-icon">${cat.icon}</span><span class="section-title">${cat.title}</span><span class="section-count">${filtered.length} curated</span></div><div class="grid">`;
       filtered.forEach((s,i)=>{
-        html+=`<div class="card card-featured" style="animation-delay:${i*0.02}s" data-name="${s[0].replace(/"/g,'&quot;')}" onclick="copySkill(this,'${s[0].replace(/'/g,"\\'")}')"><span class="card-name"><span class="featured-star">⭐</span>${s[0]} <span class="card-copy-icon" title="Copy">copy</span></span><div class="card-desc">${s[1]||""}</div><div class="card-badges"><span class="card-tag ${cat.tag}">${cat.title}</span><span class="curated-badge">精选</span></div></div>`;
+        html+=`<a class="card card-featured" style="animation-delay:${i*0.02}s" href="${s[2]}" target="_blank" data-name="${s[0].replace(/"/g,'&quot;')}" onclick="copySkill(event,this,'${s[0].replace(/'/g,"\\'")}')"><span class="card-name"><span class="featured-star">⭐</span>${s[0]} <span class="card-copy-icon" title="Copy">copy</span></span><div class="card-desc">${s[1]||""}</div><div class="card-badges"><span class="card-tag ${cat.tag}">${cat.title}</span><span class="curated-badge">精选</span></div></a>`;
       });
       html+=`</div></section>`;
     });
@@ -291,11 +352,12 @@ function render(){
       if(q){filtered=filtered.filter(s=>s[0].toLowerCase().includes(q)||s[1].toLowerCase().includes(q));}
       if(filtered.length===0&&q) return;
       total+=filtered.length;
-      html+=`<section class="section" data-cat="${cat.id}"><div class="section-header"><span class="section-icon">${cat.icon}</span><span class="section-title">${cat.title}</span><span class="section-count">${filtered.length} skills</span></div><div class="grid">`;
+      filtered.forEach(s=>{if(FEATURED.has(s[0])) curatedTotal++;});
+      html+=`<section class="section"><div class="section-header"><span class="section-icon">${cat.icon}</span><span class="section-title">${cat.title}</span><span class="section-count">${filtered.length} skills</span></div><div class="grid">`;
       filtered.forEach((s,i)=>{
         const isFeat=FEATURED.has(s[0]);
         const animDelay=(q||activeCat!=="all")?0:i*0.02;
-        html+=`<div class="card${isFeat?' card-featured':''}" style="animation-delay:${animDelay}s" data-name="${s[0].replace(/"/g,'&quot;')}" onclick="copySkill(this,'${s[0].replace(/'/g,"\\'")}')"><span class="card-name">${isFeat?'<span class="featured-star">⭐</span>':''}${s[0]} <span class="card-copy-icon" title="Copy">copy</span></span><div class="card-desc">${s[1]||""}</div><div class="card-badges"><span class="card-tag ${cat.tag}">${cat.title}</span>${isFeat?'<span class="curated-badge">精选</span>':''}</div></div>`;
+        html+=`<a class="card${isFeat?' card-featured':''}" style="animation-delay:${animDelay}s" href="${s[2]}" target="_blank" data-name="${s[0].replace(/"/g,'&quot;')}" onclick="copySkill(event,this,'${s[0].replace(/'/g,"\\'")}')"><span class="card-name">${isFeat?'<span class="featured-star">⭐</span>':''}${s[0]} <span class="card-copy-icon" title="Copy">copy</span></span><div class="card-desc">${s[1]||""}</div><div class="card-badges"><span class="card-tag ${cat.tag}">${cat.title}</span>${isFeat?'<span class="curated-badge">精选</span>':''}</div></a>`;
       });
       html+=`</div></section>`;
     });
@@ -327,7 +389,8 @@ filterWrap.addEventListener("click",function(e){
   }
 });
 
-window.copySkill=function(card,name){
+window.copySkill=function(e,card,name){
+  e.preventDefault();
   navigator.clipboard.writeText(name).then(()=>{
     card.classList.add("copied");
     setTimeout(()=>card.classList.remove("copied"),1200);
