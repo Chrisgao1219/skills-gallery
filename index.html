@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Chrisgao — AI Skills Gallery</title>
 <style>
-  :root{--bg:#f0f2f5;--card-bg:#fff;--text:#1a1a2e;--text-secondary:#52525b;--text-muted:#949a9d;--accent:#2563eb;--border:#e5e7eb;--border-light:#f3f4f6;--glass:rgba(255,255,255,.85);--shadow:0 1px 3px rgba(0,0,0,.05),0 1px 2px rgba(0,0,0,.04);--shadow-md:0 4px 12px rgba(0,0,0,.06);--radius:12px;--radius-lg:16px}
+  :root{--bg:#f0f2f5;--card-bg:#fff;--text:#1a1a2e;--text-secondary:#52525b;--text-muted:#949a9d;--accent:#2563eb;--border:#e5e7eb;--border-light:#f3f4f6;--glass:rgba(255,255,255,.85);--shadow:0 1px 3px rgba(0,0,0,.05),0 1px 2px rgba(0,0,0,.04);--shadow-md:0 4px 12px rgba(0,0,0,.06);--radius:12px;--radius-lg:16px;--gold:#eab308}
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
   body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
@@ -35,6 +35,9 @@
   .filter-tab{padding:7px 15px;border-radius:22px;border:1.5px solid transparent;background:transparent;font-size:13px;cursor:pointer;transition:all .2s;white-space:nowrap;user-select:none;color:var(--text-secondary);font-weight:500}
   .filter-tab:hover{background:#eff6ff;color:var(--accent)}
   .filter-tab.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .filter-tab.featured-tab{background:linear-gradient(135deg,#fef3c7,#fef9c3);border-color:#fcd34d;color:#92400e;font-weight:600}
+  .filter-tab.featured-tab:hover{background:linear-gradient(135deg,#fde68a,#fef08a);border-color:#f59e0b}
+  .filter-tab.featured-tab.active{background:linear-gradient(135deg,#eab308,#ca8a04);color:#fff;border-color:#a16207}
   .section{margin-bottom:36px}
   .section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
   .section-icon{font-size:22px;line-height:1}
@@ -52,6 +55,11 @@
   .card:hover .card-copy-icon{opacity:.5}
   .card-desc{font-size:14px;color:var(--text-secondary);line-height:1.55;margin-bottom:10px}
   .card-tag{display:inline-block;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;letter-spacing:.2px}
+  .card-featured{border-left:3px solid var(--gold);background:linear-gradient(135deg,#fffef9,#fffdf0)}
+  .card-featured:hover{border-left-color:#f59e0b}
+  .featured-star{color:var(--gold);font-size:14px;flex-shrink:0}
+  .card-badges{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+  .curated-badge{display:inline-block;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:700;background:linear-gradient(135deg,#fef3c7,#fef9c3);color:#92400e;border:1px solid #fcd34d;letter-spacing:.3px}
 
   .tag-insight{background:#eef2ff;color:#4338ca}
   .tag-brand{background:#f3e8ff;color:#6b21a8}
@@ -67,6 +75,19 @@
   .empty{text-align:center;padding:80px 20px;color:var(--text-muted)}
   .empty-icon{font-size:48px;margin-bottom:12px}
   .empty-text{font-size:15px}
+
+  /* Quality Model */
+  .quality-model{background:var(--card-bg);border-radius:var(--radius-lg);padding:24px 28px;margin-top:40px;border:1px solid var(--border);box-shadow:var(--shadow)}
+  .quality-model h3{font-size:17px;font-weight:700;margin-bottom:6px;color:var(--text)}
+  .quality-model .qm-subtitle{font-size:13px;color:var(--text-muted);margin-bottom:18px}
+  .qm-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
+  .qm-item{background:var(--border-light);border-radius:10px;padding:14px 16px;text-align:center}
+  .qm-item .qm-icon{font-size:24px;margin-bottom:4px}
+  .qm-item .qm-weight{font-size:22px;font-weight:800;color:var(--accent)}
+  .qm-item .qm-label{font-size:14px;font-weight:600;color:var(--text);margin-top:2px}
+  .qm-item .qm-desc{font-size:11px;color:var(--text-muted);margin-top:4px;line-height:1.4}
+  .qm-note{font-size:12px;color:var(--text-muted);margin-top:16px;text-align:center;line-height:1.6}
+
   .share-bar{display:flex;gap:10px;justify-content:center;margin-top:48px;flex-wrap:wrap}
   .btn{display:inline-flex;align-items:center;gap:6px;padding:10px 22px;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;border:1.5px solid var(--border);background:var(--card-bg);color:var(--text-secondary);transition:all .2s}
   .btn:hover{border-color:var(--accent);color:var(--accent);box-shadow:var(--shadow)}
@@ -79,11 +100,11 @@
   .btt.visible{opacity:1;pointer-events:auto}
   .btt:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
   .footer{text-align:center;padding:20px 24px 36px;color:var(--text-muted);font-size:13px}
-  @media(max-width:768px){.grid{grid-template-columns:1fr}.header{padding:44px 20px 36px}.logo{font-size:32px}.stats{gap:28px}.stat-num{font-size:30px}.toolbar{flex-direction:column;align-items:stretch;top:8px;padding:12px 14px}.filter-wrap{overflow-x:auto;flex-wrap:nowrap;padding-bottom:4px}.btt{bottom:20px;right:16px}}
+  @media(max-width:768px){.grid{grid-template-columns:1fr}.header{padding:44px 20px 36px}.logo{font-size:32px}.stats{gap:28px}.stat-num{font-size:30px}.toolbar{flex-direction:column;align-items:stretch;top:8px;padding:12px 14px}.filter-wrap{overflow-x:auto;flex-wrap:nowrap;padding-bottom:4px}.qm-grid{grid-template-columns:repeat(2,1fr)}.btt{bottom:20px;right:16px}}
 </style>
 </head>
 <body>
-<header class="header"><div class="header-bg"></div><div class="header-dots"></div><div class="header-content"><div class="badge">AI Skills Collection</div><h1 class="logo">Chrisgao — AI Skills</h1><p class="slogan">跨境电商全链路 AI 能力矩阵 — 按业务链路编排，即搜即用</p><div class="stats"><div class="stat"><div class="stat-num" id="totalCount">218</div><div class="stat-label">Skills</div></div><div class="stat"><div class="stat-num">10</div><div class="stat-label">Categories</div></div></div></div></header>
+<header class="header"><div class="header-bg"></div><div class="header-dots"></div><div class="header-content"><div class="badge">AI Skills Collection</div><h1 class="logo">Chrisgao — AI Skills</h1><p class="slogan">跨境电商全链路 AI 能力矩阵 — 按业务链路编排，即搜即用</p><div class="stats"><div class="stat"><div class="stat-num" id="totalCount">218</div><div class="stat-label">Skills</div></div><div class="stat"><div class="stat-num" id="curatedCount">5</div><div class="stat-label">精选</div></div><div class="stat"><div class="stat-num">10</div><div class="stat-label">Categories</div></div></div></div></header>
 <main class="container">
 <div class="toolbar">
   <div class="search-box">
@@ -93,6 +114,7 @@
   </div>
   <span class="result-hint" id="resultHint"></span>
   <div class="filter-wrap" id="filters">
+    <button class="filter-tab featured-tab" data-cat="curated">⭐ 精选</button>
     <button class="filter-tab active" data-cat="all">All</button>
     <button class="filter-tab" data-cat="insight">🔍 市场洞察 & 选品</button>
     <button class="filter-tab" data-cat="brand">🏪 品牌 & Listing</button>
@@ -107,6 +129,46 @@
   </div>
 </div>
 <div id="sections"></div>
+
+<!-- 精选标准 -->
+<div class="quality-model">
+  <h3>🏆 精选标准 · 5 维质量评估模型</h3>
+  <p class="qm-subtitle">参照 VS Code / Chrome Web Store 策展逻辑，结合跨境电商行业特点制定</p>
+  <div class="qm-grid">
+    <div class="qm-item">
+      <div class="qm-icon">📊</div>
+      <div class="qm-weight">30%</div>
+      <div class="qm-label">商业相关性</div>
+      <div class="qm-desc">是否直接服务于独立站/DTC/跨境电商场景</div>
+    </div>
+    <div class="qm-item">
+      <div class="qm-icon">⭐</div>
+      <div class="qm-weight">25%</div>
+      <div class="qm-label">社区信号</div>
+      <div class="qm-desc">GitHub Stars · Forks · 社区讨论度 · 用户评价</div>
+    </div>
+    <div class="qm-item">
+      <div class="qm-icon">💡</div>
+      <div class="qm-weight">20%</div>
+      <div class="qm-label">新颖度密度</div>
+      <div class="qm-desc">功能独特性 · 非重复造轮子 · 解决真实痛点</div>
+    </div>
+    <div class="qm-item">
+      <div class="qm-icon">🔄</div>
+      <div class="qm-weight">15%</div>
+      <div class="qm-label">维护活跃度</div>
+      <div class="qm-desc">近期更新频率 · Issue 响应 · PR 合并速度</div>
+    </div>
+    <div class="qm-item">
+      <div class="qm-icon">⚡</div>
+      <div class="qm-weight">10%</div>
+      <div class="qm-label">Token 效率</div>
+      <div class="qm-desc">Skill 长度合理 · 指令精炼 · 不多吃 Token</div>
+    </div>
+  </div>
+  <p class="qm-note">精选标记 ⭐ 的技能为经过 5 维评估的高质量资源。目前收录 <strong id="qmCount">5</strong> 个精选 Skill，均为真实 GitHub 仓库（非搜索链接），具备明确维护者和社区认可。</p>
+</div>
+
 <div class="share-bar">
   <span style="font-size:13px;color:var(--text-muted)">Share with your team:</span>
   <button class="btn btn-primary" id="btnCopyUrl">Copy Link</button>
@@ -362,30 +424,61 @@ const S = [
   ]}
 ];
 
+// Featured/curated skills — 5-dimension quality model
+const FEATURED = new Set([
+  "ui-ux-pro-max",
+  "claude-ads",
+  "email-marketing-bible",
+  "chompute-shopify-skills",
+  "shopify-skill-hub"
+]);
+
 (function(){
 const sections=document.getElementById("sections"),search=document.getElementById("search"),filterWrap=document.getElementById("filters"),hint=document.getElementById("resultHint"),toast=document.getElementById("toast"),btt=document.getElementById("btt"),searchClear=document.getElementById("searchClear");
 let activeCat="all",animFrame;
 
 function render(){
   const q=search.value.trim().toLowerCase();
-  let total=0;
+  let total=0, curatedTotal=0;
   let html="";
-  S.forEach(cat=>{
-    let filtered=cat.skills;
-    if(activeCat!=="all"&&cat.id!==activeCat) return;
-    if(q){filtered=filtered.filter(s=>s[0].toLowerCase().includes(q)||s[1].toLowerCase().includes(q));}
-    if(filtered.length===0&&q) return;
-    total+=filtered.length;
-    html+=`<section class="section" data-cat="${cat.id}"><div class="section-header"><span class="section-icon">${cat.icon}</span><span class="section-title">${cat.title}</span><span class="section-count">${filtered.length} skills</span></div><div class="grid">`;
-    filtered.forEach((s,i)=>{
-      const animDelay=(q||activeCat!=="all")?0:i*0.02;
-      html+=`<div class="card" style="animation-delay:${animDelay}s" data-name="${s[0].replace(/"/g,'&quot;')}" onclick="copySkill(this,'${s[0].replace(/'/g,"\\'")}')"><span class="card-name">${s[0]} <span class="card-copy-icon" title="Copy">copy</span></span><div class="card-desc">${s[1]||""}</div><span class="card-tag ${cat.tag}">${cat.title}</span></div>`;
+
+  if(activeCat==="curated"){
+    // Show only featured skills, grouped by category
+    S.forEach(cat=>{
+      let filtered=cat.skills.filter(s=>FEATURED.has(s[0]));
+      if(q){filtered=filtered.filter(s=>s[0].toLowerCase().includes(q)||s[1].toLowerCase().includes(q));}
+      if(filtered.length===0) return;
+      total+=filtered.length;
+      html+=`<section class="section" data-cat="${cat.id}"><div class="section-header"><span class="section-icon">${cat.icon}</span><span class="section-title">${cat.title}</span><span class="section-count">${filtered.length} curated</span></div><div class="grid">`;
+      filtered.forEach((s,i)=>{
+        html+=`<div class="card card-featured" style="animation-delay:${i*0.02}s" data-name="${s[0].replace(/"/g,'&quot;')}" onclick="copySkill(this,'${s[0].replace(/'/g,"\\'")}')"><span class="card-name"><span class="featured-star">⭐</span>${s[0]} <span class="card-copy-icon" title="Copy">copy</span></span><div class="card-desc">${s[1]||""}</div><div class="card-badges"><span class="card-tag ${cat.tag}">${cat.title}</span><span class="curated-badge">精选</span></div></div>`;
+      });
+      html+=`</div></section>`;
     });
-    html+=`</div></section>`;
-  });
+  }else{
+    // Normal category view
+    S.forEach(cat=>{
+      let filtered=cat.skills;
+      if(activeCat!=="all"&&cat.id!==activeCat) return;
+      if(q){filtered=filtered.filter(s=>s[0].toLowerCase().includes(q)||s[1].toLowerCase().includes(q));}
+      if(filtered.length===0&&q) return;
+      total+=filtered.length;
+      filtered.forEach(s=>{if(FEATURED.has(s[0])) curatedTotal++;});
+      html+=`<section class="section" data-cat="${cat.id}"><div class="section-header"><span class="section-icon">${cat.icon}</span><span class="section-title">${cat.title}</span><span class="section-count">${filtered.length} skills</span></div><div class="grid">`;
+      filtered.forEach((s,i)=>{
+        const isFeat=FEATURED.has(s[0]);
+        const animDelay=(q||activeCat!=="all")?0:i*0.02;
+        html+=`<div class="card${isFeat?' card-featured':''}" style="animation-delay:${animDelay}s" data-name="${s[0].replace(/"/g,'&quot;')}" onclick="copySkill(this,'${s[0].replace(/'/g,"\\'")}')"><span class="card-name">${isFeat?'<span class="featured-star">⭐</span>':''}${s[0]} <span class="card-copy-icon" title="Copy">copy</span></span><div class="card-desc">${s[1]||""}</div><div class="card-badges"><span class="card-tag ${cat.tag}">${cat.title}</span>${isFeat?'<span class="curated-badge">精选</span>':''}</div></div>`;
+      });
+      html+=`</div></section>`;
+    });
+  }
+
   sections.innerHTML=html||`<div class="empty"><div class="empty-icon">search</div><div class="empty-text">No skills found for "${q}"</div></div>`;
   hint.textContent=`${total} skills`;
   document.getElementById("totalCount").textContent=total;
+  document.getElementById("curatedCount").textContent=FEATURED.size;
+  document.getElementById("qmCount").textContent=FEATURED.size;
 }
 
 function updateFilters(){
