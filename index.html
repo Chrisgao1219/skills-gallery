@@ -181,9 +181,12 @@
 const REPOS = [
   {id:"marketingskills",name:"marketingskills",stars:"34.4K",url:"https://github.com/coreyhaines31/marketingskills",tier:1},
   {id:"uiux",name:"ui-ux-pro-max",stars:"38K+",url:"https://github.com/nextlevelbuilder/ui-ux-pro-max-skill",tier:1},
+  {id:"claude-skills",name:"claude-skills",stars:"18.7K",url:"https://github.com/alirezarezvani/claude-skills",tier:1},
   {id:"claude-seo",name:"claude-seo",stars:"9.4K",url:"https://github.com/AgriciDaniel/claude-seo",tier:1},
   {id:"claude-ads",name:"claude-ads",stars:"6.3K",url:"https://github.com/AgriciDaniel/claude-ads",tier:1},
+  {id:"notfair",name:"NotFair",stars:"2.9K",url:"https://github.com/nowork-studio/NotFair",tier:1},
   {id:"seo-geo",name:"seo-geo-claude-skills",stars:"2.2K",url:"https://github.com/aaron-he-zhu/seo-geo-claude-skills",tier:1},
+  {id:"gtm-engineer",name:"gtm-engineer-skills",stars:"1.2K",url:"https://github.com/onvoyage-ai/gtm-engineer-skills",tier:1},
   {id:"arcads",name:"arcads-claude-code",stars:"823",url:"https://github.com/krusemediallc/arcads-claude-code",tier:2},
   {id:"ecom-img",name:"ecom-details-image",stars:"429",url:"https://github.com/liangdabiao/ecom-details-image",tier:2},
   {id:"ai-marketing",name:"ai-marketing-skills",stars:"334",url:"https://github.com/BrianRWagner/ai-marketing-claude-code-skills",tier:2},
@@ -215,6 +218,7 @@ const S = [
     {n:"aimktg-marketing-principles",t:2,r:"ai-marketing",d:"Apply timeless marketing and business principles — strategic thinking, decision frameworks.",u:"https://github.com/BrianRWagner/ai-marketing-claude-code-skills/tree/main/marketing-principles"},
     {n:"founder-competitor-intel",t:2,r:"founder",d:"Analyze competitors via web research — verified metrics, leverage strategies, predicted next moves.",u:"https://github.com/ognjengt/founder-skills/tree/main/skills/competitor-intel"},
     {n:"founder-marketing-ideas",t:2,r:"founder",d:"Marketing ideas engine — tailored growth tactics, channel recommendations, viral mechanics.",u:"https://github.com/ognjengt/founder-skills/tree/main/skills/marketing-ideas"},
+    {n:"competitive-teardown",t:1,r:"claude-skills",d:"Competitor product teardown — pricing, app store reviews, job postings, SEO signals, social media → structured intelligence.",u:"https://github.com/alirezarezvani/claude-skills/tree/main/product-team/skills/competitive-teardown"},
   ]},
   // ====== 🏪 品牌 & Listing ======
   {id:"brand",icon:"🏪",title:"品牌 & Listing",tag:"tag-brand",skills:[
@@ -256,6 +260,12 @@ const S = [
     {n:"ads-photoshoot",t:1,r:"claude-ads",d:"Ad photoshoot briefs — creative direction, shot lists, mood boards for product ad photography.",u:"https://github.com/AgriciDaniel/claude-ads/tree/main/skills/ads-photoshoot"},
     {n:"ads-test",t:1,r:"claude-ads",d:"Ad testing framework — structured A/B test design, statistical significance, creative rotation rules.",u:"https://github.com/AgriciDaniel/claude-ads/tree/main/skills/ads-test"},
     {n:"mktg-ads",t:1,r:"marketingskills",d:"Paid advertising strategy across Google Ads, Meta, LinkedIn, Twitter/X.",u:"https://github.com/coreyhaines31/marketingskills/tree/main/skills/ads"},
+    {n:"google-ads-audit",t:1,r:"notfair",d:"Google Ads account audit — business context, account health scoring, saves context for all other ads skills. Entry point for NotFair ads workflow.",u:"https://github.com/nowork-studio/NotFair/tree/main/google-ads/audit"},
+    {n:"google-ads-copy",t:1,r:"notfair",d:"Generate & A/B test Google Ads RSA copy — headlines, descriptions, ad variants. Message testing with statistical rigor.",u:"https://github.com/nowork-studio/NotFair/tree/main/google-ads/copy"},
+    {n:"google-ads-landing",t:1,r:"notfair",d:"Google Ads LPX (Landing Page Experience) scoring — message match, CVR diagnosis, Quality Score component improvement.",u:"https://github.com/nowork-studio/NotFair/tree/main/google-ads/landing"},
+    {n:"google-ads-manage",t:1,r:"notfair",d:"Daily Google Ads management — keywords, bids, budgets, search terms, QS, negatives, experiments, portfolio bidding.",u:"https://github.com/nowork-studio/NotFair/tree/main/google-ads/manage"},
+    {n:"meta-ads-audit",t:1,r:"notfair",d:"Meta Ads (Facebook + Instagram) account audit — business context, health scoring, audience strategy baseline.",u:"https://github.com/nowork-studio/NotFair/tree/main/meta-ads/audit"},
+    {n:"meta-ads-manage",t:1,r:"notfair",d:"Daily Meta Ads management — ROAS, CPM, frequency, audience overlap, learning phase, creative fatigue detection.",u:"https://github.com/nowork-studio/NotFair/tree/main/meta-ads/manage"},
     {n:"arcads-chatgpt-image-ad",t:2,r:"arcads",d:"Generate standalone Meta ad image creatives via Arcads — model: gpt-image-2.",u:"https://github.com/krusemediallc/arcads-claude-code/tree/main/skills/arcads-chatgpt-image-ad"},
     {n:"arcads-external-api",t:2,r:"arcads",d:"Arcads external API integration — image generation, template management, creative operations.",u:"https://github.com/krusemediallc/arcads-claude-code/tree/main/skills/arcads-external-api"},
     {n:"arcads-generate-youtube-thumbnail",t:2,r:"arcads",d:"Generate high-CTR YouTube thumbnails — face expressions, text overlays, color grading.",u:"https://github.com/krusemediallc/arcads-claude-code/tree/main/skills/arcads-generate-youtube-thumbnail"},
@@ -329,6 +339,10 @@ const S = [
     {n:"seogeo-technical-seo-checker",t:1,r:"seo-geo",d:"Audit crawlability, indexing, Core Web Vitals, robots.txt, sitemaps, canonicals, redirects, migrations.",u:"https://github.com/aaron-he-zhu/seo-geo-claude-skills"},
     {n:"mktg-ai-seo",t:1,r:"marketingskills",d:"Optimize for AI search engines, LLM citations, generative engine optimization.",u:"https://github.com/coreyhaines31/marketingskills/tree/main/skills/ai-seo"},
     {n:"aimktg-ai-discoverability-audit",t:2,r:"ai-marketing",d:"Audit brand appearance in AI-powered search — ChatGPT, Perplexity, Claude, Gemini.",u:"https://github.com/BrianRWagner/ai-marketing-claude-code-skills/tree/main/ai-discoverability-audit"},
+    {n:"audit-website-aeo",t:1,r:"gtm-engineer",d:"Website AEO/GEO discoverability audit — crawls site, 16 deterministic checks + 6-dimension eval, scored A-F with prioritized fixes.",u:"https://github.com/onvoyage-ai/gtm-engineer-skills/tree/main/audit-website-aeo"},
+    {n:"create-geo-charts",t:1,r:"gtm-engineer",d:"GEO data visualizations — SVG/HTML charts optimized for AI engine parsing & citation, with JSON-LD and data tables.",u:"https://github.com/onvoyage-ai/gtm-engineer-skills/tree/main/create-geo-charts"},
+    {n:"audit-content-geo",t:1,r:"gtm-engineer",d:"Pre-publish content verification — catches fabricated statistics, dead URLs, misattributed sources for AI citation readiness.",u:"https://github.com/onvoyage-ai/gtm-engineer-skills/tree/main/audit-content"},
+    {n:"gemini-optimizer",t:1,r:"notfair",d:"Cross-model second opinion from Google Gemini — review, challenge, or consult with a different AI for decision validation.",u:"https://github.com/nowork-studio/NotFair/tree/main/gemini"},
   ]},
   // ====== 🧪 CRO & 增长 ======
   {id:"cro",icon:"🧪",title:"CRO & 增长",tag:"tag-cro",skills:[
@@ -348,6 +362,8 @@ const S = [
     {n:"founder-product-hunt-launch-plan",t:2,r:"founder",d:"Product Hunt launch playbook — pre-launch, launch day, post-launch optimization.",u:"https://github.com/ognjengt/founder-skills/tree/main/skills/product-hunt-launch-plan"},
     {n:"founder-viral-hook-creator",t:2,r:"founder",d:"Viral hook generator — scroll-stopping headlines, social hooks, content angles.",u:"https://github.com/ognjengt/founder-skills/tree/main/skills/viral-hook-creator"},
     {n:"founder-brand-copywriter",t:2,r:"founder",d:"Brand voice & messaging — tone, taglines, value props, multi-channel brand copy.",u:"https://github.com/ognjengt/founder-skills/tree/main/skills/brand-copywriter"},
+    {n:"pricing-strategist",t:1,r:"claude-skills",d:"Pricing model design — Van Westendorp WTP analysis, Good/Better/Best tier packaging, subscription/usage-based/freemium selection.",u:"https://github.com/alirezarezvani/claude-skills/tree/main/commercial/skills/pricing-strategist"},
+    {n:"experiment-designer",t:1,r:"claude-skills",d:"Product experiment design — testable hypotheses, sample size estimation, statistical rigor, A/B outcome interpretation.",u:"https://github.com/alirezarezvani/claude-skills/tree/main/product-team/skills/experiment-designer"},
   ]},
   // ====== 📦 运营 & 供应链 ======
   {id:"ops",icon:"📦",title:"运营 & 供应链",tag:"tag-ops",skills:[
@@ -355,6 +371,7 @@ const S = [
     {n:"shopify-skill-hub",t:3,r:"shopify-hub",d:"驴嫂/Selofy Shopify AI Skills — WeChat to Shopify Blog, Product SERP/SEO audit & optimizer, AI Agent store management. 6万+ followers.",u:"https://github.com/ivsao/shopify-skill-hub"},
     {n:"founder-sop-creator",t:2,r:"founder",d:"Create repeatable SOPs — document processes, build playbooks, scale operations.",u:"https://github.com/ognjengt/founder-skills/tree/main/skills/sop-creator"},
     {n:"founder-prd-generator",t:2,r:"founder",d:"Generate Product Requirements Documents — structured, stakeholder-ready, with milestones.",u:"https://github.com/ognjengt/founder-skills/tree/main/skills/prd-generator"},
+    {n:"customer-success-manager",t:1,r:"claude-skills",d:"Customer health scoring, churn risk prediction, expansion opportunity identification — weighted scoring models for SaaS/DTC.",u:"https://github.com/alirezarezvani/claude-skills/tree/main/business-growth/skills/customer-success-manager"},
   ]},
   // ====== 📊 数据 & 分析 ======
   {id:"data",icon:"📊",title:"数据 & 分析",tag:"tag-data",skills:[
@@ -372,6 +389,7 @@ const S = [
     {n:"aimktg-social-card-gen",t:2,r:"ai-marketing",d:"Generate platform-specific social post variants (Twitter/X, LinkedIn, Reddit) from one source.",u:"https://github.com/BrianRWagner/ai-marketing-claude-code-skills/tree/main/social-card-gen"},
     {n:"aimktg-go-mode",t:2,r:"ai-marketing",d:"Autonomous goal execution — give a goal, get a plan, confirm, execute, report. You steer, Claude drives.",u:"https://github.com/BrianRWagner/ai-marketing-claude-code-skills/tree/main/go-mode"},
     {n:"mktg-directory-submissions",t:1,r:"marketingskills",d:"Submit product to startup, SaaS, AI, MCP, review directories for backlinks and discovery.",u:"https://github.com/coreyhaines31/marketingskills/tree/main/skills/directory-submissions"},
+    {n:"product-strategist",t:1,r:"claude-skills",d:"Head of Product toolkit — OKR cascades, quarterly planning, product vision docs, competitive landscape, team scaling proposals.",u:"https://github.com/alirezarezvani/claude-skills/tree/main/product-team/skills/product-strategist"},
   ]}
 ];
 
